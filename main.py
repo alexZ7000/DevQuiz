@@ -27,17 +27,19 @@ user = PhotoImage(file=r"Imagens\UsernameTemaEscuro.png")
 
 # FIM DAS IMAGENS
 
-# Classe que irá definir todos os itens que todos os "Menu" vão usar
 class Menu():
-    # Criação da minha tela
+    """Classe que irá definir todos os itens que todos os "Menu" vão usar"""
+
     def __init__(self):
+        """Criação da minha tela"""
         self.frame = Frame(root, bg="#ccccff")
         self.build_screen()
 
-    # Função para mudar de tema "Claro" para tema "Escuro"
+
     c = 0
 
     def change_theme(self):
+        """ Função para mudar de tema "Claro" para tema "Escuro" """
         self.c = self.c + 1
         if self.c % 2 == 0:
             self.theme_txt.set("Tema Claro")
@@ -46,16 +48,19 @@ class Menu():
             self.theme_txt.set("Tema Escuro")
             self.frame.config(bg="#1D1D66")
 
-    # Função para colocar os objetos referenciados no "DevSystem" em todas as Classes que herdarem de "Menu"
+    #
     def Set_DevSystem(self, DevSystem):
+        """ Função para colocar os objetos referenciados no "DevSystem" em todas as Classes que herdarem de "Menu" """
         self.DevSystem = DevSystem
 
-    # Função para mostrar todos os widgets que forem "self.frame"
+    #
     def show(self):
+        """ Função para mostrar todos os widgets que forem "self.frame" """
         self.frame.pack(fill=BOTH, expand=True)
 
-    # Função para esconder widgets que não serão mais usados em uma tela nova e para excluir caracteres inseridos nos "Entry"
+    #
     def hide(self):
+        """ Função para esconder widgets que não serão mais usados em uma tela nova e para excluir caracteres inseridos nos "Entry" """
         self.frame.forget()
         self.reset_entry()
 
@@ -693,6 +698,7 @@ class DevSystem():
             return self.jogar
         else:
             raise Exception(f"reference_name not found, string name is wrong: {reference_name}")
+
 
 
 # Referência Fraca dos meus objetos
