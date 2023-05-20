@@ -658,9 +658,9 @@ class MenuPlay(Menu):
         pass
 
     def questoes(self):
-        """Função para "fabricar" minhas questões e alternativas"""
-        self.perguntas = {1: "True or False", }
-        self.alternativas = {1: "1"}
+        """Função para "fabricar" minhas questões"""
+        self.perguntas = {1: "True or False",}
+        self.alternativas = {1: "1", 2: '"1"', 3: '"0"'}
         self.certa = {1: "1"}
         self.n = 1
         # self.questao = self.perguntas.fromkeys(self.n), self.alternativas.fromkeys(self.n), self.certa.fromkeys(self.n)
@@ -669,12 +669,28 @@ class MenuPlay(Menu):
         # else:
         #     ...
 
+    def alternativa_certa(self):
+        """Função para levar o usuário para a próxima questão"""
+        pass
+    
+    def tentar_novamente(self):
+        """Função para levar o usuário para o "MenuMain" """
+        self.DevSystem.menu_main.show()
+        self.hide()
+
+    def alternativa_errada(self):
+        """Função para mostrar que o usuário errou a questão"""
+        Label(self.frame, font=("Kristen ITC", 40), text="Você Errou!").place(x=x/2-600, y=y/2, anchor="center")
+        Button(self.frame, font=("Kristen ITC", 40), text="Tentar Novamente", command=self.tentar_novamente).place(x=x/2+200, y=y/2, anchor="center")
+
     def build_screen(self):
         """Função para construir a tela "MenuPlay" """
         self.questoes()
-        Label(self.frame, text=self.perguntas[1]).place(x=x / 2, y=y / 2, anchor="center")
-        Button(self.frame, text=self.alternativas[1]).place(x=x / 2, y=y / 2 + 200, anchor="center")
-        # Button(self.frame, text=self.alternativas[2]).place(x=x/2+100,y=y/2+200, anchor="center")
+        Label(self.frame,font=("Kristen ITC", 40),text=self.perguntas[1]).place(x=x/2,y=100, anchor="center")
+        Button(self.frame, text=self.alternativas[1], borderwidth=0, command=self.alternativa_certa).place(x=x/2,y=y/2+200, anchor="center")
+        Button(self.frame, text=self.alternativas[2], command=self.alternativa_errada).place(x=x/2+100,y=y/2+200, anchor="center")
+        Button(self.frame, text=self.alternativas[3], command=self.alternativa_errada).place(x=x/2+100,y=y/2+200, anchor="center")
+        self.frame.forget()
 
 
 class DevSystem:
