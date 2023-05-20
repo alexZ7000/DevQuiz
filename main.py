@@ -3,7 +3,7 @@ from tkinter.messagebox import *
 import smtplib
 import email.message
 import pygame.mixer_music
-from time import sleep
+#from time import sleep
 
 root = Tk()  # Janela
 root.title("DevQuiz")  # Título da janela
@@ -27,19 +27,22 @@ user = PhotoImage(file=r"Imagens\UsernameTemaEscuro.png")
 
 # FIM DAS IMAGENS
 
-class Menu():
+class Menu:
     """Classe que irá definir todos os itens que todos os "Menu" vão usar"""
 
     def __init__(self):
         """Criação da minha tela"""
+        self.theme_txt = None
+        self.dev_system = None
         self.frame = Frame(root, bg="#ccccff")
         self.build_screen()
 
-
     c = 0
-
+    
     def change_theme(self):
-        """ Função para mudar de tema "Claro" para tema "Escuro" """
+        """ Função para mudar de tema "Claro" para tema "Escuro"
+         :param self: Menu
+         :returns: Não retorna nada"""
         self.c = self.c + 1
         if self.c % 2 == 0:
             self.theme_txt.set("Tema Claro")
@@ -48,33 +51,44 @@ class Menu():
             self.theme_txt.set("Tema Escuro")
             self.frame.config(bg="#1D1D66")
 
-    #
-    def Set_DevSystem(self, DevSystem):
-        """ Função para colocar os objetos referenciados no "DevSystem" em todas as Classes que herdarem de "Menu" """
-        self.DevSystem = DevSystem
+    def set_dev_system(self, dev_system):
+        """ Função para colocar os objetos referenciados no "DevSystem" em todas as Classes que herdarem de "Menu".
+:param dev_system: Pegar referencias
+:returns: Não retorna nada
+"""
+        self.dev_system = dev_system
 
-    #
     def show(self):
         """ Função para mostrar todos os widgets que forem "self.frame" """
         self.frame.pack(fill=BOTH, expand=True)
 
-    #
     def hide(self):
-        """ Função para esconder widgets que não serão mais usados em uma tela nova e para excluir caracteres inseridos nos "Entry" """
+        """ Função para esconder widgets que não 
+        serão mais usados em uma tela nova e para 
+        excluir caracteres inseridos nos "Entry" """
         self.frame.forget()
         self.reset_entry()
 
+    def build_screen(self):
+        """Função para construir minha tela, mas eu não preciso
+        construir nenhuma tela em menu, essa função deve ser ignorada"""
+        pass
 
-# Tela "Esqueci minha senha"
+    def reset_entry(self):
+        """Função para limpar os caracteres inseridos no "Entry" """
+        pass
+
+
 class MenuPasswordForget(Menu):
+    """Tela "Esqueci minha senha" """
 
-    # Construtor
     def __init__(self, menu_login):
+        """Construtor"""
         super().__init__()
         self.menu_login = menu_login
 
-    # Função para enviar e-mail para o usuário
     def send_email(self):
+        """Função para enviar e-mail para o usuário"""
         self.corpo_email = """
         <p>     Olá, vimos que você esqueceu sua senha,<br>
         Mas não se preocupe, estamos aqui para te ajudar<br>
@@ -97,23 +111,24 @@ class MenuPasswordForget(Menu):
         self.s.login(self.msg['From'], self.password)
         self.s.sendmail(self.msg['From'], self.msg['To'], self.msg.as_string().encode('utf-8'))
         print("E-mail enviado")
+        raise Exception("e-mail colocado errado amigo")
 
-    # Função para limpar os caracteres inseridos no "Entry"
     def reset_entry(self):
+        """Função para limpar os caracteres inseridos no "Entry" """
         self.password_forget_entry.delete(0, END)
 
-    # Função para o usuário voltar para a tela "Login"
     def back_password_forget(self):
-        self.DevSystem.menu_login.show()
+        """Função para o usuário voltar para a tela "Login" """
+        self.dev_system.menu_login.show()
         self.hide()
 
-    # Função para captar os dados que o usuário digitou no "Esqueci minha senha" e chamar a função "send_email"
     def get_user_info_password_forget(self):
+        """Função para captar os dados que o usuário digitou no "Esqueci minha senha" e chamar a função "send_email" """
         self.user_email = self.password_forget_entry.get()
         self.send_email()
 
-    # Construir a tela "Esqueci Minha Senha"
     def build_screen(self):
+        """Função para construir a tela "Esqueci Minha Senha" """
         self.frame.config(bg="black")
         Label(self.frame,
               fg="white",
@@ -152,21 +167,21 @@ Cheque sua caixa de SPAM""",
                command=self.back_password_forget).place(x=x / 2 + 50, y=y / 2)
 
 
-# Tela "Registrar-se"
 class MenuSignUp(Menu):
+    """Tela "Registrar-se" """
 
-    # Construtor
     def __init__(self, menu_login):
+        """Construtor"""
         super().__init__()
         self.menu_login = menu_login
 
-    # Função para o usuário voltar para a tela "Login"
     def back_menu_sign_up(self):
-        self.DevSystem.menu_login.show()
+        """Função para o usuário voltar para a tela "Login" """
+        self.dev_system.menu_login.show()
         self.hide()
 
-    # Função para captar os dados que o usuário digitou no "Sign up"
     def get_user_info_sign_up(self):
+        """Função para captar os dados que o usuário digitou no "Sign up" """
         print(self.click.get())
         print(self.sign_up_name.get())
         print(self.sign_up_username.get())
@@ -174,8 +189,8 @@ class MenuSignUp(Menu):
         print(self.sign_up_password.get())
         print(self.sign_up_confirm_password.get())
 
-    # Função para limpar os caracteres inseridos no "Entry"
     def reset_entry(self):
+        """Função para limpar os caracteres inseridos no "Entry" """
         self.sign_up_name.delete(0, END)
         self.sign_up_username.delete(0, END)
         self.sign_up_email.delete(0, END)
@@ -183,8 +198,8 @@ class MenuSignUp(Menu):
         self.sign_up_confirm_password.delete(0, END)
         self.click.set("Selecione seu Curso")
 
-    # Função para construir a tela "Registrar-se"
     def build_screen(self):
+        """Função para construir a tela "Registrar-se" """
         Label(self.frame,
               font=("Kristen ITC", 40),
               text="REGISTRAR-SE",
@@ -283,59 +298,60 @@ class MenuSignUp(Menu):
         self.back_sign_up_button.place(x=x / 2, y=500)
 
 
-# Tela "login" (primeira tela do jogo)
 class MenuLogin(Menu):
+    """Tela "login" (primeira tela do jogo)"""
 
-    # Construtor
     def __init__(self, menu_sign_up,
-                 menu_password_forget, menu_play, menu_settings, menu_instructions, jogar):
+                 menu_password_forget, menu_main, menu_settings, menu_instructions, menu_play):
+        """Construtor"""
         super().__init__()
         self.menu_sign_up = menu_sign_up
         self.menu_password_forget = menu_password_forget
-        self.menu_play = menu_play
+        self.menu_main = menu_main
         self.menu_settings = menu_settings
         self.menu_instructions = menu_instructions
-        self.jogar = jogar
+        self.menu_play = menu_play
 
-    # Função para captar os dados que o usuário digitou no "login"
     def get_user_info_login(self):
+        """Função para captar os dados que o usuário digitou no "login" """
         print(self.login_username_entry.get())
         print(self.login_password_entry.get())
 
-    # Função para o usuário ir para a tela "Registrar-se"
     def go_to_sign_up(self):
-        self.DevSystem.menu_sign_up.show()
+        """Função para o usuário ir para a tela "Registrar-se" """
+        self.dev_system.menu_sign_up.show()
         self.hide()
 
-    # Função para o usuário ir para a tela "Esqueci minha senha"
     def go_to_password_forget(self):
-        self.DevSystem.menu_password_forget.show()
+        """Função para o usuário ir para a tela "Esqueci minha senha" """
+        self.dev_system.menu_password_forget.show()
         self.hide()
 
-    # Função para limpar os caracteres inseridos no "Entry"
     def reset_entry(self):
+        """Função para limpar os caracteres inseridos no "Entry" """
         self.login_username_entry.delete(0, END)
         self.login_password_entry.delete(0, END)
 
-    # Caixa de aviso para continuar sem login
     def continue_without_login(self):
+        """Caixa de aviso para continuar sem login"""
         self.resposta = askyesno("Aviso Sobre Continuar Sem Cadastro",
-                                 message="Ao jogar nosso jogo sem cadastro seu progresso não aparecerá no ranking")
+                                 message="Ao menu_play nosso jogo sem cadastro seu progresso não aparecerá no ranking")
         if self.resposta:
-            self.DevSystem.menu_play.show()
+            self.dev_system.menu_main.show()
             pygame.mixer.init()  # Iniciar a música do DevQuiz na tela "Menu Principal"
             pygame.mixer.music.load('Sons/musica.wav')
             pygame.mixer.music.play(-1)  # Para deixar a música tocando infinitamente
             self.hide()
 
-    # Função para exibir uma caixinha de confirmação ao usuário, para ele decidir se realmente quer sair do DevQuiz
     def confirm(self):
+        """Função para exibir uma caixinha de confirmação ao usuário,
+        para ele decidir se realmente quer sair do DevQuiz"""
         self.resposta = askyesno(message='Você tem certeza que deseja sair do DevQuiz?')
         if self.resposta:
             root.destroy()
 
-    # Função para construir a tela "Login"
     def build_screen(self):
+        """Função para construir a tela "Login" """
 
         Label(self.frame,
               image=bg_test,
@@ -426,44 +442,45 @@ class MenuLogin(Menu):
                command=self.confirm).place(x=1300, y=800)
 
 
-# Tela "Menu Principal" (primeira tela pós login)
-class MenuPlay(Menu):
+class MenuMain(Menu):
+    """Tela "Menu Principal" (primeira tela pós login)"""
 
-    # Construtor
-    def __init__(self, menu_login, menu_settings, menu_instructions, jogar):
+    def __init__(self, menu_login, menu_settings, menu_instructions, menu_play):
+        """Construtor"""
         super().__init__()
         self.menu_login = menu_login
         self.menu_settings = menu_settings
         self.menu_instructions = menu_instructions
-        self.jogar = jogar
+        self.menu_play = menu_play
 
-    # Função reset para evitar erros no código, tendo em vista que o hide sempre chama essa função
     def reset_entry(self):
+        """Função reset para evitar erros no código, tendo em vista que o hide sempre chama essa função"""
         pass
 
-        # Função para exibir uma caixinha de confirmação ao usuário, para ele decidir se realmente quer sair do DevQuiz
-
     def confirm(self):
+        """Função para exibir uma caixinha de confirmação ao usuário,
+        para ele decidir se realmente quer sair do DevQuiz"""
         self.resposta = askyesno(message='Você tem certeza que deseja sair do DevQuiz?')
         if self.resposta:
             root.destroy()
 
-    # Função para o usuário ir para a tela "Configurações"
     def go_to_settings(self):
-        self.DevSystem.menu_settings.show()
+        """Função para o usuário ir para a tela "Configurações" """
+        self.dev_system.menu_settings.show()
         self.hide()
 
     def go_to_play(self):
-        self.DevSystem.jogar.show()
+        """Função para o usuário ir para a tela "MenuPlay" """
+        self.dev_system.menu_play.show()
         self.hide()
 
-    # Função para o usuário ir para a tela "Instruções"
     def go_to_instructions(self):
-        self.DevSystem.menu_instructions.show()
+        """Função para o usuário ir para a tela "Instruções" """
+        self.dev_system.menu_instructions.show()
         self.hide()
 
-    # Função para construir a tela "Menu Principal"
     def build_screen(self):
+        """Função para construir a tela "Menu Principal" """
         Label(self.frame, font=("Kristen ITC", 40), image=dev_quiz_logo_pequena).place(x=x / 2, y=150, anchor='center')
 
         Button(self.frame,
@@ -495,51 +512,52 @@ class MenuPlay(Menu):
                command=self.confirm).place(x=x / 2, y=809, anchor='center')
 
 
-# Tela "Configurações"
 class MenuSettings(Menu):
+    """Tela "Configurações" """
 
-    # Construtor
-    def __init__(self, menu_play, menu_login):
+    def __init__(self, menu_main, menu_login):
+        """Construtor"""
         super().__init__()
-        self.menu_play = menu_play
+        self.menu_main = menu_main
         self.menu_login = menu_login
 
-    # Função reset para evitar erros no código, tendo em vista que o hide sempre chama essa função
     def reset_entry(self):
+        """Função reset para evitar erros no código, tendo em vista que o hide sempre chama essa função"""
         pass
 
         # Função para realizar o logout do usuário
 
-    def Logout(self):
+    def logout(self):
+        """Função para o usuário realizar logout, com uma caixinha de confimação sendo exibida"""
         self.resposta = askyesno(message="Você tem certeza que quer realizar logout?")
         if self.resposta:
-            self.DevSystem.menu_login.show()
+            self.dev_system.menu_login.show()
             self.hide()
 
-    # Função para o usuário voltar para a tela "Menu Principal"
-    def back_menu_play(self):
-        self.DevSystem.menu_play.show()
+    def back_menu_main(self):
+        """Função para o usuário voltar para a tela "Menu Principal" """
+        self.dev_system.menu_main.show()
         self.hide()
 
-    # Função para mudar o tema que por padrão é "Tema Claro", para "Tema Escuro"
     def theme(self):
+        """Função para mudar o tema que por padrão é "Tema Claro", para "Tema Escuro" """
         self.change_theme()
 
-    # Função para mostrar o botão do "som"
     def volume_scale(self):
+        """Função para mostrar o botão do "som" """
         self.volume_slider = Scale(self.frame, bg="#ccccff", from_=100, to=0, orient=VERTICAL, length=150,
                                    command=self.update_sound)
         self.volume_slider.set(100)
         self.volume_slider.place(x=x / 2 + 220, y=335)  # x=900, y=335
         pygame.mixer.music.set_volume(100)
 
-    # Função para atualizar o volume do jogo
     def update_sound(self, volume):
+        """Função para atualizar o volume do jogo"""
         self.update_volume = int(volume) / 100
         pygame.mixer.music.set_volume(self.update_volume)
 
-    # Função para construir a tela "Configurações"
     def build_screen(self):
+        """Função para construir a tela "Configurações" """
         Label(self.frame,
               font=("Kristen ITC", 40),
               text="Configurações").place(x=x / 2, y=100, anchor='center')
@@ -567,39 +585,37 @@ class MenuSettings(Menu):
                font=("Kristen ITC", 14),
                width="30",
                cursor="hand2",
-               command=self.Logout).place(x=x / 2, y=579, anchor='center')
+               command=self.logout).place(x=x / 2, y=579, anchor='center')
         Button(self.frame,
                text="Voltar para o Menu Inicial",
                height="2",
                font=("Kristen ITC", 14),
                width="30",
                cursor="hand2",
-               command=self.back_menu_play).place(x=x / 2, y=739, anchor='center')
-
-    # Tela "Instruções"
+               command=self.back_menu_main).place(x=x / 2, y=739, anchor='center')
 
 
 class MenuInstructions(Menu):
+    """Tela "Instruções" """
 
-    # Construtor
-    def __init__(self, menu_play, menu_login):
+    def __init__(self, menu_main, menu_login):
+        """Construtor"""
         super().__init__()
-        self.menu_play = menu_play
+        self.menu_main = menu_main
         self.menu_login = menu_login
 
-    # Função para o usuário voltar para a tela "Menu Principal"
-    def back_menu_play(self):
-        # self.DevSystem.get_reference(self.menu_play_string).show()
-        self.DevSystem.menu_play.show()
+    def back_menu_main(self):
+        """Função para o usuário voltar para a tela "Menu Principal" """
+        # self.DevSystem.get_reference(self.menu_main_string).show()
+        self.dev_system.menu_main.show()
         self.hide()
 
-    # Função reset para evitar erros no código, tendo em vista que o hide sempre chama essa função
     def reset_entry(self):
+        """Função reset para evitar erros no código, tendo em vista que o hide sempre chama essa função"""
         pass
 
-        # Função para construir a tela "Instruções"
-
     def build_screen(self):
+        """Função para construir a tela "Instruções" """
         Label(self.frame,
               text="INSTRUÇÕES",
               font=("Kristen ITC", 40),
@@ -625,23 +641,26 @@ class MenuInstructions(Menu):
                padx=25,
                pady=12.5,
                cursor="hand2",
-               command=self.back_menu_play).place(x=x / 2, y=570, anchor="center")
+               command=self.back_menu_main).place(x=x / 2, y=570, anchor="center")
 
 
-# Tela "Jogar"
-class Jogar(Menu):
+class MenuPlay(Menu):
+    """Tela "MenuPlay" """
 
-    def __init__(self, menu_play, menu_login):
+    def __init__(self, menu_main, menu_login):
+        """Construtor"""
         super().__init__()
-        self.menu_play = menu_play
+        self.menu_main = menu_main
         self.menu_login = menu_login
 
     def reset_entry(self):
+        """Função reset para evitar erros no código, tendo em vista que o hide sempre chama essa função"""
         pass
 
     def questoes(self):
+        """Função para "fabricar" minhas questões e alternativas"""
         self.perguntas = {1: "True or False", }
-        self.alternativas = {1: ("1", '"1"', '"0"')}
+        self.alternativas = {1: "1"}
         self.certa = {1: "1"}
         self.n = 1
         # self.questao = self.perguntas.fromkeys(self.n), self.alternativas.fromkeys(self.n), self.certa.fromkeys(self.n)
@@ -651,51 +670,52 @@ class Jogar(Menu):
         #     ...
 
     def build_screen(self):
+        """Função para construir a tela "MenuPlay" """
         self.questoes()
         Label(self.frame, text=self.perguntas[1]).place(x=x / 2, y=y / 2, anchor="center")
         Button(self.frame, text=self.alternativas[1]).place(x=x / 2, y=y / 2 + 200, anchor="center")
         # Button(self.frame, text=self.alternativas[2]).place(x=x/2+100,y=y/2+200, anchor="center")
 
 
-# Classe para referenciar objetos
-class DevSystem():
-    # Construtor
+class DevSystem:
+    """Classe para referenciar objetos"""
     def __init__(self,
                  menu_login,
                  menu_password_forget,
                  menu_sign_up,
-                 menu_play,
+                 menu_main,
                  menu_settings,
                  menu_instructions,
-                 jogar):
+                 menu_play):
+        """Construtor"""
         self.menu_login = menu_login
         self.menu_password_forget = menu_password_forget
         self.menu_sign_up = menu_sign_up
-        self.menu_play = menu_play
+        self.menu_main = menu_main
         self.menu_settings = menu_settings
         self.menu_instructions = menu_instructions
-        self.jogar = jogar
+        self.menu_play = menu_play
 
     # def __init__(self,menus):
     #     self.dictionary = {nameof(var):menu for menu in menus}
     #     print(self.dictionary)
 
-    # Função para pegar a referência dos objetos
     def get_reference(self, reference_name):
+        """Função para pegar a referência dos objetos"""
         if reference_name == "menu_login":
             return self.menu_login
         elif reference_name == "menu_password_forget":
             return self.menu_password_forget
         elif reference_name == "menu_sign_up":
             return self.menu_sign_up
-        elif reference_name == "menu_play":
-            return self.menu_play
+        elif reference_name == "menu_main":
+            return self.menu_main
         elif reference_name == "menu_settings":
             return self.menu_settings
         elif reference_name == "menu_instructions":
             return self.menu_instructions
-        elif reference_name == "jogar":
-            return self.jogar
+        elif reference_name == "menu_play":
+            return self.menu_play
         else:
             raise Exception(f"reference_name not found, string name is wrong: {reference_name}")
 
@@ -703,35 +723,35 @@ class DevSystem():
 
 # Referência Fraca dos meus objetos
 menu_sign_up = MenuSignUp("menu_login")
-menu_play = MenuPlay("menu_login", "menu_settings", "menu_instructions", "jogar")
+menu_main = MenuMain("menu_login", "menu_settings", "menu_instructions", "menu_play")
 menu_password_forget = MenuPasswordForget("menu_login")
-menu_settings = MenuSettings("menu_play", "menu_login")
-menu_instructions = MenuInstructions("menu_play", "menu_login")
-jogar = Jogar("menu_login", "menu_play")
+menu_settings = MenuSettings("menu_main", "menu_login")
+menu_instructions = MenuInstructions("menu_main", "menu_login")
+menu_play = MenuPlay("menu_login", "menu_main")
 menu_login = MenuLogin("menu_sign_up",
                        "menu_password_forget",
-                       "menu_play",
+                       "menu_main",
                        "menu_settings",
                        "menu_instructions",
-                       "jogar")
+                       "menu_play")
 menu_login.show()  # Chamo a função "show" para mostrar minha primeira tela "Login"
 
 # Referência Forte dos meus objetos
 DevSystem = DevSystem(menu_login,
                       menu_password_forget,
                       menu_sign_up,
-                      menu_play,
+                      menu_main,
                       menu_settings,
                       menu_instructions,
-                      jogar)
+                      menu_play)
 
-menu_sign_up.Set_DevSystem(DevSystem)
-menu_password_forget.Set_DevSystem(DevSystem)
-menu_login.Set_DevSystem(DevSystem)
-menu_play.Set_DevSystem(DevSystem)
-menu_settings.Set_DevSystem(DevSystem)
-menu_instructions.Set_DevSystem(DevSystem)
-jogar.Set_DevSystem(DevSystem)
+menu_sign_up.set_dev_system(DevSystem)
+menu_password_forget.set_dev_system(DevSystem)
+menu_login.set_dev_system(DevSystem)
+menu_main.set_dev_system(DevSystem)
+menu_settings.set_dev_system(DevSystem)
+menu_instructions.set_dev_system(DevSystem)
+menu_play.set_dev_system(DevSystem)
 
 root.mainloop()
 # mudar os nomes das variaveis e métodos
