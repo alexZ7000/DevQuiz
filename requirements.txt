@@ -1,0 +1,5 @@
+python-dotenv
+openai
+pygame
+psycopg
+psycopg_binary
