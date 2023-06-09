@@ -8,13 +8,7 @@ from dotenv import load_dotenv
 import openai
 from time import sleep
 
-root = Tk()  # Janela
-root.title("DevQuiz")  # Título da janela
-x, y = (root.winfo_screenwidth()), (root.winfo_screenheight())  # Pega a resolução do monitor sem considerar a escala
-root.geometry(f'{x}x{y}')  # Dimensão da tela
-root.minsize(1910, 1070)  # Resolução mínima para redimencionalizar
-root.maxsize(1920, 1080)  # Forçar resolução Full HD (1920x1080) do DevQuiz
-root.attributes("-fullscreen", 1)  # Colocar o DevQuiz em tela cheia
+from Menu import *
 
 # IMAGENS
 dev_quiz_logo = PhotoImage(file=r"Imagens\DevQuiz.png")
@@ -29,72 +23,6 @@ user = PhotoImage(file=r"Imagens\UsernameTemaEscuro.png")
 
 
 # FIM DAS IMAGENS
-
-class Menu:
-    """Classe que irá definir todos os itens que todos os "Menu" vão usar"""
-
-    def __init__(self):
-        """Criação da minha tela"""
-        self.theme_txt = None
-        self.dev_system = None
-        self.frame = Frame(root, bg="#ccccff")
-        self.build_screen()
-
-    def atraso1(self):
-        sleep(1)
-
-    def atraso2(self):
-        sleep(2)
-
-    def atraso3(self):
-        sleep(3)
-
-    def atraso4(self):
-        sleep(4)
-
-    def atraso5(self):
-        sleep(5)
-
-    c = 0
-    
-    def change_theme(self):
-        """ Função para mudar de tema "Claro" para tema "Escuro"
-         :param self: Menu
-         :returns: Não retorna nada"""
-        self.c = self.c + 1
-        if self.c % 2 == 0:
-            self.theme_txt.set("Tema Claro")
-            self.frame.config(bg="#ccccff")
-        else:
-            self.theme_txt.set("Tema Escuro")
-            self.frame.config(bg="#1D1D66")
-
-    def set_dev_system(self, dev_system):
-        """ Função para colocar os objetos referenciados no "DevSystem" em todas as Classes que herdarem de "Menu".
-:param dev_system: Pegar referencias
-:returns: Não retorna nada
-"""
-        self.dev_system = dev_system
-
-    def show(self):
-        """ Função para mostrar todos os widgets que forem "self.frame" """
-        self.frame.pack(fill=BOTH, expand=True)
-
-    def hide(self):
-        """ Função para esconder widgets que não 
-        serão mais usados em uma tela nova e para 
-        excluir caracteres inseridos nos "Entry" """
-        self.frame.forget()
-        self.reset_entry()
-
-    def build_screen(self):
-        """Função para construir minha tela, mas eu não preciso
-        construir nenhuma tela em menu, essa função deve ser ignorada"""
-        pass
-
-    def reset_entry(self):
-        """Função para limpar os caracteres inseridos no "Entry" """
-        pass
 
 
 class MenuPasswordForget(Menu):
@@ -146,7 +74,7 @@ class MenuPasswordForget(Menu):
         self.user_email = self.password_forget_entry.get()
         self.send_email()
 
-    def build_screen(self):
+    def _build_screen(self):
         """Função para construir a tela "Esqueci Minha Senha" """
         self.frame.config(bg="black")
         Label(self.frame,
@@ -217,7 +145,7 @@ class MenuSignUp(Menu):
         self.sign_up_confirm_password.delete(0, END)
         self.click.set("Selecione seu Curso")
 
-    def build_screen(self):
+    def _build_screen(self):
         """Função para construir a tela "Registrar-se" """
         Label(self.frame,
               font=("Kristen ITC", 40),
@@ -327,7 +255,8 @@ class MenuLogin(Menu):
                  menu_settings,
                  menu_instructions,
                  menu_play,
-                 menu_nightmare):
+                 menu_nightmare,
+                 menu_nightmare_play):
         """Construtor"""
         super().__init__()
         self.menu_sign_up = menu_sign_up
@@ -337,6 +266,7 @@ class MenuLogin(Menu):
         self.menu_instructions = menu_instructions
         self.menu_play = menu_play
         self.menu_nightmare = menu_nightmare
+        self.menu_nightmare_play = menu_nightmare_play
 
     def get_user_info_login(self):
         """Função para captar os dados que o usuário digitou no "login" """
@@ -376,7 +306,7 @@ class MenuLogin(Menu):
         if self.resposta:
             root.destroy()
 
-    def build_screen(self):
+    def _build_screen(self):
         """Função para construir a tela "Login" """
 
         Label(self.frame,
@@ -494,6 +424,7 @@ class MenuMain(Menu):
     def go_to_settings(self):
         """Função para o usuário ir para a tela "Configurações" """
         self.dev_system.menu_settings.show()
+        sleep(10)
         self.hide()
 
     def go_to_play(self):
@@ -514,7 +445,7 @@ class MenuMain(Menu):
             self.dev_system.menu_nightmare.show()
             self.hide()
 
-    def build_screen(self):
+    def _build_screen(self):
         """Função para construir a tela "Menu Principal" """
         Label(self.frame, font=("Kristen ITC", 40), image=dev_quiz_logo_pequena).place(x=x / 2, y=110, anchor='center')
 
@@ -603,7 +534,7 @@ class MenuSettings(Menu):
         self.update_volume = int(volume) / 100
         pygame.mixer.music.set_volume(self.update_volume)
 
-    def build_screen(self):
+    def _build_screen(self):
         """Função para construir a tela "Configurações" """
         Label(self.frame,
               font=("Kristen ITC", 40),
@@ -661,7 +592,7 @@ class MenuInstructions(Menu):
         """Função reset para evitar erros no código, tendo em vista que o hide sempre chama essa função"""
         pass
 
-    def build_screen(self):
+    def _build_screen(self):
         """Função para construir a tela "Instruções" """
         Label(self.frame,
               text="INSTRUÇÕES",
@@ -691,6 +622,71 @@ class MenuInstructions(Menu):
                command=self.back_menu_main).place(x=x / 2, y=570, anchor="center")
 
 
+class MenuLevel(Menu):
+    """Tela "Menu de qualquer nivel generico" """
+
+    def __init__(self):
+        """Construtor"""
+        super().__init__()
+
+    def reset_entry(self):
+        """Função reset para evitar erros no código, tendo em vista que o hide sempre chama essa função"""
+
+        pass
+
+    def alternativa_certa(self):
+        """Função para levar o usuário para a próxima questão"""
+        pass
+
+    def tentar_novamente(self):
+        """Função para levar o usuário para o "MenuMain" """
+        self.dev_system.menu_main.show()
+        self.hide()
+
+    def alternativa_errada(self):
+        """Função para mostrar que o usuário errou a questão"""
+
+        self.label.place(x=x / 2 - 600, y=y / 2, anchor="center")
+        self.button.place(x=x / 2 + 200, y=y / 2, anchor="center")
+        print("adsdasd")
+        self.title_label.place_forget()
+        self.button1.place_forget()
+        self.button2.place_forget()
+        self.button3.place_forget()
+        self.frame.pack(fill=BOTH, expand=True)
+
+    def hide(self):
+        super().hide()
+        self.label.place_forget()
+        self.button.place_forget()
+
+    def show(self):
+        super().show()
+        self.title_label.place(x=x / 2, y=100, anchor="center")
+        self.button1.place(x=x / 2, y=y / 2 + 200, anchor="center")
+        self.button2.place(x=x / 2 + 100, y=y / 2 + 200, anchor="center")
+        self.button3.place(x=x / 2 + 100, y=y / 2 + 200, anchor="center")
+
+    def _build_screen(self):
+        """Função para construir a tela "MenuPlay" """
+
+        self.title_label = Label(self.frame, font=("Kristen ITC", 40), text="teste")
+        self.button1 = Button(self.frame, text="teste1", borderwidth=0, command=self.alternativa_certa)
+        self.button2 = Button(self.frame, text="teste2", command=self.alternativa_errada)
+        self.button3 = Button(self.frame, text="teste3", command=self.alternativa_errada)
+
+        self.title_label.place(x=x / 2, y=100, anchor="center")
+        self.button1.place(x=x / 2, y=y / 2 + 200,anchor="center")
+        self.button2.place(x=x / 2 + 100, y=y / 2 + 200,anchor="center")
+        self.button3.place(x=x / 2 + 100, y=y / 2 + 200,anchor="center")
+
+        self.label = Label(self.frame, font=("Kristen ITC", 40), text="Você Errou!")
+        self.button = Button(self.frame, font=("Kristen ITC", 40), text="Tentar Novamente",
+                             command=self.tentar_novamente)
+        self.frame.forget()
+        print(self.frame.children)
+
+
 class MenuPlay(Menu):
     """Tela "MenuPlay" """
 
@@ -702,6 +698,12 @@ class MenuPlay(Menu):
 
     def reset_entry(self):
         """Função reset para evitar erros no código, tendo em vista que o hide sempre chama essa função"""
+
+        if(not (self.label is None)):
+            self.label.destroy()
+        if(not (self.button is None)):
+            self.button.destroy()
+
         pass
 
     def alternativa_certa(self):
@@ -715,23 +717,31 @@ class MenuPlay(Menu):
 
     def alternativa_errada(self):
         """Função para mostrar que o usuário errou a questão"""
-        Label(self.frame, font=("Kristen ITC", 40), text="Você Errou!").place(x=x/2-600, y=y/2, anchor="center")
-        Button(self.frame, font=("Kristen ITC", 40), text="Tentar Novamente", command=self.tentar_novamente).place(x=x/2+200, y=y/2, anchor="center")
+        self.label = Label(self.frame, font=("Kristen ITC", 40), text="Você Errou!")
+        self.button = Button(self.frame, font=("Kristen ITC", 40), text="Tentar Novamente", command=self.tentar_novamente)
 
-    def build_screen(self):
+        self.label.place(x=x / 2 - 600, y=y / 2, anchor="center")
+        self.button.place(x=x/2+200, y=y/2, anchor="center")
+
+
+    def _build_screen(self):
         """Função para construir a tela "MenuPlay" """
         Label(self.frame, font=("Kristen ITC", 40),text="teste").place(x=x/2, y=100, anchor="center")
         Button(self.frame, text="teste1", borderwidth=0, command=self.alternativa_certa).place(x=x/2, y=y/2+200, anchor="center")
         Button(self.frame, text="teste2", command=self.alternativa_errada).place(x=x/2+100, y=y/2+200, anchor="center")
         Button(self.frame, text="teste3", command=self.alternativa_errada).place(x=x/2+100, y=y/2+200, anchor="center")
         self.frame.forget()
+        print(self.frame.children)
+
+
 
 class MenuNightmare(Menu):
 
-    def __init__(self, menu_login, menu_main):
+    def __init__(self, menu_login, menu_main, menu_nightmare_play):
         super().__init__()
-        self.menu_login = menu_login
-        self.menu_main = menu_main
+        # self.menu_login = menu_login
+        # self.menu_main = menu_main
+        # self.menu_nightmare_play = menu_nightmare_play
 
 
     def reset_entry(self):
@@ -745,7 +755,11 @@ class MenuNightmare(Menu):
             sleep(5)
             self.hide()
 
-    def build_screen(self):
+    def go_to_nightmare_play(self):
+        self.dev_system.menu_nightmare_play.show()
+        self.hide()
+
+    def _build_screen(self):
         self.frame.config(bg="black")
         Label(self.frame,
               font=("Kristen ITC", 60),
@@ -761,6 +775,8 @@ class MenuNightmare(Menu):
                activeforeground="#8B0000",
                width=23,
                cursor="hand2",
+               command=self.go_to_nightmare_play,
+               borderwidth=5,
                bg="black").place(x=x/2, y=y/2, anchor="center")
 
         Button(self.frame,
@@ -771,12 +787,14 @@ class MenuNightmare(Menu):
                highlightbackground="blue",
                activebackground="#202020",
                activeforeground="#8B0000",
+               borderwidth=5,
                cursor="hand2",
                command=self.fugir).place(x=x / 2, y=y / 2 + 200, anchor="center")
 
+
 class MenuNightmarePlay(Menu):
 
-    def __init__(self):
+    def __init__(self, menu_login, menu_main, menu_nightmare):
         super().__init__()
         self.menu_login = menu_login
         self.menu_main = menu_main
@@ -785,8 +803,10 @@ class MenuNightmarePlay(Menu):
     def reset_entry(self):
         pass
 
-    def build_screen(self):
-        pass
+    def _build_screen(self):
+        Label(self.frame,
+            font=("Kristen ITC", 40),
+            text="EU TENHO MEDO DO GPT").place(x=x/2, y=y/2)
 
 
 class DevSystem:
@@ -847,9 +867,10 @@ menu_main = MenuMain("menu_login", "menu_settings", "menu_instructions", "menu_p
 menu_password_forget = MenuPasswordForget("menu_login")
 menu_settings = MenuSettings("menu_login", "menu_main")
 menu_instructions = MenuInstructions("menu_login", "menu_main")
-menu_play = MenuPlay("menu_login", "menu_main")
-menu_nightmare = MenuNightmare("menu_login", "menu_main")
-menu_nightmare_play = MenuNightmarePlay("menu_login", "menu_main", "menu_nightmare_play")
+# menu_play = MenuPlay("menu_login", "menu_main")
+menu_play = MenuLevel()
+menu_nightmare = MenuNightmare("menu_login", "menu_main", "menu_nightmare_play")
+menu_nightmare_play = MenuNightmarePlay("menu_login", "menu_main", "menu_nightmare")
 menu_login = MenuLogin("menu_password_forget",
                        "menu_sign_up",
                        "menu_main",
