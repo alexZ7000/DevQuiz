@@ -25,5 +25,3 @@ def responder_pergunta(OPENAI_API_KEY, pergunta):
         max_tokens=150
     )
     return gabarito.choices[0].text.strip()
-
-

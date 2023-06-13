@@ -18,6 +18,7 @@ root.attributes("-fullscreen", 1)  # Colocar o DevQuiz em tela cheia
 claro = "#ccccff"
 escuro = "#1D1D66"
 
+
 class Menu:
     """Classe que irá definir todos os itens que todos os "Menu" vão usar"""
 

@@ -882,6 +882,7 @@ class MenuNightmareChoices(Menu):
     def acertos_user(self):
         self.acertos = self.acertos
         self.resposta_gpt = self.resposta_gpt.lower()
+        self.resposta_gpt = self.resposta_gpt[0]
         self.resposta_var = self.resposta_var_ruim.get().lower()
         if self.resposta_var == self.resposta_gpt:
             self.acertos = self.acertos + 1
