@@ -3,7 +3,7 @@
 ![GitHub repo size](https://img.shields.io/github/repo-size/iuricode/README-template?style=for-the-badge)
 ![GitHub language count](https://img.shields.io/github/languages/count/iuricode/README-template?style=for-the-badge)
 
-<img src="imagem.png" alt="DevQuiz">
+<img src="![menu_inicial](https://github.com/alexZ7000/DevQuiz/assets/78627928/e06b3a5e-eb13-4b33-9eb9-ca0694bebb5e)" alt="DevQuiz">
 
 > DevQuiz é um jogo totalmente feito em python inspirado no Gênio Quiz, o jogador terá que acertar 50 perguntas sem errar nenhuma
 
