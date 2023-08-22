@@ -1,31 +1,15 @@
+All licenses in this repository are owned by their respective authors.
 
-All licenses in this repository are copyrighted by their respective authors.
+Copyright
 
-Everything else is released under CC0.
+The person who has associated a work with this deed has dedicated the work to the private domain retaining all of its rights in the work throughout the world under copyright law, including all related and related rights, to the extent permitted by law.
 
-------------------------------------------------------------------------------
+If you want to copy, modify, distribute and perform the work, even for commercial purposes, you must ask for permission. See Other Information below.
 
-No Copyright
+Other information:
 
-The person who associated a work with this deed has dedicated the work to the
-public domain by waiving all of his or her rights to the work worldwide under
-copyright law, including all related and neighboring rights,
-to the extent allowed by law.
+      * The collaborators of this project have all rights
 
-You can copy, modify, distribute and perform the work, even for commercial
-purposes, all without asking permission. See Other Information below.
-
-Other Information:
-
-    * In no way are the patent or trademark rights of any person affected
-    by CC0, nor are the rights that other persons may have in the work or in
-    how the work is used, such as publicity or privacy rights.
-
-    * Unless expressly stated otherwise, the person who associated a work with
-    this deed makes no warranties about the work, and disclaims liability for
-    all uses of the work, to the fullest extent permitted by applicable law.
-
-    * When using or citing the work, you should not imply endorsement
-    by the author or the affirmer.
-
-http://creativecommons.org/publicdomain/zero/1.0/legalcode
+      * By using or citing the work, you must imply endorsement
+      by the author or the affirmer.
+      
