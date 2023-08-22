@@ -6,18 +6,18 @@
 <img src="https://github.com/alexZ7000/DevQuiz/assets/78627928/e06b3a5e-eb13-4b33-9eb9-ca0694bebb5e" alt="DevQuiz">
 <br>
 
-> DevQuiz é um jogo totalmente feito em python🐍 inspirado no Gênio Quiz🧠, o jogador terá que acertar 50 perguntas sem errar nenhuma🎯, caso ele erre alguma, o jogador volta o jogo do começo 🤬
+> DevQuiz é um jogo totalmente feito em python🐍 por estudantes do primeiro semestre de C. Computação👨🏼‍💻, inspirado no Gênio Quiz🧠, o jogador terá que acertar 50 perguntas sem errar nenhuma🎯, caso ele erre alguma, o jogador volta o jogo do começo 🤬
 > 
 <br>
 
 
 ### Avisos Importantes ⚠️
 
-O projeto está finalizado, porém o modo de lutar contra o ChatGPT está indisponível, pois a API deles é paga <br>
-Se o Banco de Dados não estiver funcionando é por conta que o sistema caiu, já que usamos um Banco de Dado hospedado na nuvem <br>
+O projeto está finalizado, porém o modo de lutar ⚔️ contra o ChatGPT🤖 está indisponível, pois a API deles é paga 😴 <br>
+Se o Banco de Dados não estiver funcionando é por conta que o sistema caiu, já que usamos um Banco de Dado hospedado na nuvem ☁️ <br>
 O DevQuiz só funciona no Windows <br> <br>
 <b>
-O Devquiz é um jogo feito para notebooks, caso você esteja em um PC e quer ter a mesma experiencia de quem joga no notebook siga os passos abaixo: </b><br>
+O Devquiz é um jogo feito para notebooks 💻, caso você esteja em um PC 🖥️ e quer ter a mesma experiencia de quem joga no notebook siga os passos abaixo: </b><br>
 ```
 windows + i
 ```
@@ -31,13 +31,13 @@ Coloque a <b>"escala"</b> em <b>125%</b><br> <br>
 
 Para utilizar o <b>DevQuiz</b>, siga estas etapas: <br> <br>
 
-Instale a versão mais recente do python para windows:
+Instale a versão mais recente do python 🐍 para windows:
 https://www.python.org/downloads/ <br> <br>
 
-Caso não tenha nenhuma IDE no seu computador, instale sua primeira IDE, pode ser qualquer uma, mas recomendo o VSCODE por conta de ser uma IDE leve:
+Caso não tenha nenhuma IDE no seu computador, instale sua primeira IDE, pode ser qualquer uma, mas recomendo o VSCODE por conta de ser uma IDE leve: 👻
 https://code.visualstudio.com/download <br> <br>
 
-Após instalar uma IDE, clone este projeto no seu computador <br> <br>
+Após instalar uma IDE, clone este projeto no seu computador🦾 <br> <br>
 
 Instale todas suas bibliotecas primeiro:
 ```
@@ -46,14 +46,15 @@ pip install -r requirements.txt
 
 ## ☕ Jogando <DevQuiz>
 
-Para jogar o DevQuiz, siga estas etapas:
+Para jogar o <b>DevQuiz</b>, siga estas etapas:
 
 1. Ao iniciar o jogo, você estará na tela de login, nesta tela o cadastro/login é OPCIONAL 👌
-2. Passado a tela de login, você estará na tela Menu Inicial, nesta tela você pode configurar/jogar seu jogo 💎
-   a. Caso você queira jogar o modo contra o chatGPT, procure pelo botão escondido na tela inicial no canto inferior direito 😈
-3. Divirta-se 😝
-
-Adicione comandos de execução e exemplos que você acha que os usuários acharão úteis. Fornece uma referência de opções para pontos de bônus!
+2. Passado a tela de login, você estará na tela Menu Inicial, nesta tela você pode configurar/jogar seu jogo 💎<br>
+   &emsp; a. Caso você queira jogar o modo contra o chatGPT, procure pelo botão escondido na tela inicial no canto inferior direito 😈
+   <br> <br>
+   <img src="https://github.com/alexZ7000/DevQuiz/assets/78627928/223e2684-4320-45b5-a42a-556f0602ba20" alt="Nightmare">
+   <br> <br>
+4. Divirta-se 😝
 
 ## 📫 Contribuindo para DevQuiz
 
@@ -75,38 +76,56 @@ Agradecemos às seguintes pessoas que contribuíram para este projeto:
   <tr>
     <td align="center">
       <a href="#">
-        <img src="https://avatars3.githubusercontent.com/u/31936044" width="100px;" alt="Foto do Iuri Silva no GitHub"/><br>
+        <img src="https://avatars.githubusercontent.com/u/78627928?v=4" width="100px;" alt="era uma foto daora"/><br>
         <sub>
-          <b>Iuri Silva</b>
+          <p><b><i>Alessandro Lima:</i></b> <a href="https://github.com/alexZ7000"><i>alexZ7000</i></a>🏆</p>
         </sub>
       </a>
     </td>
     <td align="center">
       <a href="#">
-        <img src="" width="100px;" alt="Foto do Mark Zuckerberg"/><br>
+        <img src="https://avatars.githubusercontent.com/u/124106382?v=4" width="100px;" alt="era uma foto daora"/><br>
         <sub>
-          <b>Mark Zuckerberg</b>
+          <p><b><i>Flavio Carvalho:</i></b> <a href="https://github.com/Flavsc"><i>Flavsc</i></a>🏆</p>
         </sub>
       </a>
     </td>
     <td align="center">
       <a href="#">
-        <img src="[https://miro.medium.com/max/360/0*1SkS3mSorArvY9kS.jpg](https://github.com/alexZ7000/DevQuiz/assets/78627928/1cc3aaf7-c072-46f2-a8f7-13890d0beb48)" width="100px;" alt="Foto do Steve Jobs"/><br>
+        <img src="https://avatars.githubusercontent.com/u/133376282?v=4" width="100px;" alt="era uma foto daora"/><br>
         <sub>
-          <b>Flavio Carvalho</b>
+          <p><b><i>João Martinez:</i></b> <a href="https://github.com/JamizM"><i>JamizM</i></a>🏆</p>
+        </sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="#">
+        <img src="https://avatars.githubusercontent.com/u/133376215?v=4" width="100px;" alt="era uma foto daora"/><br>
+        <sub>
+          <p><b><i>Victor Codinhoto:</i></b> <a href="https://github.com/VictorCodinhoto"><i>VictorCodinhoto</i></a>🏆</p>
+        </sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="#">
+        <img src="https://avatars.githubusercontent.com/u/126502239?v=4" width="100px;" alt="era uma foto daora"/><br>
+        <sub>
+          <p><b><i>Matheus Chinen:</i></b> <a href="https://github.com/Matz34231"><i>Matz34231</i></a>🏆</p>
+        </sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="#">
+        <img src="https://avatars.githubusercontent.com/u/111057676?v=4" width="100px;" alt="era uma foto daora"/><br>
+        <sub>
+          <p><b><i>Pedro Wagner:</i></b> <a href="https://github.com/peepw"><i>peepw</i></a>🏆</p>
         </sub>
       </a>
     </td>
   </tr>
 </table>
+<img src="https://github.com/alexZ7000/DevQuiz/assets/78627928/f65a1b19-7a26-469f-9b7a-aded4bf68c72" align="center" alt="nota10"/>
 
 ## 📝 Licença
 
 Esse projeto está sob licença. Veja o arquivo [LICENÇA](LICENSE.md) para mais detalhes.
-
-## Colaboradores
-<p>Alessandro Lima <a href="https://github.com/alexZ7000">alexZ7000</a></p>
-<p>Flavio Carvalho <a href="https://github.com/Flavsc">Flavsc</a></p>
-<p>João Martinez <a href="https://github.com/JamizM">JamizM</a></p>
-<p>Victor Codinhoto <a href="https://github.com/VictorCodinhoto">VictorCodinhoto</a></p>
-
