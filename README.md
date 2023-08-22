@@ -1,46 +1,63 @@
 # DevQuiz
 
-![GitHub repo size](https://img.shields.io/github/repo-size/iuricode/README-template?style=for-the-badge)
-![GitHub language count](https://img.shields.io/github/languages/count/iuricode/README-template?style=for-the-badge)
+![GitHub repo size](https://img.shields.io/github/repo-size/alexZ7000/DevQuiz?style=for-the-badge)
+![GitHub language count](https://img.shields.io/github/languages/count/alexZ7000/DevQuiz?style=for-the-badge)
 
 <img src="https://github.com/alexZ7000/DevQuiz/assets/78627928/e06b3a5e-eb13-4b33-9eb9-ca0694bebb5e" alt="DevQuiz">
+<br>
 
-> DevQuiz é um jogo totalmente feito em python inspirado no Gênio Quiz, o jogador terá que acertar 50 perguntas sem errar nenhuma
+> DevQuiz é um jogo totalmente feito em python🐍 inspirado no Gênio Quiz🧠, o jogador terá que acertar 50 perguntas sem errar nenhuma🎯, caso ele erre alguma, o jogador volta o jogo do começo 🤬
+> 
+<br>
 
-### Ajustes e melhorias
 
-O projeto está finalizado, porém o modo de lutar contra o ChatGPT está indisponível, pois a API deles é paga
-Se o Banco de Dados não estiver funcionando é por conta que o sistema caiu, já que usamos um Banco de Dado hospedado na nuvem
+### Avisos Importantes ⚠️
 
-## 💻 Pré-requisitos
-
-Antes de começar, verifique se você atendeu aos seguintes requisitos:
-
-* Você instalou a versão mais recente de `<python / dependência / requeridos>`
-* Nosso jogo só funciona no `<Windows>`.
+O projeto está finalizado, porém o modo de lutar contra o ChatGPT está indisponível, pois a API deles é paga <br>
+Se o Banco de Dados não estiver funcionando é por conta que o sistema caiu, já que usamos um Banco de Dado hospedado na nuvem <br>
+O DevQuiz só funciona no Windows <br> <br>
+<b>
+O Devquiz é um jogo feito para notebooks, caso você esteja em um PC e quer ter a mesma experiencia de quem joga no notebook siga os passos abaixo: </b><br>
+```
+windows + i
+```
+Clique em <b>Tela</b><br>
+Procure pela configuração de <b>"escala"</b> e <b>"resolução da tela"</b><br>
+Coloque a <b>"resolução da tela"</b> em <b>1920x1080</b><br>
+Coloque a <b>"escala"</b> em <b>125%</b><br> <br>
+<img src="https://github.com/alexZ7000/DevQuiz/assets/78627928/e1b51b18-efd3-4bf6-b9a0-de88acec0825" alt="DevQuiz">
 
 ## 🚀 Instalando <DevQuiz>
 
-Para instalar o <nome_do_projeto>, siga estas etapas:
+Para utilizar o <b>DevQuiz</b>, siga estas etapas: <br> <br>
 
-Windows:
+Instale a versão mais recente do python para windows:
+https://www.python.org/downloads/ <br> <br>
+
+Caso não tenha nenhuma IDE no seu computador, instale sua primeira IDE, pode ser qualquer uma, mas recomendo o VSCODE por conta de ser uma IDE leve:
+https://code.visualstudio.com/download <br> <br>
+
+Após instalar uma IDE, clone este projeto no seu computador <br> <br>
+
+Instale todas suas bibliotecas primeiro:
 ```
-<pip install -r requirements.txt>
+pip install -r requirements.txt
 ```
 
-## ☕ Usando <nome_do_projeto>
+## ☕ Jogando <DevQuiz>
 
-Para usar <nome_do_projeto>, siga estas etapas:
+Para jogar o DevQuiz, siga estas etapas:
 
-```
-<exemplo_de_us>
-```
+1. Ao iniciar o jogo, você estará na tela de login, nesta tela o cadastro/login é OPCIONAL 👌
+2. Passado a tela de login, você estará na tela Menu Inicial, nesta tela você pode configurar/jogar seu jogo 💎
+   a. Caso você queira jogar o modo contra o chatGPT, procure pelo botão escondido na tela inicial no canto inferior direito 😈
+3. Divirta-se 😝
 
 Adicione comandos de execução e exemplos que você acha que os usuários acharão úteis. Fornece uma referência de opções para pontos de bônus!
 
-## 📫 Contribuindo para <nome_do_projeto>
+## 📫 Contribuindo para DevQuiz
 
-Para contribuir com <nome_do_projeto>, siga estas etapas:
+Para contribuir com o <b>DevQuiz</b>, siga estas etapas:
 
 1. Bifurque este repositório.
 2. Crie um branch: `git checkout -b <nome_branch>`.
