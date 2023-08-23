@@ -43,6 +43,10 @@ Instale todas suas bibliotecas primeiro:
 ```
 pip install -r requirements.txt
 ```
+<br>
+Baixe a extensão do <b>Python 🐍 para o VSCODE</b>
+<br><br>
+Entre no arquivo <b>main.py</b> e clique no canto superior direito para executar o programa ▶️
 
 ## ☕ Jogando <DevQuiz>
 
