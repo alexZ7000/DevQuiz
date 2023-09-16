@@ -1,18 +1,16 @@
 from Menu import *
-from chatgpt import criar_pergunta
-from chatgpt import responder_pergunta
-d = 0
+
 # IMAGENS
-dev_quiz_logo = PhotoImage(file=r"Imagens\DevQuiz.png")
-dev_quiz_logo_pequena = PhotoImage(file=r"Imagens\DevQuizPequeno.png")
-jogar_img = PhotoImage(file=r"Imagens\JogarTemaClaro.png")
-instrucoes = PhotoImage(file=r"Imagens\InstrucoesTemaClaro.png")
-configuracoes = PhotoImage(file=r"Imagens\ConfiguraçõesTemaClaro.png")
-sair = PhotoImage(file=r"Imagens\SairTemaClaro.png")
-bg_test = PhotoImage(file=r"Imagens\BGTest.png")
-senha = PhotoImage(file=r"Imagens\SenhaTemaEscuro.png")
-user = PhotoImage(file=r"Imagens\UsernameTemaEscuro.png")
-red_gpt = PhotoImage(file=r"Imagens\red_gpt.png")
+dev_quiz_logo = PhotoImage(file=r"Images/DevQuiz.png")
+dev_quiz_logo_pequena = PhotoImage(file=r"Images/DevQuizPequeno.png")
+jogar_img = PhotoImage(file=r"Images/JogarTemaClaro.png")
+instrucoes = PhotoImage(file=r"Images/InstrucoesTemaClaro.png")
+configuracoes = PhotoImage(file=r"Images/ConfiguraçõesTemaClaro.png")
+sair = PhotoImage(file=r"Images/SairTemaClaro.png")
+bg_test = PhotoImage(file=r"Images/BGTest.png")
+senha = PhotoImage(file=r"Images/SenhaTemaEscuro.png")
+user = PhotoImage(file=r"Images/UsernameTemaEscuro.png")
+red_gpt = PhotoImage(file=r"Images/red_gpt.png")
 # FIM DAS IMAGENS
 pygame.mixer.init()
 
@@ -26,14 +24,15 @@ class MenuPasswordForget(Menu):
         self.menu_login = menu_login
 
     def sumir_texto(self):
+        """Função para fazer o texto de confirmação de e-mail desaparecer"""
         try:
             self.l1.place_forget()
         except:
-            print("Existe nada aqui nao doido")
+            pass
 
     def send_email(self):
         """Função para enviar e-mail para o usuário"""
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sons/click.wav'))
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
         try:
             self.sumir_texto()
             load_dotenv()
@@ -59,12 +58,11 @@ class MenuPasswordForget(Menu):
             self.s.login(self.msg['From'], self.password)
             self.s.sendmail(self.msg['From'], self.msg['To'], self.msg.as_string().encode('utf-8'))
             self.l1 = Label(bg="yellow", text="E-mail Enviado!", font=("Kristen ITC", 14))
-            self.l1.place(x=x/2-200, y=y/2-50)
+            self.l1.place(x=x / 2 - 200, y=y / 2 - 50)
         except:
             self.sumir_texto()
             self.l1 = Label(bg="yellow", text="E-mail colocado errado, ou não cadastrado", font=("Kristen ITC", 14))
-            self.l1.place(x=x/2-200, y=y/2-50)
-
+            self.l1.place(x=x / 2 - 200, y=y / 2 - 50)
 
     def reset_entry(self):
         """Função para limpar os caracteres inseridos no "Entry" """
@@ -72,19 +70,20 @@ class MenuPasswordForget(Menu):
 
     def back_password_forget(self):
         """Função para o usuário voltar para a tela "Login" """
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sons/click.wav'))
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
         self.sumir_texto()
         self.dev_system.menu_login.show()
         self.hide()
 
     def get_user_info_password_forget(self):
         """Função para captar os dados que o usuário digitou no "Esqueci minha senha" e chamar a função "send_email" """
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sons/click.wav'))
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
         self.user_email = self.password_forget_entry.get()
         self.send_email()
 
     def _build_screen(self):
         """Função para construir a tela "Esqueci Minha Senha" """
+
         Label(self.frame,
               bg="#ccccff",
               text="""
@@ -128,19 +127,34 @@ class MenuSignUp(Menu):
 
     def back_menu_sign_up(self):
         """Função para o usuário voltar para a tela "Login" """
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sons/click.wav'))
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
+        self.sumir_texto()
         self.dev_system.menu_login.show()
         self.hide()
 
+    def sumir_texto(self):
+        """Função para fazer o texto de confirmação de cadastro desaparecer"""
+        try:
+            self.l1.place_forget()
+        except:
+            pass
+
     def get_user_info_sign_up(self):
         """Função para captar os dados que o usuário digitou no "Sign up" """
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sons/click.wav'))
-        print(self.click.get())
-        print(self.sign_up_name.get())
-        print(self.sign_up_username.get())
-        print(self.sign_up_email.get())
-        print(self.sign_up_password.get())
-        print(self.sign_up_confirm_password.get())
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
+        try:
+            self.sumir_texto()
+            bd.criar_cadastro(name=self.sign_up_name.get(),
+                              username=self.sign_up_username.get(),
+                              email=self.sign_up_email.get(),
+                              senha=self.sign_up_password.get(),
+                              curso=self.click.get())
+            self.l1 = Label(bg="yellow", text="Cadastro realizado com sucesso", font=("Kristen ITC", 14))
+            self.l1.place(x=x / 2 - 200, y=600)
+        except:
+            self.sumir_texto()
+            self.l1 = Label(bg="yellow", text="Cadastro NÃO realizado, por favor preencha todas as lacunas de forma correta", font=("Kristen ITC", 14))
+            self.l1.place(x=x / 2 - 200, y=600)
 
     def reset_entry(self):
         """Função para limpar os caracteres inseridos no "Entry" """
@@ -277,19 +291,25 @@ class MenuLogin(Menu):
 
     def get_user_info_login(self):
         """Função para captar os dados que o usuário digitou no "login" """
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sons/click.wav'))
-        print(self.login_username_entry.get())
-        print(self.login_password_entry.get())
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
+        self.login_password_entry = self.login_password_entry.get()
+        self.login_username_entry = self.login_username_entry.get()
+        if self.login_username_entry != "" and self.login_password_entry != "":
+            sleep(5)
+            self.dev_system.menu_main.show()
+            self.hide()
+        else:
+            print("cu")
 
     def go_to_sign_up(self):
         """Função para o usuário ir para a tela "Registrar-se" """
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sons/click.wav'))
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
         self.dev_system.menu_sign_up.show()
         self.hide()
 
     def go_to_password_forget(self):
         """Função para o usuário ir para a tela "Esqueci minha senha" """
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sons/click.wav'))
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
         self.dev_system.menu_password_forget.show()
         self.hide()
 
@@ -300,27 +320,27 @@ class MenuLogin(Menu):
 
     def continue_without_login(self):
         """Caixa de aviso para continuar sem login"""
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sons/click.wav'))
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
         self.resposta = askyesno("Aviso Sobre Continuar Sem Cadastro",
                                  message="Ao jogar nosso jogo sem cadastro seu progresso não aparecerá no ranking")
         if self.resposta:
-            pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sons/click.wav'))
+            pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
             self.dev_system.menu_main.show()
-            pygame.mixer.Channel(0).play(pygame.mixer.Sound('Sons/musica.wav'), loops=-1)
+            pygame.mixer.Channel(0).play(pygame.mixer.Sound('Sounds/musica.wav'), loops=-1)
             self.hide()
         else:
-            pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sons/click.wav'))
+            pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
 
     def confirm(self):
         """Função para exibir uma caixinha de confirmação ao usuário,
         para ele decidir se realmente quer sair do DevQuiz"""
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sons/click.wav'))
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
         self.resposta = askyesno(message='Você tem certeza que deseja sair do DevQuiz?')
         if self.resposta:
-            pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sons/click.wav'))
+            pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
             root.destroy()
         else:
-            pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sons/click.wav'))
+            pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
 
     def _build_screen(self):
         """Função para construir a tela "Login" """
@@ -329,7 +349,7 @@ class MenuLogin(Menu):
               image=bg_test,
 
               width=1920,
-              height=1080).place(x=0-2, y=0-2)
+              height=1080).place(x=0 - 2, y=0 - 2)
 
         Label(self.frame,
               image=dev_quiz_logo_pequena,
@@ -423,50 +443,51 @@ class MenuMain(Menu):
     def confirm(self):
         """Função para exibir uma caixinha de confirmação ao usuário,
         para ele decidir se realmente quer sair do DevQuiz"""
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sons/click.wav'))
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
         self.resposta = askyesno(message='Você tem certeza que deseja sair do DevQuiz?')
         if self.resposta:
-            pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sons/click.wav'))
+            pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
             root.destroy()
         else:
-            pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sons/click.wav'))
+            pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
 
     def go_to_settings(self):
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sons/click.wav'))
         """Função para o usuário ir para a tela "Configurações" """
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
         self.dev_system.menu_settings.show()
         self.hide()
 
     def go_to_play(self):
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sons/click.wav'))
         """Função para o usuário ir para a tela "MenuPlay" """
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
         self.dev_system.menu_play.show()
         self.hide()
 
     def go_to_instructions(self):
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sons/click.wav'))
         """Função para o usuário ir para a tela "Instruções" """
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
         self.dev_system.menu_instructions.show()
         self.hide()
 
     def nightmare(self):
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sons/click.wav'))
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
         self.resposta = askyesno("01001101 01000101 01000100 01001111",
-            message='01010110 01101111 01100011 01100101 00100000 01110001 01110101 01100101 01110010 00100000 01110000 01100101 01110011 01100001 01100100 01100101 01101100 01101111 00111111 ')
+                                 message='01010110 01101111 01100011 01100101 00100000 01110001 01110101 01100101 01110010 00100000 01110000 01100101 01110011 01100001 01100100 01100101 01101100 01101111 00111111 ')
         if self.resposta:
-            pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sons/click.wav'))
+            pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
             pygame.mixer.Channel(0).stop()
             sleep(1)
-            pygame.mixer.Channel(2).play(pygame.mixer.Sound('Sons/creep.wav'), loops=-1)
+            pygame.mixer.Channel(2).play(pygame.mixer.Sound('Sounds/creep.wav'), loops=-1)
             self.dev_system.menu_nightmare.show()
             self.hide()
         else:
-            pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sons/click.wav'))
+            pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
 
     def _build_screen(self):
         """Função para construir a tela "Menu Principal" """
-
-        Label(self.frame, font=("Kristen ITC", 40), image=dev_quiz_logo_pequena, bg="#ccccff").place(x=x / 2, y=110, anchor='center')
+        Label(self.frame, image=bg_test).place(x=x/2, y=y/2, anchor=CENTER)
+        Label(self.frame, font=("Kristen ITC", 40), image=dev_quiz_logo_pequena, bg="#ccccff").place(x=x / 2, y=110,
+                                                                                                     anchor='center')
 
         Button(self.frame,
                image=jogar_img,
@@ -497,16 +518,16 @@ class MenuMain(Menu):
                command=self.confirm).place(x=x / 2, y=789, anchor='center')
 
         self.gpt = Button(self.frame,
-               width="2",
-               height="1",
-               cursor="hand2",
-               text="gpt",
-               fg="#8B0000",
-               bg="black",
-               borderwidth=0,
-               activebackground="#202020",
-               activeforeground="#8B0000",
-               command=self.nightmare)
+                          width="2",
+                          height="1",
+                          cursor="hand2",
+                          text="gpt",
+                          fg="#8B0000",
+                          bg="black",
+                          borderwidth=0,
+                          activebackground="#202020",
+                          activeforeground="#8B0000",
+                          command=self.nightmare)
         self.gpt.place(x=1516, y=843)
 
 
@@ -527,25 +548,25 @@ class MenuSettings(Menu):
 
     def logout(self):
         """Função para o usuário realizar logout, com uma caixinha de confimação sendo exibida"""
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sons/click.wav'))
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
         self.resposta = askyesno("Logout", message="Você tem certeza que quer realizar logout?")
         if self.resposta:
             self.dev_system.menu_login.show()
             self.hide()
         else:
-            pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sons/click.wav'))
+            pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
 
     def back_menu_main(self):
         """Função para o usuário voltar para a tela "Menu Principal" """
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sons/click.wav'))
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
         self.dev_system.menu_main.show()
         self.hide()
-    d=0
+
     def theme_function(self):
         """Função para mudar o tema que por padrão é "Tema Claro", para "Tema Escuro" """
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sons/click.wav'))
-        self.d = self.d + 1
-        if self.d % 2 == 0:
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
+        self.c = self.c + 1
+        if self.c % 2 == 0:
             self.theme_txt.set("Tema Claro")
             self.change_theme()
             return self.c
@@ -555,36 +576,40 @@ class MenuSettings(Menu):
             return self.c
 
     def invoque_slider(self):
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sons/click.wav'))
+        """Função para "invocar" os dois controladores de volume"""
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
 
         Label(self.frame, font=("Kristen ITC", 12), bg="#ccccff", text="Música").place(x=x / 2 + 220, y=310)
-        self.music_volume = Scale(self.frame, bg="#ccccff", from_=100, to=0, orient=VERTICAL, length=150, cursor="hand2",
-                                   command=self.update_music)
+        self.music_volume = Scale(self.frame, bg="#ccccff", from_=100, to=0, orient=VERTICAL, length=150,
+                                  cursor="hand2",
+                                  command=self.update_music)
         self.music_volume.set(100)
         self.music_volume.place(x=x / 2 + 220, y=335)
 
-        Label(self.frame,font=("Kristen ITC", 12), bg="#ccccff", text="Som").place(x=x / 2 + 320, y=310)
-        self.sound_volume = Scale(self.frame, cursor="hand2", bg="#ccccff", from_=100, to=0, orient=VERTICAL, length=150,
-                                   command=self.update_sound)
+        Label(self.frame, font=("Kristen ITC", 12), bg="#ccccff", text="Som").place(x=x / 2 + 320, y=310)
+        self.sound_volume = Scale(self.frame, cursor="hand2", bg="#ccccff", from_=100, to=0, orient=VERTICAL,
+                                  length=150,
+                                  command=self.update_sound)
         self.sound_volume.set(100)
         self.sound_volume.place(x=x / 2 + 320, y=335)
 
     def volume_scale(self):
-        """Função para mostrar o botão do "som" """
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sons/click.wav'))
+        """Função para definir um valor padrão para a música"""
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
         pygame.mixer.Channel(0).set_volume(100)
         pygame.mixer.Channel(1).set_volume(100)
         pygame.mixer.Channel(2).set_volume(100)
 
     def update_music(self, volume):
-        """Função para atualizar o volume do jogo"""
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sons/click.wav'))
+        """Função para atualizar o volume da música"""
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
         self.music_volume = int(volume) / 100
         pygame.mixer.Channel(0).set_volume(self.music_volume)
         pygame.mixer.Channel(2).set_volume(self.music_volume)
 
     def update_sound(self, volume):
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sons/click.wav'))
+        """Função para atualizar o volume do som dos botões"""
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
         self.sound_volume = int(volume) / 100
         pygame.mixer.Channel(1).set_volume(self.sound_volume)
 
@@ -640,7 +665,7 @@ class MenuInstructions(Menu):
 
     def back_menu_main(self):
         """Função para o usuário voltar para a tela "Menu Principal" """
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sons/click.wav'))
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
         self.dev_system.menu_main.show()
         self.hide()
 
@@ -667,6 +692,8 @@ class MenuInstructions(Menu):
     Nem tudo parece ser o que é, e nem tudo é o que parece ser
 
     """,
+              wraplength=1500,
+              justify="center",
               font=("Kristen ITC", 14),
               bg="#ccccff").place(x=x / 2, y=285, anchor="center")
 
@@ -679,119 +706,198 @@ class MenuInstructions(Menu):
                command=self.back_menu_main).place(x=x / 2, y=570, anchor="center")
 
 
-class MenuLevel(Menu):
-    """Tela "Menu de qualquer nivel generico" """
+class MenuPlay(Menu):
+    """Tela "MenuPlay" """
 
-    def __init__(self):
+    def __init__(self, menu_main, menu_login):
         """Construtor"""
         super().__init__()
+        self.menu_main = menu_main
+        self.menu_login = menu_login
 
     def reset_entry(self):
         """Função reset para evitar erros no código, tendo em vista que o hide sempre chama essa função"""
-
         pass
 
-    def alternativa_certa(self):
-        """Função para levar o usuário para a próxima questão"""
-        pass
-
-    def tentar_novamente(self):
-        """Função para levar o usuário para o "MenuMain" """
-        self.dev_system.menu_main.show()
-        self.hide()
-
-    def alternativa_errada(self):
-        """Função para mostrar que o usuário errou a questão"""
-
-        self.label.place(x=x / 2 - 600, y=y / 2, anchor="center")
-        self.button.place(x=x / 2 + 200, y=y / 2, anchor="center")
-        print("adsdasd")
-        self.title_label.place_forget()
-        self.button1.place_forget()
-        self.button2.place_forget()
-        self.button3.place_forget()
-        self.frame.pack(fill=BOTH, expand=True)
-
-    def hide(self):
+    def hide2(self):
+        """Função para esconder somente os widgets do "Tentar novamente" """
         super().hide()
         self.label.place_forget()
         self.button.place_forget()
 
-    def show(self):
-        super().show()
-        self.title_label.place(x=x / 2, y=100, anchor="center")
-        self.button1.place(x=x / 2, y=y / 2 + 200, anchor="center")
-        self.button2.place(x=x / 2 + 100, y=y / 2 + 200, anchor="center")
-        self.button3.place(x=x / 2 + 100, y=y / 2 + 200, anchor="center")
+    def questoes(self):
+        """Função para "fabricar" minhas questões"""
+        self.num_alternativas = {
+            1: 2, 2: 4, 3: 4, 4: 4, 5: 4, 6: 4, 7: 4, 8: 4, 9: 4, 10: 4, 11: 4, 12: 4, 13: 4, 14: 4, 15: 4, 16: 2,
+            17: 4, 18: 4, 19: 4, 20: 4, 21: 4, 22: 4, 24: 4, 25: 4, 26: 4, 27: 4, 28: 2, 29: 4, 30: 4, 31: 4, 32: 4,
+            33: 4, 34: 4, 35: 4, 36: 4, 37: 4, 38: 4, 39: 4, 40: 4, 41: 4, 42: 4, 43: 4, 44: 4, 45: 4, 46: 4, 47: 4,
+            48: 4, 49: 4, 50: 4
+        }
+        return self.num_alternativas
 
-    def _build_screen(self):
-        """Função para construir a tela "MenuPlay" """
+    question = 0
 
-        self.title_label = Label(self.frame, font=("Kristen ITC", 40), text="teste")
-        self.button1 = Button(self.frame, text="teste1", borderwidth=0, command=self.alternativa_certa)
-        self.button2 = Button(self.frame, text="teste2", command=self.alternativa_errada)
-        self.button3 = Button(self.frame, text="teste3", command=self.alternativa_errada)
-
-        self.title_label.place(x=x / 2, y=100, anchor="center")
-        self.button1.place(x=x / 2, y=y / 2 + 200, anchor="center")
-        self.button2.place(x=x / 2 + 100, y=y / 2 + 200, anchor="center")
-        self.button3.place(x=x / 2 + 100, y=y / 2 + 200, anchor="center")
-
-        self.label = Label(self.frame, font=("Kristen ITC", 40), text="Você Errou!")
-        self.button = Button(self.frame, font=("Kristen ITC", 40), text="Tentar Novamente",
-                             command=self.tentar_novamente)
-        self.frame.forget()
-        print(self.frame.children)
-
-
-class MenuPlay(Menu):
-    """Tela "MenuPlay" """
-
-    def __init__(self, menu_login, menu_main):
-        """Construtor"""
-        super().__init__()
-        self.menu_login = menu_login
-        self.menu_main = menu_main
-
-    def reset_entry(self):
-        """Função reset para evitar erros no código, tendo em vista que o hide sempre chama essa função"""
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sons/click.wav'))
-        if (not (self.label is None)):
-            self.label.destroy()
-        if (not (self.button is None)):
-            self.button.destroy()
-
-    def alternativa_certa(self):
-        """Função para levar o usuário para a próxima questão"""
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sons/click.wav'))
-
-    def tentar_novamente(self):
-        """Função para levar o usuário para o "MenuMain" """
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sons/click.wav'))
-        self.dev_system.menu_main.show()
-        self.hide()
+    def button_creator(self):
+        """Função para fabricar botões que fazem requisições ao banco de dados"""
+        self.question = self.question + 1
+        print(self.question)
+        for self.i in range(1, self.questoes()[self.question] + 1):
+            self.i = self.i
+            print(self.i)
+            self.alternativas = bd.pesquisa_alternativas(self.i, self.question)
+            print(self.alternativas[self.i - 1])
+            if self.i == 1:
+                self.check1 = bd.pesquisa_certa(self, self.question, self.alternativas[self.i - 1][0])
+                print(self.check1)
+                self.alternativas = str(self.alternativas[self.i - 1])
+                self.b1 = Button(self.frame,
+                                 font=("Kristen ITC", 14),
+                                 height="2",
+                                 width="30",
+                                 text=self.alternativas[2:-3],
+                                 padx=10,
+                                 pady=5,
+                                 cursor="hand2",
+                                 command=lambda check=self.check1: self.change_question(check[0]))
+                self.b1.place(x=x / 2 + 250, y=y / 2 - 100, anchor=CENTER)
+            elif self.i == 2:
+                self.check2 = bd.pesquisa_certa(self, self.question, self.alternativas[self.i - 1][0])
+                print(self.check2)
+                self.alternativas = str(self.alternativas[self.i - 1])
+                self.b2 = Button(self.frame,
+                                 font=("Kristen ITC", 14),
+                                 height="2",
+                                 width="30",
+                                 text=self.alternativas[2:-3],
+                                 padx=10,
+                                 pady=5,
+                                 cursor="hand2",
+                                 command=lambda check=self.check2: self.change_question(check[0]))
+                self.b2.place(x=x / 2 - 250, y=y / 2 - 100, anchor=CENTER)
+            elif self.i == 3:
+                self.check3 = bd.pesquisa_certa(self, self.question, self.alternativas[self.i - 1][0])
+                print(self.check3)
+                self.alternativas = str(self.alternativas[self.i - 1])
+                self.b3 = Button(self.frame,
+                                 font=("Kristen ITC", 14),
+                                 height="2",
+                                 width="30",
+                                 text=self.alternativas[2:-3],
+                                 padx=10,
+                                 pady=5,
+                                 cursor="hand2",
+                                 command=lambda check=self.check3: self.change_question(check[0]))
+                self.b3.place(x=x / 2 + 250, y=y / 2 + 100, anchor=CENTER)
+            elif self.i == 4:
+                self.check4 = bd.pesquisa_certa(self, self.question, self.alternativas[self.i - 1][0])
+                print(self.check4)
+                self.alternativas = str(self.alternativas[self.i - 1])
+                self.b4 = Button(self.frame,
+                                 font=("Kristen ITC", 14),
+                                 height="2",
+                                 width="30",
+                                 text=self.alternativas[2:-3],
+                                 padx=10,
+                                 pady=5,
+                                 cursor="hand2",
+                                 command=lambda check=self.check4: self.change_question(check[0]))
+                self.b4.place(x=x / 2 - 250, y=y / 2 + 100, anchor=CENTER)
+            elif self.i == 5:
+                self.check5 = bd.pesquisa_certa(self, self.question, self.alternativas[self.i - 1][0])
+                print(self.check5)
+                self.alternativas = str(self.alternativas[self.i - 1])
+                self.b5 = Button(self.frame,
+                                 font=("Kristen ITC", 14),
+                                 height="2",
+                                 width="30",
+                                 text=self.alternativas[2:-3],
+                                 padx=10,
+                                 pady=5,
+                                 cursor="hand2",
+                                 command=lambda check=self.check5: self.change_question(check[0]))
+                self.b5.place(x=x / 2, y=y / 2 + 300, anchor=CENTER)
 
     def alternativa_errada(self):
         """Função para mostrar que o usuário errou a questão"""
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sons/click.wav'))
-        self.label = Label(self.frame, font=("Kristen ITC", 40), text="Você Errou!")
-        self.button = Button(self.frame, font=("Kristen ITC", 40), text="Tentar Novamente",
-                             command=self.tentar_novamente)
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
+        self.question = 0
+        self.l1.place_forget()
+        self.b1.place_forget()
+        self.b2.place_forget()
+        try:
+            self.b3.place_forget()
+        except:
+            pass
+        try:
+            self.b4.place_forget()
+        except:
+            pass
 
+        try:
+            self.b5.place_forget()
+        except:
+            pass
+        self.label = Label(self.frame, font=("Kristen ITC", 40), bg="#ccccff", text="Você Errou!")
+        self.button = Button(self.frame, font=("Kristen ITC", 40), text="Tentar Novamente", cursor="hand2",
+                             command=self.tentar_novamente)
         self.label.place(x=x / 2 - 600, y=y / 2, anchor="center")
         self.button.place(x=x / 2 + 200, y=y / 2, anchor="center")
+        self.frame.pack(fill=BOTH, expand=True)
+
+    def change_question(self, correta):
+        """Função que verifica se o usuário acertou ou errou uma questão"""
+        print(correta)
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
+        if correta:
+            self.hide()
+            self._build_screen()
+            self.dev_system.menu_play.show()
+        else:
+            self.question = 0
+            self.alternativa_errada()
+
+    def title_creator(self):
+        """Função para gerar o enunciado da questão"""
+        self.pergunta_label = str(bd.pesquisa_pergunta(self.question))
+        self.l1 = Label(self.frame,
+                        font=("Kristen ITC", 20),
+                        text=str(f"{self.question}- {self.pergunta_label[2:-3]}")
+                        )
+        self.l1.place(x=x / 2, y=y / 2 - 400, anchor=CENTER)
+
+    def show(self):
+        """Função para mostrar os widgets que foram escondidos"""
+        super().show()
+        self.l1.place(x=x / 2, y=y / 2 - 400, anchor=CENTER)
+        self.b1.place(x=x / 2 + 250, y=y / 2 - 100, anchor=CENTER)
+        self.b2.place(x=x / 2 - 250, y=y / 2 - 100, anchor=CENTER)
+        try:
+            self.b3.place(x=x / 2 + 250, y=y / 2 + 100, anchor=CENTER)
+        except:
+            pass
+        try:
+            self.b4.place(x=x / 2 - 250, y=y / 2 + 100, anchor=CENTER)
+        except:
+            pass
+        try:
+            self.b5.place(x=x / 2, y=y / 2 + 300, anchor=CENTER)
+        except:
+            pass
+
+    def tentar_novamente(self):
+        """Função para levar o usuário para o "MenuMain" """
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
+        self.question = 0
+        self.label.place_forget()
+        self.button.place_forget()
+        self.dev_system.menu_main.show()
+        self.hide2()
 
     def _build_screen(self):
-        """Função para construir a tela "MenuPlay" """
-        Label(self.frame, font=("Kristen ITC", 40), text="teste").place(x=x / 2, y=100, anchor="center")
-        Button(self.frame, text="teste1", borderwidth=0, command=self.alternativa_certa).place(x=x / 2, y=y / 2 + 200,
-                                                                                               anchor="center")
-        Button(self.frame, text="teste2", command=self.alternativa_errada).place(x=x / 2 + 100, y=y / 2 + 200,
-                                                                                 anchor="center")
-        Button(self.frame, text="teste3", command=self.alternativa_errada).place(x=x / 2 + 100, y=y / 2 + 200,
-                                                                                 anchor="center")
-        self.frame.forget()
-        print(self.frame.children)
+        """Função resposável por construir a tela"""
+        Label(self.frame, image=bg_test, width=1920, height=1080).place(x=-2, y=-2)
+        self.button_creator()
+        self.title_creator()
 
 
 class MenuNightmare(Menu):
@@ -803,27 +909,32 @@ class MenuNightmare(Menu):
         # self.menu_nightmare_play = menu_nightmare_play
 
     def reset_entry(self):
+        """Função para limpar os caracteres inseridos no "Entry" """
         pass
 
     def fugir(self):
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sons/click.wav'))
+        """Função para levar o usuário para a tela "MenuMain" """
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
         self.resposta = askyesno(message='Você tem certeza que deseja fugir do GPT?\n'
                                          'OBS: Caso você fuja, será perseguido ETERNAMENTE pelo GPT')
         if self.resposta:
             self.dev_system.menu_main.show()
             sleep(5)
             pygame.mixer.Channel(2).stop()
-            pygame.mixer.Channel(0).play(pygame.mixer.Sound('Sons/musica.wav'), loops=-1)
+            pygame.mixer.Channel(0).play(pygame.mixer.Sound('Sounds/musica.wav'), loops=-1)
             self.hide()
 
     def go_to_nightmare_choices(self):
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sons/click.wav'))
-        showwarning("01010110 01000011 00100000 01001110 00100000 01010110 01000001 01001001 00100000 01000011 01001111 01001110 01010011 01000101 01000111 01010101 01001001 01010010",
-                    message='O GPT só aprova aqueles que acertarem  no mínimo 7 questões')
+        """Função que leva o usuário a tela "MenuNightmareChoices" """
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
+        showwarning(
+            "01010110 01000011 00100000 01001110 00100000 01010110 01000001 01001001 00100000 01000011 01001111 01001110 01010011 01000101 01000111 01010101 01001001 01010010",
+            message='O GPT só aprova aqueles que acertarem  no mínimo 7 questões')
         self.dev_system.menu_nightmare_choices.show()
         self.hide()
 
     def _build_screen(self):
+        """Função que constrói minha tela"""
         self.frame.config(bg="black")
         Label(self.frame, image=red_gpt, bg="black", width=530, height=530).place(x=x / 2 - 580, y=y / 2 - 275,
                                                                                   anchor="center")
@@ -872,14 +983,17 @@ class MenuNightmareChoices(Menu):
         self.menu_nightmare_play = menu_nightmare_play
 
     def reset_entry(self):
+        """Função para limpar os caracteres inseridos no "Entry" """
         pass
 
     def back_menu_nightmare_choices(self):
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sons/click.wav'))
+        """Função para sair da tela "MenuNightmareChoices" """
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
         self.dev_system.menu_nightmare.show()
         self.hide()
 
     def acertos_user(self):
+        """Função para contar a quantidade de acertos do usuário"""
         self.acertos = self.acertos
         self.resposta_gpt = self.resposta_gpt.lower()
         self.resposta_gpt = self.resposta_gpt[0]
@@ -893,11 +1007,12 @@ class MenuNightmareChoices(Menu):
         else:
             self.acertos = self.acertos
             showerror("01000101 01010010 01010010 01001111 01010101",
-                     message=f"Você errou esta questão. Você está com {self.acertos} acertos de 10 questões")
+                      message=f"Você errou esta questão. Você está com {self.acertos} acertos de 10 questões")
             self.resposta_var_ruim.set("")
             return self.acertos
 
     def final(self):
+        """Função que mostra ao usuário se o GPT o aprovou"""
         self.acertos_user()
         showinfo("01000001 01010000 01010010 01001111 01010110 01000001 01000100 01001111 00001010",
                  message=f"Você está com {self.acertos} acertos de 10 questões")
@@ -906,19 +1021,20 @@ class MenuNightmareChoices(Menu):
                      message=f"Você está com {self.acertos} acertos de 10 questões")
             self.dev_system.menu_main.show()
             pygame.mixer.Channel(2).stop()
-            pygame.mixer.Channel(0).play(pygame.mixer.Sound('Sons/musica.wav'), loops=-1)
+            pygame.mixer.Channel(0).play(pygame.mixer.Sound('Sounds/musica.wav'), loops=-1)
             self.hide()
         else:
             c = 0
             while c != 11:
                 showerror("01010010 01000101 01010000 01010010 01001111 01010110 01000001 01000100 01001111",
-                          message="Você foi REPROVADO pelo gpt",)
+                          message="Você foi REPROVADO pelo gpt", )
                 c = c + 1
             sleep(2)
             root.destroy()
 
     def questao10(self):
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sons/click.wav'))
+        """Função para fazer uma questão"""
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
         self.acertos_user()
         self.l8.place_forget()
         self.r8.place_forget()
@@ -941,6 +1057,8 @@ class MenuNightmareChoices(Menu):
         self.l8 = Label(self.frame,
                         text=f"""{str(self.questao)}- {self.texto_gpt}""",
                         font=("Kristen ITC", 26),
+                        wraplength=1500,
+                        justify="center",
                         fg="#8B0000",
                         bg="black")
         self.l8.place(x=x / 2, y=y / 2 - 300, anchor=CENTER)
@@ -1017,7 +1135,8 @@ class MenuNightmareChoices(Menu):
         print(self.resposta_gpt)
 
     def questao9(self):
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sons/click.wav'))
+        """Função para fazer uma questão"""
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
         self.acertos_user()
         self.l8.place_forget()
         self.r8.place_forget()
@@ -1040,6 +1159,8 @@ class MenuNightmareChoices(Menu):
         self.l8 = Label(self.frame,
                         text=f"""{str(self.questao)}- {self.texto_gpt}""",
                         font=("Kristen ITC", 26),
+                        wraplength=1500,
+                        justify="center",
                         fg="#8B0000",
                         bg="black")
         self.l8.place(x=x / 2, y=y / 2 - 300, anchor=CENTER)
@@ -1116,7 +1237,8 @@ class MenuNightmareChoices(Menu):
         print(self.resposta_gpt)
 
     def questao8(self):
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sons/click.wav'))
+        """Função para fazer uma questão"""
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
         self.acertos_user()
         self.l8.place_forget()
         self.r8.place_forget()
@@ -1139,6 +1261,8 @@ class MenuNightmareChoices(Menu):
         self.l8 = Label(self.frame,
                         text=f"""{str(self.questao)}- {self.texto_gpt}""",
                         font=("Kristen ITC", 26),
+                        wraplength=1500,
+                        justify="center",
                         fg="#8B0000",
                         bg="black")
         self.l8.place(x=x / 2, y=y / 2 - 300, anchor=CENTER)
@@ -1215,7 +1339,8 @@ class MenuNightmareChoices(Menu):
         print(self.resposta_gpt)
 
     def questao7(self):
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sons/click.wav'))
+        """Função para fazer uma questão"""
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
         self.acertos_user()
         self.l8.place_forget()
         self.r8.place_forget()
@@ -1238,6 +1363,8 @@ class MenuNightmareChoices(Menu):
         self.l8 = Label(self.frame,
                         text=f"""{str(self.questao)}- {self.texto_gpt}""",
                         font=("Kristen ITC", 26),
+                        wraplength=1500,
+                        justify="center",
                         fg="#8B0000",
                         bg="black")
         self.l8.place(x=x / 2, y=y / 2 - 300, anchor=CENTER)
@@ -1314,7 +1441,8 @@ class MenuNightmareChoices(Menu):
         print(self.resposta_gpt)
 
     def questao6(self):
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sons/click.wav'))
+        """Função para fazer uma questão"""
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
         self.acertos_user()
         self.l8.place_forget()
         self.r8.place_forget()
@@ -1337,6 +1465,8 @@ class MenuNightmareChoices(Menu):
         self.l8 = Label(self.frame,
                         text=f"""{str(self.questao)}- {self.texto_gpt}""",
                         font=("Kristen ITC", 26),
+                        wraplength=1500,
+                        justify="center",
                         fg="#8B0000",
                         bg="black")
         self.l8.place(x=x / 2, y=y / 2 - 300, anchor=CENTER)
@@ -1413,7 +1543,8 @@ class MenuNightmareChoices(Menu):
         print(self.resposta_gpt)
 
     def questao5(self):
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sons/click.wav'))
+        """Função para fazer uma questão"""
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
         self.acertos_user()
         self.l8.place_forget()
         self.r8.place_forget()
@@ -1437,6 +1568,8 @@ class MenuNightmareChoices(Menu):
         self.l8 = Label(self.frame,
                         text=f"""{str(self.questao)}- {self.texto_gpt}""",
                         font=("Kristen ITC", 26),
+                        wraplength=1500,
+                        justify="center",
                         fg="#8B0000",
                         bg="black")
         self.l8.place(x=x / 2, y=y / 2 - 300, anchor=CENTER)
@@ -1513,7 +1646,8 @@ class MenuNightmareChoices(Menu):
         print(self.resposta_gpt)
 
     def questao4(self):
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sons/click.wav'))
+        """Função para fazer uma questão"""
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
         self.acertos_user()
         self.l8.place_forget()
         self.r8.place_forget()
@@ -1536,6 +1670,8 @@ class MenuNightmareChoices(Menu):
         self.l8 = Label(self.frame,
                         text=f"""{str(self.questao)}- {self.texto_gpt}""",
                         font=("Kristen ITC", 26),
+                        wraplength=1500,
+                        justify="center",
                         fg="#8B0000",
                         bg="black")
         self.l8.place(x=x / 2, y=y / 2 - 300, anchor=CENTER)
@@ -1612,7 +1748,8 @@ class MenuNightmareChoices(Menu):
         print(self.resposta_gpt)
 
     def questao3(self):
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sons/click.wav'))
+        """Função para fazer uma questão"""
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
         self.acertos_user()
         self.l8.place_forget()
         self.r8.place_forget()
@@ -1635,6 +1772,8 @@ class MenuNightmareChoices(Menu):
         self.l8 = Label(self.frame,
                         text=f"""{str(self.questao)}- {self.texto_gpt}""",
                         font=("Kristen ITC", 26),
+                        wraplength=1500,
+                        justify="center",
                         fg="#8B0000",
                         bg="black")
         self.l8.place(x=x / 2, y=y / 2 - 300, anchor=CENTER)
@@ -1711,7 +1850,8 @@ class MenuNightmareChoices(Menu):
         print(self.resposta_gpt)
 
     def questao2(self):
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sons/click.wav'))
+        """Função para fazer uma questão"""
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
         self.acertos_user()
         self.l8.place_forget()
         self.r8.place_forget()
@@ -1733,6 +1873,8 @@ class MenuNightmareChoices(Menu):
         self.l8 = Label(self.frame,
                         text=f"""{str(self.questao)}- {self.texto_gpt}""",
                         font=("Kristen ITC", 26),
+                        wraplength=1500,
+                        justify="center",
                         fg="#8B0000",
                         bg="black")
         self.l8.place(x=x / 2, y=y / 2 - 300, anchor=CENTER)
@@ -1809,7 +1951,8 @@ class MenuNightmareChoices(Menu):
         print(self.resposta_gpt)
 
     def questao1(self):
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sons/click.wav'))
+        """Função para fazer uma questão e verificar se o usuário respondeu ao radiobutton"""
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
         self.assunto = self.assunto_var.get()
         self.dificuldade = self.dificuldade_var.get()
         if self.assunto != "" and self.dificuldade != "":
@@ -1835,75 +1978,76 @@ class MenuNightmareChoices(Menu):
             OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
             self.texto_gpt = criar_pergunta(OPENAI_API_KEY, self.assunto, self.dificuldade)
             self.resposta_gpt = str(responder_pergunta(OPENAI_API_KEY, self.texto_gpt))
-            #self.resposta_gpt = str(self.resposta_gpt_longa[0])
+            # self.resposta_gpt = str(self.resposta_gpt_longa[0])
 
             self.l8 = Label(self.frame,
-                    text=f"""{str(self.questao)}- {self.texto_gpt}""",
-                      font=("Kristen ITC", 26),
-                      fg="#8B0000",
-                      bg="black")
-            self.l8.place(x=x/2, y=y/2-300, anchor=CENTER)
+                            text=f"""{str(self.questao)}- {self.texto_gpt}""",
+                            font=("Kristen ITC", 26),
+                            wraplength=1500,
+                            justify="center",
+                            fg="#8B0000",
+                            bg="black")
+            self.l8.place(x=x / 2, y=y / 2 - 300, anchor=CENTER)
 
             # 4 radiobuttons para o jogador assinalar entre a,b,c,d
             self.resposta_var_ruim = StringVar()
             self.r8 = Radiobutton(self.frame,
-                                      font=("Kristen ITC", 30),
-                                      fg="#8B0000",
-                                      bg="black",
-                                      activebackground="#202020",
-                                      activeforeground="#8B0000",
-                                      cursor="hand2",
-                                      text="A",
-                                      value="a",
-                                      variable=self.resposta_var_ruim
-                                      )
-            self.r8.place(x=x/2-150, y=y/2+100)
+                                  font=("Kristen ITC", 30),
+                                  fg="#8B0000",
+                                  bg="black",
+                                  activebackground="#202020",
+                                  activeforeground="#8B0000",
+                                  cursor="hand2",
+                                  text="A",
+                                  value="a",
+                                  variable=self.resposta_var_ruim
+                                  )
+            self.r8.place(x=x / 2 - 150, y=y / 2 + 100)
 
             self.r9 = Radiobutton(self.frame,
-                                      font=("Kristen ITC", 30),
-                                      fg="#8B0000",
-                                      bg="black",
-                                      activebackground="#202020",
-                                      activeforeground="#8B0000",
-                                      cursor="hand2",
-                                      text="B",
-                                      value="b",
-                                      variable=self.resposta_var_ruim
-                                      )
-            self.r9.place(x=x/2-50, y=y/2+100)
+                                  font=("Kristen ITC", 30),
+                                  fg="#8B0000",
+                                  bg="black",
+                                  activebackground="#202020",
+                                  activeforeground="#8B0000",
+                                  cursor="hand2",
+                                  text="B",
+                                  value="b",
+                                  variable=self.resposta_var_ruim
+                                  )
+            self.r9.place(x=x / 2 - 50, y=y / 2 + 100)
 
             self.r10 = Radiobutton(self.frame,
-                                      font=("Kristen ITC", 30),
-                                      fg="#8B0000",
-                                      bg="black",
-                                      activebackground="#202020",
-                                      activeforeground="#8B0000",
-                                      cursor="hand2",
-                                      text="C",
-                                      value="c",
-                                      variable=self.resposta_var_ruim
-                                      )
-            self.r10.place(x=x/2+50, y=y/2+100)
+                                   font=("Kristen ITC", 30),
+                                   fg="#8B0000",
+                                   bg="black",
+                                   activebackground="#202020",
+                                   activeforeground="#8B0000",
+                                   cursor="hand2",
+                                   text="C",
+                                   value="c",
+                                   variable=self.resposta_var_ruim
+                                   )
+            self.r10.place(x=x / 2 + 50, y=y / 2 + 100)
 
             self.r11 = Radiobutton(self.frame,
-                                      font=("Kristen ITC", 30),
-                                      fg="#8B0000",
-                                      bg="black",
-                                      activebackground="#202020",
-                                      activeforeground="#8B0000",
-                                      cursor="hand2",
-                                      text="D",
-                                      value="d",
-                                      variable=self.resposta_var_ruim
-                                      )
-            self.r11.place(x=x/2+150, y=y/2+100)
-
+                                   font=("Kristen ITC", 30),
+                                   fg="#8B0000",
+                                   bg="black",
+                                   activebackground="#202020",
+                                   activeforeground="#8B0000",
+                                   cursor="hand2",
+                                   text="D",
+                                   value="d",
+                                   variable=self.resposta_var_ruim
+                                   )
+            self.r11.place(x=x / 2 + 150, y=y / 2 + 100)
 
             # função para verificar se a resposta esta certa
 
             self.b3 = Button(self.frame,
                              text="Verificar Resposta",
-                             command=self.questao10,
+                             command=self.questao2,
                              font=("Kristen ITC", 14),
                              fg="#8B0000",
                              activebackground="#202020",
@@ -1913,148 +2057,149 @@ class MenuNightmareChoices(Menu):
                              padx=80,
                              borderwidth=5,
                              bg="black")
-            self.b3.place(x=x/2-200, y=y/2+375)
+            self.b3.place(x=x / 2 - 200, y=y / 2 + 375)
             print(self.resposta_gpt)
 
     def _build_screen(self):
+        """Função que constrói a tela"""
         self.frame.config(bg="black")
         self.acertos = 0
         self.l1 = Label(self.frame, image=red_gpt, bg="black", width=530, height=530)
         self.l1.place(x=x / 2 - 580, y=y / 2, anchor="center")
 
         self.l2 = Label(self.frame,
-              font=("Kristen ITC", 50),
-              text="01000101 01010011 01000011 01001111 01001100 01001000 01000001",
-              fg="#8B0000",
-              bg="black")
-        self.l2.place(x=x / 2, y=y/2-375, anchor="center")
+                        font=("Kristen ITC", 50),
+                        text="01000101 01010011 01000011 01001111 01001100 01001000 01000001",
+                        fg="#8B0000",
+                        bg="black")
+        self.l2.place(x=x / 2, y=y / 2 - 375, anchor="center")
 
         self.l3 = Label(self.frame,
-              font=("Kristen ITC", 50),
-              fg="#8B0000",
-              bg="black",
-              text="Assunto")
-        self.l3.place(x=x / 2-150, y=y / 2-150)
+                        font=("Kristen ITC", 50),
+                        fg="#8B0000",
+                        bg="black",
+                        text="Assunto")
+        self.l3.place(x=x / 2 - 150, y=y / 2 - 150)
 
         self.assunto_var = StringVar()
         self.r1 = Radiobutton(self.frame,
-                    font=("Kristen ITC", 14),
-                    fg="#8B0000",
-                    bg="black",
-                    activebackground="#202020",
-                    activeforeground="#8B0000",
-                    cursor="hand2",
-                    text="Java",
-                    value="Java",
-                    variable=self.assunto_var)
-        self.r1.place(x=x / 2-150, y=y / 2-50)
+                              font=("Kristen ITC", 14),
+                              fg="#8B0000",
+                              bg="black",
+                              activebackground="#202020",
+                              activeforeground="#8B0000",
+                              cursor="hand2",
+                              text="Java",
+                              value="Java",
+                              variable=self.assunto_var)
+        self.r1.place(x=x / 2 - 150, y=y / 2 - 50)
 
         self.r2 = Radiobutton(self.frame,
-                    font=("Kristen ITC", 14),
-                    fg="#8B0000",
-                    bg="black",
-                    activebackground="#202020",
-                    activeforeground="#8B0000",
-                    cursor="hand2",
-                    text="Python",
-                    value="Python",
-                    variable=self.assunto_var)
-        self.r2.place(x=x / 2-150, y=y / 2)
+                              font=("Kristen ITC", 14),
+                              fg="#8B0000",
+                              bg="black",
+                              activebackground="#202020",
+                              activeforeground="#8B0000",
+                              cursor="hand2",
+                              text="Python",
+                              value="Python",
+                              variable=self.assunto_var)
+        self.r2.place(x=x / 2 - 150, y=y / 2)
 
         self.r3 = Radiobutton(self.frame,
-                    font=("Kristen ITC", 14),
-                    fg="#8B0000",
-                    bg="black",
-                    activebackground="#202020",
-                    activeforeground="#8B0000",
-                    cursor="hand2",
-                    text="Modelagem Orientada a Objetos",
-                    value="Modelagem Orientada a Objetos",
-                    variable=self.assunto_var)
-        self.r3.place(x=x / 2-150, y=y / 2 + 50)
+                              font=("Kristen ITC", 14),
+                              fg="#8B0000",
+                              bg="black",
+                              activebackground="#202020",
+                              activeforeground="#8B0000",
+                              cursor="hand2",
+                              text="Modelagem Orientada a Objetos",
+                              value="Modelagem Orientada a Objetos",
+                              variable=self.assunto_var)
+        self.r3.place(x=x / 2 - 150, y=y / 2 + 50)
 
         self.r4 = Radiobutton(self.frame,
-                    font=("Kristen ITC", 14),
-                    fg="#8B0000",
-                    bg="black",
-                    activebackground="#202020",
-                    activeforeground="#8B0000",
-                    cursor="hand2",
-                    text="Banco de Dados Relacionais",
-                    value="Banco de Dados Relacionais",
-                    variable=self.assunto_var)
-        self.r4.place(x=x / 2-150, y=y / 2 + 100)
+                              font=("Kristen ITC", 14),
+                              fg="#8B0000",
+                              bg="black",
+                              activebackground="#202020",
+                              activeforeground="#8B0000",
+                              cursor="hand2",
+                              text="Banco de Dados Relacionais",
+                              value="Banco de Dados Relacionais",
+                              variable=self.assunto_var)
+        self.r4.place(x=x / 2 - 150, y=y / 2 + 100)
 
         self.l4 = Label(self.frame,
-              font=("Kristen ITC", 50),
-              fg="#8B0000",
-              bg="black",
-              text="Dificuldade")
-        self.l4.place(x=x / 2+250, y=y / 2-150)
+                        font=("Kristen ITC", 50),
+                        fg="#8B0000",
+                        bg="black",
+                        text="Dificuldade")
+        self.l4.place(x=x / 2 + 250, y=y / 2 - 150)
 
         self.dificuldade_var = StringVar()
         self.r5 = Radiobutton(self.frame,
-                    font=("Kristen ITC", 14),
-                    fg="#8B0000",
-                    bg="black",
-                    activebackground="#202020",
-                    activeforeground="#8B0000",
-                    cursor="hand2",
-                    text="Fácil",
-                    value="Fácil",
-                    variable=self.dificuldade_var)
-        self.r5.place(x=x / 2+250, y=y / 2-50)
+                              font=("Kristen ITC", 14),
+                              fg="#8B0000",
+                              bg="black",
+                              activebackground="#202020",
+                              activeforeground="#8B0000",
+                              cursor="hand2",
+                              text="Fácil",
+                              value="Fácil",
+                              variable=self.dificuldade_var)
+        self.r5.place(x=x / 2 + 250, y=y / 2 - 50)
 
         self.r6 = Radiobutton(self.frame,
-                    font=("Kristen ITC", 14),
-                    fg="#8B0000",
-                    bg="black",
-                    activebackground="#202020",
-                    activeforeground="#8B0000",
-                    cursor="hand2",
-                    text="Médio",
-                    value="Médio",
-                    variable=self.dificuldade_var)
-        self.r6.place(x=x / 2+250, y=y / 2)
+                              font=("Kristen ITC", 14),
+                              fg="#8B0000",
+                              bg="black",
+                              activebackground="#202020",
+                              activeforeground="#8B0000",
+                              cursor="hand2",
+                              text="Médio",
+                              value="Médio",
+                              variable=self.dificuldade_var)
+        self.r6.place(x=x / 2 + 250, y=y / 2)
 
         self.r7 = Radiobutton(self.frame,
-                    font=("Kristen ITC", 14),
-                    fg="#8B0000",
-                    bg="black",
-                    cursor="hand2",
-                    activebackground="#202020",
-                    activeforeground="#8B0000",
-                    text="Difícil",
-                    value="Difícil",
-                    variable=self.dificuldade_var)
-        self.r7.place(x=x / 2+250, y=y / 2+50)
+                              font=("Kristen ITC", 14),
+                              fg="#8B0000",
+                              bg="black",
+                              cursor="hand2",
+                              activebackground="#202020",
+                              activeforeground="#8B0000",
+                              text="Difícil",
+                              value="Difícil",
+                              variable=self.dificuldade_var)
+        self.r7.place(x=x / 2 + 250, y=y / 2 + 50)
 
         self.b1 = Button(self.frame,
-               font=("Kristen ITC", 14),
-               text="ESTOU PRONTO PARA VENCER O GPT",
-               fg="#8B0000",
-               activebackground="#202020",
-               activeforeground="#8B0000",
-               width=23,
-               command=self.questao1,
-               cursor="hand2",
-               padx=80,
-               borderwidth=5,
-               bg="black")
-        self.b1.place(x=x / 2, y=y / 2+250, anchor="center")
+                         font=("Kristen ITC", 14),
+                         text="ESTOU PRONTO PARA VENCER O GPT",
+                         fg="#8B0000",
+                         activebackground="#202020",
+                         activeforeground="#8B0000",
+                         width=23,
+                         command=self.questao1,
+                         cursor="hand2",
+                         padx=80,
+                         borderwidth=5,
+                         bg="black")
+        self.b1.place(x=x / 2, y=y / 2 + 250, anchor="center")
 
         self.b2 = Button(self.frame,
-               font=("Kristen ITC", 14),
-               text="EU QUERO MINHA MAMÃE",
-               fg="#8B0000",
-               activebackground="#202020",
-               activeforeground="#8B0000",
-               width=23,
-               cursor="hand2",
-               padx=80,
-               command=self.back_menu_nightmare_choices,
-               borderwidth=5,
-               bg="black")
+                         font=("Kristen ITC", 14),
+                         text="EU QUERO MINHA MAMÃE",
+                         fg="#8B0000",
+                         activebackground="#202020",
+                         activeforeground="#8B0000",
+                         width=23,
+                         cursor="hand2",
+                         padx=80,
+                         command=self.back_menu_nightmare_choices,
+                         borderwidth=5,
+                         bg="black")
         self.b2.place(x=x / 2, y=y / 2 + 350)
 
 
@@ -2116,8 +2261,7 @@ menu_main = MenuMain("menu_login", "menu_settings", "menu_instructions", "menu_p
 menu_password_forget = MenuPasswordForget("menu_login")
 menu_settings = MenuSettings("menu_login", "menu_main")
 menu_instructions = MenuInstructions("menu_login", "menu_main")
-# menu_play = MenuPlay("menu_login", "menu_main")
-menu_play = MenuLevel()
+menu_play = MenuPlay("menu_login", "menu_main")
 menu_nightmare = MenuNightmare("menu_login", "menu_main", "menu_nightmare_choices")
 menu_nightmare_choices = MenuNightmareChoices("menu_login", "menu_main", "menu_nightmare", "menu_nightmare_play")
 menu_login = MenuLogin("menu_password_forget",
