@@ -7,11 +7,9 @@ def conectar():
     try:
         con = psycopg.connect(user='peepw', password='Jmtjh3pyqnI8',
                               host='ep-little-bird-447006.us-east-2.aws.neon.tech', dbname='devquiz')
-        print("Conectado ao banco de dados")
         return con
     except ValueError as erro:
-        print("Erro de Conexão")
-    con.close()
+        con.close()
 
 
 # criação de cadastro
@@ -22,7 +20,6 @@ def criar_cadastro(name, username, email, senha, curso):
     cursor.execute(
         f"INSERT INTO cadastro (name, username, senha, email, curso) VALUES ('{name}', '{username}', '{senha}', '{email}', '{curso}')"
     )
-    print("Usuário cadastrado com sucesso")
     con.commit()
     con.close()
 
@@ -32,10 +29,6 @@ def criar_usuario(username, senha):
     con = conectar()
     cursor = con.cursor()
     cursor.execute("SELECT username, senha FROM cadastrar WHERE username = %s AND senha = %s", (username, senha))
-    if cursor.fetchone() is not None:
-        print("Login realizado com sucesso")
-    else:
-        print("Login não realizado")
     con.close()
 
 
@@ -51,9 +44,6 @@ def cronometrar(name, tempo_comeco):
     if tempo_no_db > tempo_total:
         cursor.execute("UPDATE usuario SET pontos = %s WHERE name = %s", (tempo_total, name))
         con.commit()
-        print("Pontuação atualizada")
-    else:
-        print("Pontuação não atualizada")
 
 
 def pesquisa_pergunta(question):
@@ -98,7 +88,6 @@ def rank():
     con.commit()
     ranking_result = cursor.fetchall()
     con.close()
-    print(ranking_result)
     return ranking_result
 
 
@@ -108,8 +97,6 @@ def verificar(username):
     cursor = con.cursor
     resposta = cursor.execute(f"SELECT * FROM CADASTRO WHERE USERNAME == {username}")
     con.commit()
-    if resposta is not None:
-        print("Existe")
     con.close()
 
 
@@ -122,9 +109,6 @@ def mudar_senha(username):
         senha = input("Digite a nova senha: ")
         cursor.execute("UPDATE cadastro SET senha = %s WHERE username = %s", (senha, username))
         con.commit()
-        print("Senha alterada com sucesso")
-    else:
-        print("Usuário não encontrado")
     con.close()
 
 
@@ -133,10 +117,6 @@ def login(name, senha):
     con = conectar()
     cursor = con.cursor()
     cursor.execute("SELECT name, senha FROM usuario WHERE name = %s AND senha = %s", (name, senha))
-    if cursor.fetchone() is not None:
-        print("Login realizado com sucesso")
-    else:
-        print("Login não realizado")
     con.close()
 
 

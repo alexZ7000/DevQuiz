@@ -298,8 +298,7 @@ class MenuLogin(Menu):
             sleep(5)
             self.dev_system.menu_main.show()
             self.hide()
-        else:
-            print("cu")
+
 
     def go_to_sign_up(self):
         """Função para o usuário ir para a tela "Registrar-se" """
@@ -347,13 +346,12 @@ class MenuLogin(Menu):
 
         Label(self.frame,
               image=bg_test,
-
               width=1920,
               height=1080).place(x=0 - 2, y=0 - 2)
 
         Label(self.frame,
               image=dev_quiz_logo_pequena,
-              background="white").place(x=x / 2, y=150, anchor=CENTER)
+              background="#ccccff").place(x=x / 2, y=150, anchor=CENTER)
 
         Label(self.frame,
               image=user,
@@ -740,15 +738,11 @@ class MenuPlay(Menu):
     def button_creator(self):
         """Função para fabricar botões que fazem requisições ao banco de dados"""
         self.question = self.question + 1
-        print(self.question)
         for self.i in range(1, self.questoes()[self.question] + 1):
             self.i = self.i
-            print(self.i)
             self.alternativas = bd.pesquisa_alternativas(self.i, self.question)
-            print(self.alternativas[self.i - 1])
             if self.i == 1:
                 self.check1 = bd.pesquisa_certa(self, self.question, self.alternativas[self.i - 1][0])
-                print(self.check1)
                 self.alternativas = str(self.alternativas[self.i - 1])
                 self.b1 = Button(self.frame,
                                  font=("Kristen ITC", 14),
@@ -762,7 +756,6 @@ class MenuPlay(Menu):
                 self.b1.place(x=x / 2 + 250, y=y / 2 - 100, anchor=CENTER)
             elif self.i == 2:
                 self.check2 = bd.pesquisa_certa(self, self.question, self.alternativas[self.i - 1][0])
-                print(self.check2)
                 self.alternativas = str(self.alternativas[self.i - 1])
                 self.b2 = Button(self.frame,
                                  font=("Kristen ITC", 14),
@@ -776,7 +769,6 @@ class MenuPlay(Menu):
                 self.b2.place(x=x / 2 - 250, y=y / 2 - 100, anchor=CENTER)
             elif self.i == 3:
                 self.check3 = bd.pesquisa_certa(self, self.question, self.alternativas[self.i - 1][0])
-                print(self.check3)
                 self.alternativas = str(self.alternativas[self.i - 1])
                 self.b3 = Button(self.frame,
                                  font=("Kristen ITC", 14),
@@ -790,7 +782,6 @@ class MenuPlay(Menu):
                 self.b3.place(x=x / 2 + 250, y=y / 2 + 100, anchor=CENTER)
             elif self.i == 4:
                 self.check4 = bd.pesquisa_certa(self, self.question, self.alternativas[self.i - 1][0])
-                print(self.check4)
                 self.alternativas = str(self.alternativas[self.i - 1])
                 self.b4 = Button(self.frame,
                                  font=("Kristen ITC", 14),
@@ -804,7 +795,6 @@ class MenuPlay(Menu):
                 self.b4.place(x=x / 2 - 250, y=y / 2 + 100, anchor=CENTER)
             elif self.i == 5:
                 self.check5 = bd.pesquisa_certa(self, self.question, self.alternativas[self.i - 1][0])
-                print(self.check5)
                 self.alternativas = str(self.alternativas[self.i - 1])
                 self.b5 = Button(self.frame,
                                  font=("Kristen ITC", 14),
@@ -846,7 +836,6 @@ class MenuPlay(Menu):
 
     def change_question(self, correta):
         """Função que verifica se o usuário acertou ou errou uma questão"""
-        print(correta)
         pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
         if correta:
             self.hide()
@@ -1132,7 +1121,6 @@ class MenuNightmareChoices(Menu):
                          borderwidth=5,
                          bg="black")
         self.b3.place(x=x / 2 - 200, y=y / 2 + 375)
-        print(self.resposta_gpt)
 
     def questao9(self):
         """Função para fazer uma questão"""
@@ -1234,7 +1222,6 @@ class MenuNightmareChoices(Menu):
                          borderwidth=5,
                          bg="black")
         self.b3.place(x=x / 2 - 200, y=y / 2 + 375)
-        print(self.resposta_gpt)
 
     def questao8(self):
         """Função para fazer uma questão"""
@@ -1336,7 +1323,6 @@ class MenuNightmareChoices(Menu):
                          borderwidth=5,
                          bg="black")
         self.b3.place(x=x / 2 - 200, y=y / 2 + 375)
-        print(self.resposta_gpt)
 
     def questao7(self):
         """Função para fazer uma questão"""
@@ -1438,7 +1424,6 @@ class MenuNightmareChoices(Menu):
                          borderwidth=5,
                          bg="black")
         self.b3.place(x=x / 2 - 200, y=y / 2 + 375)
-        print(self.resposta_gpt)
 
     def questao6(self):
         """Função para fazer uma questão"""
@@ -1540,7 +1525,6 @@ class MenuNightmareChoices(Menu):
                          borderwidth=5,
                          bg="black")
         self.b3.place(x=x / 2 - 200, y=y / 2 + 375)
-        print(self.resposta_gpt)
 
     def questao5(self):
         """Função para fazer uma questão"""
@@ -1643,7 +1627,6 @@ class MenuNightmareChoices(Menu):
                          borderwidth=5,
                          bg="black")
         self.b3.place(x=x / 2 - 200, y=y / 2 + 375)
-        print(self.resposta_gpt)
 
     def questao4(self):
         """Função para fazer uma questão"""
@@ -1745,7 +1728,6 @@ class MenuNightmareChoices(Menu):
                          borderwidth=5,
                          bg="black")
         self.b3.place(x=x / 2 - 200, y=y / 2 + 375)
-        print(self.resposta_gpt)
 
     def questao3(self):
         """Função para fazer uma questão"""
@@ -1847,7 +1829,6 @@ class MenuNightmareChoices(Menu):
                          borderwidth=5,
                          bg="black")
         self.b3.place(x=x / 2 - 200, y=y / 2 + 375)
-        print(self.resposta_gpt)
 
     def questao2(self):
         """Função para fazer uma questão"""
@@ -1948,7 +1929,6 @@ class MenuNightmareChoices(Menu):
                          borderwidth=5,
                          bg="black")
         self.b3.place(x=x / 2 - 200, y=y / 2 + 375)
-        print(self.resposta_gpt)
 
     def questao1(self):
         """Função para fazer uma questão e verificar se o usuário respondeu ao radiobutton"""
@@ -2058,7 +2038,6 @@ class MenuNightmareChoices(Menu):
                              borderwidth=5,
                              bg="black")
             self.b3.place(x=x / 2 - 200, y=y / 2 + 375)
-            print(self.resposta_gpt)
 
     def _build_screen(self):
         """Função que constrói a tela"""
