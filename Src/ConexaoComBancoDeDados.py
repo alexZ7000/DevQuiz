@@ -102,9 +102,15 @@ def mudar_senha(username):
 
 
 # login
-def login(name, senha):
+def login(username, senha):
     cursor = con.cursor()
-    cursor.execute("SELECT name, senha FROM usuario WHERE name = %s AND senha = %s", (name, senha))
+    cursor.execute("SELECT senha FROM cadastro WHERE username = %s", (username,))
+    senha1 = str(cursor.fetchone())
+    if senha1[2:-3] == senha:
+        return True
+    else:
+        return False
+
     
 
 
