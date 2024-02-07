@@ -1,12 +1,12 @@
 import psycopg
 import datetime
 
+con = psycopg.connect(user='peepw', password='Jmtjh3pyqnI8',
+                              host='ep-little-bird-447006.us-east-2.aws.neon.tech', dbname='devquiz')
 
 # conexao com o postgresql
 def conectar():
     try:
-        con = psycopg.connect(user='peepw', password='Jmtjh3pyqnI8',
-                              host='ep-little-bird-447006.us-east-2.aws.neon.tech', dbname='devquiz')
         return con
     except ValueError as erro:
         con.close()
@@ -14,29 +14,23 @@ def conectar():
 
 # criação de cadastro
 def criar_cadastro(name, username, email, senha, curso):
-    con = psycopg.connect(user='peepw', password='Jmtjh3pyqnI8', host='ep-little-bird-447006.us-east-2.aws.neon.tech',
-                          dbname='devquiz')
     cursor = con.cursor()
     cursor.execute(
         f"INSERT INTO cadastro (name, username, senha, email, curso) VALUES ('{name}', '{username}', '{senha}', '{email}', '{curso}')"
     )
     con.commit()
-    con.close()
 
 
 
 # criação de usuario
 def criar_usuario(username, senha):
-    con = conectar()
     cursor = con.cursor()
     cursor.execute("SELECT username, senha FROM cadastrar WHERE username = %s AND senha = %s", (username, senha))
-    con.close()
-
+    
 
 # pegar o tempo do computador do usuario e subtrair pelo tempo que foi finalziado o jogo (ate a ultima questao),
 # mandar resposta desse calculo para o banco de dados
 def cronometrar(name, tempo_comeco):
-    con = conectar()
     cursor = con.cursor()
     tempo_total = 10
     tempo_comeco = 0
@@ -48,33 +42,30 @@ def cronometrar(name, tempo_comeco):
 
 
 def pesquisa_pergunta(question):
-    con = conectar()
     cursor = con.cursor()
     question = cursor.execute(f"SELECT perguntas FROM questoes WHERE idquestao = {question}")
     con.commit()
     question = cursor.fetchone()
-    con.close()
+    
     return question
 
 
 def pesquisa_alternativas(a, b):
-    con = conectar()
     cursor = con.cursor()
     a = cursor.execute(f"SELECT alternativa FROM respostas WHERE idquestao = {b}")
     con.commit()
     a = cursor.fetchall()
-    con.close()
+    
     return a
 
 
 def pesquisa_certa(self, a, b):
-    con = conectar()
     cursor = con.cursor()
     self.correta = cursor.execute(
         "SELECT correta FROM respostas WHERE idquestao = {} AND alternativa = '{}'".format(a, b))
     con.commit()
     a = cursor.fetchone()
-    con.close()
+    
     return a
 
 
@@ -83,42 +74,38 @@ ranking = []
 
 
 def rank():
-    con = conectar()
     cursor = con.cursor()
     cursor.execute("SELECT name, tempo FROM ranking ORDER BY tempo DESC")
     con.commit()
     ranking_result = cursor.fetchall()
-    con.close()
+    
     return ranking_result
 
 
 # verificação de usuario
 def verificar(username):
-    con = conectar()
     cursor = con.cursor
     resposta = cursor.execute(f"SELECT * FROM CADASTRO WHERE USERNAME == {username}")
     con.commit()
-    con.close()
+    
 
 
 # alteração de senha
 def mudar_senha(username):
-    con = conectar()
     cursor = con.cursor()
     cursor.execute("SELECT username FROM cadastro WHERE username = %s", username)
     if cursor.fetchone() is not None:
         senha = input("Digite a nova senha: ")
         cursor.execute("UPDATE cadastro SET senha = %s WHERE username = %s", (senha, username))
         con.commit()
-    con.close()
+    
 
 
 # login
 def login(name, senha):
-    con = conectar()
     cursor = con.cursor()
     cursor.execute("SELECT name, senha FROM usuario WHERE name = %s AND senha = %s", (name, senha))
-    con.close()
+    
 
 
 # atribuição de valor de dados de usuario
