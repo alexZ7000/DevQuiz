@@ -24,6 +24,7 @@ def criar_cadastro(name, username, email, senha, curso):
     con.close()
 
 
+
 # criação de usuario
 def criar_usuario(username, senha):
     con = conectar()
@@ -47,33 +48,33 @@ def cronometrar(name, tempo_comeco):
 
 
 def pesquisa_pergunta(question):
-    jon = conectar()
-    jursor = jon.cursor()
-    question = jursor.execute(f"SELECT perguntas FROM questoes WHERE idquestao = {question}")
-    jon.commit()
-    question = jursor.fetchone()
-    jon.close()
+    con = conectar()
+    cursor = con.cursor()
+    question = cursor.execute(f"SELECT perguntas FROM questoes WHERE idquestao = {question}")
+    con.commit()
+    question = cursor.fetchone()
+    con.close()
     return question
 
 
 def pesquisa_alternativas(a, b):
-    von = conectar()
-    vursor = von.cursor()
-    a = vursor.execute(f"SELECT alternativa FROM respostas WHERE idquestao = {b}")
-    von.commit()
-    a = vursor.fetchall()
-    von.close()
+    con = conectar()
+    cursor = con.cursor()
+    a = cursor.execute(f"SELECT alternativa FROM respostas WHERE idquestao = {b}")
+    con.commit()
+    a = cursor.fetchall()
+    con.close()
     return a
 
 
 def pesquisa_certa(self, a, b):
-    bon = conectar()
-    bursor = bon.cursor()
-    self.correta = bursor.execute(
+    con = conectar()
+    cursor = con.cursor()
+    self.correta = cursor.execute(
         "SELECT correta FROM respostas WHERE idquestao = {} AND alternativa = '{}'".format(a, b))
-    bon.commit()
-    a = bursor.fetchone()
-    bon.close()
+    con.commit()
+    a = cursor.fetchone()
+    con.close()
     return a
 
 
