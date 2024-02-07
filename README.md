@@ -1,4 +1,4 @@
-# DevQuiz
+# DevQuiz (VERSÃO PARA NOTEBOOKS EXLUSIVAMENTE)
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/alexZ7000/DevQuiz?style=for-the-badge)
 ![GitHub language count](https://img.shields.io/github/languages/count/alexZ7000/DevQuiz?style=for-the-badge)

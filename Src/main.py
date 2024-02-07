@@ -8,6 +8,9 @@ instrucoes = PhotoImage(file=r"Images/InstrucoesTemaClaro.png")
 configuracoes = PhotoImage(file=r"Images/ConfiguraçõesTemaClaro.png")
 sair = PhotoImage(file=r"Images/SairTemaClaro.png")
 bg_test = PhotoImage(file=r"Images/BGTest.png")
+bg_white = PhotoImage(file=r"Images/BGWhite.png")
+bg_pass_fgt = PhotoImage(file=r"Images/bg_pass_fgt.png")
+bg_main_screen = PhotoImage(file=r"Images/BGMainScreen.png")
 senha = PhotoImage(file=r"Images/SenhaTemaEscuro.png")
 user = PhotoImage(file=r"Images/UsernameTemaEscuro.png")
 red_gpt = PhotoImage(file=r"Images/red_gpt.png")
@@ -58,11 +61,11 @@ class MenuPasswordForget(Menu):
             self.s.login(self.msg['From'], self.password)
             self.s.sendmail(self.msg['From'], self.msg['To'], self.msg.as_string().encode('utf-8'))
             self.l1 = Label(bg="yellow", text="E-mail Enviado!", font=("Kristen ITC", 14))
-            self.l1.place(x=x / 2 - 200, y=y / 2 - 50)
+            self.l1.place(x=x / 2 - 200, y=y / 2 - 30)
         except:
             self.sumir_texto()
             self.l1 = Label(bg="yellow", text="E-mail colocado errado, ou não cadastrado", font=("Kristen ITC", 14))
-            self.l1.place(x=x / 2 - 200, y=y / 2 - 50)
+            self.l1.place(x=x / 2 - 200, y=y / 2 - 30)
 
     def reset_entry(self):
         """Função para limpar os caracteres inseridos no "Entry" """
@@ -83,23 +86,13 @@ class MenuPasswordForget(Menu):
 
     def _build_screen(self):
         """Função para construir a tela "Esqueci Minha Senha" """
-
         Label(self.frame,
-              bg="#ccccff",
-              text="""
-    Por favor, nos informe seu e-mail
-Para que possamos mandar o e-mail de troca de senha 
-em sua box do e-mail
-Cheque sua caixa de SPAM""",
-              font=("Kristen ITC", 14),
-              width=50).place(x=x / 2 - 350, y=y / 2 - 250)
-        Label(self.frame,
-              bg="#ccccff",
-              text="E-mail:",
-              font=("Kristen ITC", 14)).place(x=x / 2 - 275, y=y / 2 - 100)
+              image=bg_pass_fgt,
+              width=1920,
+              height=1080).place(x=0 - 2, y=0 - 2)
 
-        self.password_forget_entry = Entry(self.frame, font=("Kristen ITC", 14), bd=4, width=30)
-        self.password_forget_entry.place(x=x / 2 - 200, y=y / 2 - 100)
+        self.password_forget_entry = Entry(self.frame, font=("Kristen ITC", 12), bd=4, width=30)
+        self.password_forget_entry.place(x=x / 2 - 100, y=y / 2 - 75)
 
         self.confirm_button = Button(self.frame,
                                      text="Confirmar",
@@ -108,13 +101,13 @@ Cheque sua caixa de SPAM""",
                                      borderwidth=2,
                                      cursor="hand2",
                                      command=self.get_user_info_password_forget)
-        self.confirm_button.place(x=x / 2 - 200, y=y / 2)
+        self.confirm_button.place(x=x / 2 - 100, y=y / 2 + 5)
 
         Button(self.frame,
                cursor="hand2",
                text="Voltar",
                font=("Kristen ITC", 14),
-               command=self.back_password_forget).place(x=x / 2 + 50, y=y / 2)
+               command=self.back_password_forget).place(x=x / 2 + 165, y=y / 2 + 5)
 
 
 class MenuSignUp(Menu):
@@ -167,36 +160,46 @@ class MenuSignUp(Menu):
 
     def _build_screen(self):
         """Função para construir a tela "Registrar-se" """
+        Label(self.frame,
+              image=bg_test,
+              width=1920,
+              height=1080).place(x=0 - 2, y=0 - 2)
 
         Label(self.frame,
-              font=("Kristen ITC", 40),
-              text="REGISTRAR-SE",
-              bg="#E3F2F8").place(x=x / 2 - 200, y=25)
-
-        Label(self.frame,
-              font=("Kristen ITC", 14),
-              bg="light blue",
-              text="    Nome:    ").place(x=x / 2 - 200, y=150)
-
-        Label(self.frame,
-              font=("Kristen ITC", 14),
-              bg="light blue",
-              text="  Username:  ").place(x=x / 2 - 200, y=200)
+              font=("Kristen ITC", 60),
+              text="REGISTRE-SE",
+              width=13,
+              bg="#E3F2F8").place(x=x / 2 - 270, y=65)
 
         Label(self.frame,
               font=("Kristen ITC", 14),
               bg="light blue",
-              text="    E-mail:    ").place(x=x / 2 - 200, y=250)
+              width=15,
+              text="    Nome:    ").place(x=x / 2 - 210, y=250)
 
         Label(self.frame,
               font=("Kristen ITC", 14),
               bg="light blue",
-              text="    Senha:    ").place(x=x / 2 - 200, y=300)
+              width=15,
+              text="  Username:  ").place(x=x / 2 - 210, y=300)
 
         Label(self.frame,
               font=("Kristen ITC", 14),
               bg="light blue",
-              text="Confirme sua Senha:").place(x=x / 2 - 200, y=350)
+              width=15,
+              text="    E-mail:    ").place(x=x / 2 - 210, y=350)
+
+        Label(self.frame,
+              font=("Kristen ITC", 14),
+              bg="light blue",
+              width=15,
+              text="    Senha:    ").place(x=x / 2 - 210, y=400)
+
+        Label(self.frame,
+              font=("Kristen ITC", 14),
+              bg="light blue",
+              width=15,
+              text="Confirme sua Senha:").place(x=x / 2 - 210, y=450)
 
         self.click = StringVar(self.frame)
         self.select_course = OptionMenu(self.frame,
@@ -208,26 +211,26 @@ class MenuSignUp(Menu):
                                         "Outras Engenharias",
                                         "Sistemas de Informação")
         self.click.set("Selecione seu Curso")
-        self.select_course.place(x=x / 2 - 200, y=400)
+        self.select_course.place(x=x / 2 - 200, y=500)
 
         self.sign_up_name = Entry(self.frame,
                                   font=("Kristen ITC", 12),
                                   bd=4,
                                   width=30)
 
-        self.sign_up_name.place(x=x / 2, y=150)
+        self.sign_up_name.place(x=x / 2, y=250)
 
         self.sign_up_username = Entry(self.frame,
                                       font=("Kristen ITC", 12),
                                       bd=4,
                                       width=30)
-        self.sign_up_username.place(x=x / 2, y=200)
+        self.sign_up_username.place(x=x / 2, y=300)
 
         self.sign_up_email = Entry(self.frame,
                                    font=("Kristen ITC", 12),
                                    bd=4,
                                    width=30)
-        self.sign_up_email.place(x=x / 2, y=250)
+        self.sign_up_email.place(x=x / 2, y=350)
 
         self.sign_up_password = Entry(self.frame,
                                       font=("Kristen ITC", 12),
@@ -235,7 +238,7 @@ class MenuSignUp(Menu):
                                       width=30,
                                       show="*")
 
-        self.sign_up_password.place(x=x / 2, y=300)
+        self.sign_up_password.place(x=x / 2, y=400)
 
         self.sign_up_confirm_password = Entry(self.frame,
                                               font=("Kristen ITC", 12),
@@ -243,27 +246,27 @@ class MenuSignUp(Menu):
                                               width=30,
                                               show="*")
 
-        self.sign_up_confirm_password.place(x=x / 2, y=350)
+        self.sign_up_confirm_password.place(x=x / 2, y=450)
 
         self.confirm_sign_up_button = Button(self.frame,
                                              text="Confirmar",
                                              height="2",
                                              cursor="hand2",
                                              font=("Kristen ITC", 14),
-                                             width="30",
+                                             width="27",
                                              command=self.get_user_info_sign_up)
 
-        self.confirm_sign_up_button.place(x=x / 2, y=400)
+        self.confirm_sign_up_button.place(x=x / 2, y=500)
 
         self.back_sign_up_button = Button(self.frame,
                                           text="Voltar",
                                           height="2",
                                           cursor="hand2",
                                           font=("Kristen ITC", 14),
-                                          width="30",
+                                          width="27",
                                           command=self.back_menu_sign_up)
 
-        self.back_sign_up_button.place(x=x / 2, y=500)
+        self.back_sign_up_button.place(x=x / 2, y=600)
 
 
 class MenuLogin(Menu):
@@ -345,20 +348,9 @@ class MenuLogin(Menu):
         """Função para construir a tela "Login" """
 
         Label(self.frame,
-              image=bg_test,
+              image=bg_white,
               width=1920,
               height=1080).place(x=0 - 2, y=0 - 2)
-
-        Label(self.frame,
-              image=dev_quiz_logo_pequena,
-              background="#ccccff").place(x=x / 2, y=150, anchor=CENTER)
-
-        Label(self.frame,
-              image=user,
-              width=280,
-              height=50,
-              bg="black",
-              font=("Kristen ITC", 12)).place(x=x / 2, y=300, anchor=CENTER)
 
         self.login_username_entry = Entry(self.frame,
                                           font=("Kristen ITC", 12),
@@ -383,19 +375,12 @@ class MenuLogin(Menu):
                font=("Kristen ITC", 14),
                width="30").place(x=x / 2, y=680, anchor=CENTER)
 
-        Label(self.frame,
-              image=senha,
-              width=280,
-              height=50,
-              bg="black",
-              font=("Kristen ITC", 12)).place(x=x / 2, y=450, anchor=CENTER)
-
         self.login_password_entry = Entry(self.frame, show="*",
                                           font=("Kristen ITC", 12),
                                           bd=4,
                                           width=30)
 
-        self.login_password_entry.place(x=x / 2, y=500, anchor=CENTER)
+        self.login_password_entry.place(x=x / 2, y=490, anchor=CENTER)
 
         Button(self.frame,
                text="Esqueci minha senha",
@@ -404,7 +389,7 @@ class MenuLogin(Menu):
                borderwidth=0,
                bg="white",
                command=self.go_to_password_forget,
-               font=('Verdana', 9, 'italic', 'underline')).place(x=x / 2, y=530, anchor=CENTER)
+               font=('Verdana', 9, 'italic', 'underline')).place(x=x / 2, y=520, anchor=CENTER)
 
         Button(self.frame,
                text="Continuar Sem Cadastro",
@@ -483,9 +468,10 @@ class MenuMain(Menu):
 
     def _build_screen(self):
         """Função para construir a tela "Menu Principal" """
-        Label(self.frame, image=bg_test).place(x=x/2, y=y/2, anchor=CENTER)
-        Label(self.frame, font=("Kristen ITC", 40), image=dev_quiz_logo_pequena, bg="#ccccff").place(x=x / 2, y=110,
-                                                                                                     anchor='center')
+        Label(self.frame,
+              image=bg_main_screen,
+              width=1920,
+              height=1080).place(x=0 - 2, y=0 - 2)
 
         Button(self.frame,
                image=jogar_img,
@@ -744,28 +730,50 @@ class MenuPlay(Menu):
             if self.i == 1:
                 self.check1 = bd.pesquisa_certa(self, self.question, self.alternativas[self.i - 1][0])
                 self.alternativas = str(self.alternativas[self.i - 1])
-                self.b1 = Button(self.frame,
-                                 font=("Kristen ITC", 14),
-                                 height="2",
-                                 width="30",
-                                 text=self.alternativas[2:-3],
-                                 padx=10,
-                                 pady=5,
-                                 cursor="hand2",
-                                 command=lambda check=self.check1: self.change_question(check[0]))
+                if self.question == 1:
+                    self.b1 = Button(self.frame,
+                                     font=("Kristen ITC", 14),
+                                     height="2",
+                                     width="30",
+                                     text=self.alternativas[3:-4],
+                                     padx=10,
+                                     pady=5,
+                                     cursor="hand2",
+                                     command=lambda check=self.check1: self.change_question(check[0]))
+                else:
+                    self.b1 = Button(self.frame,
+                                     font=("Kristen ITC", 14),
+                                     height="2",
+                                     width="30",
+                                     text=self.alternativas[2:-3],
+                                     padx=10,
+                                     pady=5,
+                                     cursor="hand2",
+                                     command=lambda check=self.check1: self.change_question(check[0]))
                 self.b1.place(x=x / 2 + 250, y=y / 2 - 100, anchor=CENTER)
             elif self.i == 2:
                 self.check2 = bd.pesquisa_certa(self, self.question, self.alternativas[self.i - 1][0])
                 self.alternativas = str(self.alternativas[self.i - 1])
-                self.b2 = Button(self.frame,
-                                 font=("Kristen ITC", 14),
-                                 height="2",
-                                 width="30",
-                                 text=self.alternativas[2:-3],
-                                 padx=10,
-                                 pady=5,
-                                 cursor="hand2",
-                                 command=lambda check=self.check2: self.change_question(check[0]))
+                if self.question == 1:
+                    self.b2 = Button(self.frame,
+                                     font=("Kristen ITC", 14),
+                                     height="2",
+                                     width="30",
+                                     text=self.alternativas[3:-4],
+                                     padx=10,
+                                     pady=5,
+                                     cursor="hand2",
+                                     command=lambda check=self.check2: self.change_question(check[0]))
+                else:
+                    self.b2 = Button(self.frame,
+                                     font=("Kristen ITC", 14),
+                                     height="2",
+                                     width="30",
+                                     text=self.alternativas[2:-3],
+                                     padx=10,
+                                     pady=5,
+                                     cursor="hand2",
+                                     command=lambda check=self.check2: self.change_question(check[0]))
                 self.b2.place(x=x / 2 - 250, y=y / 2 - 100, anchor=CENTER)
             elif self.i == 3:
                 self.check3 = bd.pesquisa_certa(self, self.question, self.alternativas[self.i - 1][0])
