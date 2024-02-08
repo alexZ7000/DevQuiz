@@ -15,7 +15,6 @@
 
 O projeto está finalizado, porém o modo de lutar ⚔️ contra o ChatGPT🤖 está indisponível, pois a API deles é paga 😴 <br>
 Se o Banco de Dados não estiver funcionando é por conta que o sistema caiu, já que usamos um Banco de Dado hospedado na nuvem ☁️ <br>
-O DevQuiz só funciona no Windows <br> <br>
 <b>
 O Devquiz é um jogo feito para notebooks 💻, caso você esteja em um PC 🖥️ e quer ter a mesma experiencia de quem joga no notebook siga os passos abaixo: </b><br>
 ```
