@@ -744,27 +744,16 @@ class MenuPlay(Menu):
             if self.i == 1:
                 self.check1 = bd.pesquisa_certa(self, self.question, self.alternativas[self.i - 1][0])
                 self.alternativas = str(self.alternativas[self.i - 1])
-                if self.question == 1:
-                    self.b1 = Button(self.frame,
-                                     font=("Kristen ITC", 14),
-                                     height="2",
-                                     width="30",
-                                     text=self.alternativas[3:-4],
-                                     padx=10,
-                                     pady=5,
-                                     cursor="hand2",
-                                     command=lambda check=self.check1: self.change_question(check[0]))
-                else:
-                    self.b1 = Button(self.frame,
-                                     font=("Kristen ITC", 14),
-                                     height="2",
-                                     width="30",
-                                     text=self.alternativas[2:-3],
-                                     padx=10,
-                                     pady=5,
-                                     cursor="hand2",
-                                     command=lambda check=self.check1: self.change_question(check[0]))
-                self.b1.place(x=x / 2 + 250, y=y / 2 - 100, anchor=CENTER)
+                self.b1 = Button(self.frame,
+                                 font=("Kristen ITC", 14),
+                                 height="2",
+                                 width="30",
+                                 text=self.alternativas[2:-3],
+                                 padx=10,
+                                 pady=5,
+                                 cursor="hand2",
+                                 command=lambda check=self.check1: self.change_question(check[0]))
+            self.b1.place(x=x / 2 + 250, y=y / 2 - 100, anchor=CENTER)
             elif self.i == 2:
                 self.check2 = bd.pesquisa_certa(self, self.question, self.alternativas[self.i - 1][0])
                 self.alternativas = str(self.alternativas[self.i - 1])
