@@ -766,6 +766,7 @@ class MenuPlay(Menu):
                                  padx=10,
                                  pady=5,
                                  cursor="hand2",
+                                 wraplength=300,
                                  command=lambda check=self.check1: self.change_question(check[0]))
                 self.b1.place(x=x / 2 + 250, y=y / 2 - 100, anchor=CENTER)
             elif self.i == 2:
@@ -779,6 +780,7 @@ class MenuPlay(Menu):
                                  padx=10,
                                  pady=5,
                                  cursor="hand2",
+                                 wraplength=300,
                                  command=lambda check=self.check2: self.change_question(check[0]))
                 self.b2.place(x=x / 2 - 250, y=y / 2 - 100, anchor=CENTER)
             elif self.i == 3:
@@ -792,6 +794,7 @@ class MenuPlay(Menu):
                                  padx=10,
                                  pady=5,
                                  cursor="hand2",
+                                 wraplength=300,
                                  command=lambda check=self.check3: self.change_question(check[0]))
                 self.b3.place(x=x / 2 + 250, y=y / 2 + 100, anchor=CENTER)
             elif self.i == 4:
@@ -805,6 +808,7 @@ class MenuPlay(Menu):
                                  padx=10,
                                  pady=5,
                                  cursor="hand2",
+                                 wraplength=300,
                                  command=lambda check=self.check4: self.change_question(check[0]))
                 self.b4.place(x=x / 2 - 250, y=y / 2 + 100, anchor=CENTER)
             elif self.i == 5:
@@ -818,6 +822,7 @@ class MenuPlay(Menu):
                                  padx=10,
                                  pady=5,
                                  cursor="hand2",
+                                 wraplength=300,
                                  command=lambda check=self.check5: self.change_question(check[0]))
                 self.b5.place(x=x / 2, y=y / 2 + 300, anchor=CENTER)
                 
@@ -883,14 +888,16 @@ class MenuPlay(Menu):
         self.pergunta_label = str(bd.pesquisa_pergunta(self.question))
         self.l1 = Label(self.frame,
                         font=("Kristen ITC", 20),
-                        text=str(f"{self.question}- {self.pergunta_label[2:-3]}")
+                        text=str(f"{self.question}- {self.pergunta_label[2:-3]}"),
+                        wraplength=1500,
+                        justify="center",
                         )
-        self.l1.place(x=x / 2, y=y / 2 - 400, anchor=CENTER)
+        self.l1.place(x=x / 2, y=y / 2 - 475, anchor=CENTER)
 
     def show(self):
         """Função para mostrar os widgets que foram escondidos"""
         super().show()
-        self.l1.place(x=x / 2, y=y / 2 - 400, anchor=CENTER)
+        self.l1.place(x=x / 2, y=y / 2 - 475, anchor=CENTER)
         self.b1.place(x=x / 2 + 250, y=y / 2 - 100, anchor=CENTER)
         self.b2.place(x=x / 2 - 250, y=y / 2 - 100, anchor=CENTER)
         try:
