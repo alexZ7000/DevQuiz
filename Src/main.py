@@ -735,7 +735,7 @@ class MenuPlay(Menu):
         }
         return self.num_alternativas
 
-    question = 15
+    question = 0
 
     def button_creator(self):
         """Função para fabricar botões que fazem requisições ao banco de dados"""
