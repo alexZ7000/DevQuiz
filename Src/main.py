@@ -301,6 +301,7 @@ class MenuLogin(Menu):
         pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds\click.wav'))
         if self.login_username_entry != "" and self.login_password_entry != "":
             if bd.login(username=self.login_username_entry.get(), senha=self.login_password_entry.get()):
+                pygame.mixer.Channel(0).play(pygame.mixer.Sound('Sounds/musica.wav'), loops=-1)
                 self.dev_system.menu_main.show()
                 self.hide()
             else:
