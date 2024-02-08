@@ -735,7 +735,7 @@ class MenuPlay(Menu):
         }
         return self.num_alternativas
 
-    question = 0
+    question = 15
 
     def button_creator(self):
         """Função para fabricar botões que fazem requisições ao banco de dados"""
@@ -749,6 +749,7 @@ class MenuPlay(Menu):
                 self.b1 = Button(self.frame,
                                  font=("Kristen ITC", 14),
                                  height="2",
+                                 wraplength=300,
                                  width="30",
                                  text=self.alternativas[2:-3],
                                  padx=10,
@@ -763,6 +764,7 @@ class MenuPlay(Menu):
                                  font=("Kristen ITC", 14),
                                  height="2",
                                  width="30",
+                                 wraplength=300,
                                  text=self.alternativas[2:-3],
                                  padx=10,
                                  pady=5,
@@ -776,6 +778,7 @@ class MenuPlay(Menu):
                                  font=("Kristen ITC", 14),
                                  height="2",
                                  width="30",
+                                 wraplength=300,
                                  text=self.alternativas[2:-3],
                                  padx=10,
                                  pady=5,
@@ -789,6 +792,7 @@ class MenuPlay(Menu):
                                  font=("Kristen ITC", 14),
                                  height="2",
                                  width="30",
+                                 wraplength=300,
                                  text=self.alternativas[2:-3],
                                  padx=10,
                                  pady=5,
@@ -802,6 +806,7 @@ class MenuPlay(Menu):
                                  font=("Kristen ITC", 14),
                                  height="2",
                                  width="30",
+                                 wraplength=300,
                                  text=self.alternativas[2:-3],
                                  padx=10,
                                  pady=5,
@@ -870,15 +875,17 @@ class MenuPlay(Menu):
         """Função para gerar o enunciado da questão"""
         self.pergunta_label = str(bd.pesquisa_pergunta(self.question))
         self.l1 = Label(self.frame,
-                        font=("Kristen ITC", 20),
-                        text=str(f"{self.question}- {self.pergunta_label[2:-3]}")
+                        font=("Kristen ITC", 26),
+                        text=str(f"{self.question}- {self.pergunta_label[2:-3]}"),
+                        wraplength=1500,
+                        justify="center",
                         )
-        self.l1.place(x=x / 2, y=y / 2 - 400, anchor=CENTER)
+        self.l1.place(x=x / 2, y=y / 2 - 375, anchor=CENTER)
 
     def show(self):
         """Função para mostrar os widgets que foram escondidos"""
         super().show()
-        self.l1.place(x=x / 2, y=y / 2 - 400, anchor=CENTER)
+        self.l1.place(x=x / 2, y=y / 2 - 375, anchor=CENTER)
         self.b1.place(x=x / 2 + 250, y=y / 2 - 100, anchor=CENTER)
         self.b2.place(x=x / 2 - 250, y=y / 2 - 100, anchor=CENTER)
         try:
