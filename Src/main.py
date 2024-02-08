@@ -759,26 +759,15 @@ class MenuPlay(Menu):
             elif self.i == 2:
                 self.check2 = bd.pesquisa_certa(self, self.question, self.alternativas[self.i - 1][0])
                 self.alternativas = str(self.alternativas[self.i - 1])
-                if self.question == 1:
-                    self.b2 = Button(self.frame,
-                                     font=("Kristen ITC", 14),
-                                     height="2",
-                                     width="30",
-                                     text=self.alternativas[3:-4],
-                                     padx=10,
-                                     pady=5,
-                                     cursor="hand2",
-                                     command=lambda check=self.check2: self.change_question(check[0]))
-                else:
-                    self.b2 = Button(self.frame,
-                                     font=("Kristen ITC", 14),
-                                     height="2",
-                                     width="30",
-                                     text=self.alternativas[2:-3],
-                                     padx=10,
-                                     pady=5,
-                                     cursor="hand2",
-                                     command=lambda check=self.check2: self.change_question(check[0]))
+                self.b2 = Button(self.frame,
+                                 font=("Kristen ITC", 14),
+                                 height="2",
+                                 width="30",
+                                 text=self.alternativas[2:-3],
+                                 padx=10,
+                                 pady=5,
+                                 cursor="hand2",
+                                 command=lambda check=self.check2: self.change_question(check[0]))
                 self.b2.place(x=x / 2 - 250, y=y / 2 - 100, anchor=CENTER)
             elif self.i == 3:
                 self.check3 = bd.pesquisa_certa(self, self.question, self.alternativas[self.i - 1][0])
