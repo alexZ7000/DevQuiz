@@ -1,19 +1,19 @@
 from Menu import *
 
 # IMAGENS
-dev_quiz_logo = PhotoImage(file=r"Images\DevQuiz.png")
-dev_quiz_logo_pequena = PhotoImage(file=r"Images\DevQuizPequeno.png")
-jogar_img = PhotoImage(file=r"Images\JogarTemaClaro.png")
-instrucoes = PhotoImage(file=r"Images\InstrucoesTemaClaro.png")
-configuracoes = PhotoImage(file=r"Images\ConfiguraçõesTemaClaro.png")
-sair = PhotoImage(file=r"Images\SairTemaClaro.png")
-bg_test = PhotoImage(file=r"Images\BGTest.png")
-bg_white = PhotoImage(file=r"Images\BGWhite.png")
-bg_pass_fgt = PhotoImage(file=r"Images\bg_pass_fgt.png")
-bg_main_screen = PhotoImage(file=r"Images\BGMainScreen.png")
-senha = PhotoImage(file=r"Images\SenhaTemaEscuro.png")
-user = PhotoImage(file=r"Images\UsernameTemaEscuro.png")
-red_gpt = PhotoImage(file=r"Images\red_gpt.png")
+dev_quiz_logo = PhotoImage(file=r"Images/DevQuiz.png")
+dev_quiz_logo_pequena = PhotoImage(file=r"Images/DevQuizPequeno.png")
+jogar_img = PhotoImage(file=r"Images/JogarTemaClaro.png")
+instrucoes = PhotoImage(file=r"Images/InstrucoesTemaClaro.png")
+configuracoes = PhotoImage(file=r"Images/ConfiguraçõesTemaClaro.png")
+sair = PhotoImage(file=r"Images/SairTemaClaro.png")
+bg_test = PhotoImage(file=r"Images/BGTest.png")
+bg_white = PhotoImage(file=r"Images/BGWhite.png")
+bg_pass_fgt = PhotoImage(file=r"Images/bg_pass_fgt.png")
+bg_main_screen = PhotoImage(file=r"Images/BGMainScreen.png")
+senha = PhotoImage(file=r"Images/SenhaTemaEscuro.png")
+user = PhotoImage(file=r"Images/UsernameTemaEscuro.png")
+red_gpt = PhotoImage(file=r"Images/red_gpt.png")
 # FIM DAS IMAGENS
 pygame.mixer.init()
 
@@ -36,7 +36,7 @@ class MenuPasswordForget(Menu):
 
     def send_email(self):
         """Função para enviar e-mail para o usuário"""
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds\click.wav'))
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
         try:
             self.sumir_texto()
             load_dotenv()
@@ -74,14 +74,14 @@ class MenuPasswordForget(Menu):
 
     def back_password_forget(self):
         """Função para o usuário voltar para a tela "Login" """
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds\click.wav'))
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
         self.sumir_texto()
         self.dev_system.menu_login.show()
         self.hide()
 
     def get_user_info_password_forget(self):
         """Função para captar os dados que o usuário digitou no "Esqueci minha senha" e chamar a função "send_email" """
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds\click.wav'))
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
         self.user_email = self.password_forget_entry.get()
         self.send_email()
 
@@ -121,7 +121,7 @@ class MenuSignUp(Menu):
 
     def back_menu_sign_up(self):
         """Função para o usuário voltar para a tela "Login" """
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds\click.wav'))
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
         self.sumir_texto()
         self.dev_system.menu_login.show()
         self.hide()
@@ -135,7 +135,7 @@ class MenuSignUp(Menu):
 
     def get_user_info_sign_up(self):
         """Função para captar os dados que o usuário digitou no "Sign up" """
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds\click.wav'))
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
         try:
             self.sumir_texto()
             bd.criar_cadastro(name=self.sign_up_name.get(),
@@ -147,7 +147,9 @@ class MenuSignUp(Menu):
             self.l1.place(x=x / 2 - 200, y=600)
         except:
             self.sumir_texto()
-            self.l1 = Label(bg="yellow", text="Cadastro NÃO realizado, por favor preencha todas as lacunas de forma correta", font=("Kristen ITC", 14))
+            self.l1 = Label(bg="yellow",
+                            text="Cadastro NÃO realizado, por favor preencha todas as lacunas de forma correta",
+                            font=("Kristen ITC", 14))
             self.l1.place(x=x / 2 - 200, y=600)
 
     def reset_entry(self):
@@ -292,7 +294,7 @@ class MenuLogin(Menu):
         self.menu_play = menu_play
         self.menu_nightmare = menu_nightmare
         self.menu_nightmare_play = menu_nightmare_choices
-    
+
     def sumir_texto(self):
         """Função para fazer o texto de confirmação de cadastro desaparecer"""
         try:
@@ -302,28 +304,29 @@ class MenuLogin(Menu):
 
     def get_user_info_login(self):
         """Função para captar os dados que o usuário digitou no "login" """
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds\click.wav'))
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
         if self.login_username_entry != "" and self.login_password_entry != "":
             if bd.login(username=self.login_username_entry.get(), senha=self.login_password_entry.get()):
+                pygame.mixer.Channel(0).play(pygame.mixer.Sound('Sounds/musica.wav'), loops=-1)
                 self.dev_system.menu_main.show()
                 self.hide()
             else:
                 self.sumir_texto()
                 self.l1 = Label(bg="yellow", text="Username ou senha errada", font=("Kristen ITC", 14))
-                self.l1.place(x=x / 2-600, y=600)
+                self.l1.place(x=x / 2 - 600, y=600)
 
     def go_to_sign_up(self):
         """Função para o usuário ir para a tela "Registrar-se" """
         self.sumir_texto()
 
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds\click.wav'))
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
         self.dev_system.menu_sign_up.show()
         self.hide()
 
     def go_to_password_forget(self):
         """Função para o usuário ir para a tela "Esqueci minha senha" """
         self.sumir_texto()
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds\click.wav'))
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
         self.dev_system.menu_password_forget.show()
         self.hide()
 
@@ -335,28 +338,28 @@ class MenuLogin(Menu):
     def continue_without_login(self):
         """Caixa de aviso para continuar sem login"""
         self.sumir_texto()
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds\click.wav'))
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
         self.resposta = askyesno("Aviso Sobre Continuar Sem Cadastro",
                                  message="Ao jogar nosso jogo sem cadastro seu progresso não aparecerá no ranking")
         if self.resposta:
-            pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds\click.wav'))
+            pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
             self.dev_system.menu_main.show()
-            pygame.mixer.Channel(0).play(pygame.mixer.Sound('Sounds\musica.wav'), loops=-1)
+            pygame.mixer.Channel(0).play(pygame.mixer.Sound('Sounds/musica.wav'), loops=-1)
             self.hide()
         else:
-            pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds\click.wav'))
+            pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
 
     def confirm(self):
         self.sumir_texto()
         """Função para exibir uma caixinha de confirmação ao usuário,
         para ele decidir se realmente quer sair do DevQuiz"""
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds\click.wav'))
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
         self.resposta = askyesno(message='Você tem certeza que deseja sair do DevQuiz?')
         if self.resposta:
-            pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds\click.wav'))
+            pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
             root.destroy()
         else:
-            pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds\click.wav'))
+            pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
 
     def _build_screen(self):
         """Função para construir a tela "Login" """
@@ -440,45 +443,45 @@ class MenuMain(Menu):
     def confirm(self):
         """Função para exibir uma caixinha de confirmação ao usuário,
         para ele decidir se realmente quer sair do DevQuiz"""
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds\click.wav'))
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
         self.resposta = askyesno(message='Você tem certeza que deseja sair do DevQuiz?')
         if self.resposta:
-            pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds\click.wav'))
+            pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
             root.destroy()
         else:
-            pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds\click.wav'))
+            pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
 
     def go_to_settings(self):
         """Função para o usuário ir para a tela "Configurações" """
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds\click.wav'))
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
         self.dev_system.menu_settings.show()
         self.hide()
 
     def go_to_play(self):
         """Função para o usuário ir para a tela "MenuPlay" """
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds\click.wav'))
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
         self.dev_system.menu_play.show()
         self.hide()
 
     def go_to_instructions(self):
         """Função para o usuário ir para a tela "Instruções" """
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds\click.wav'))
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
         self.dev_system.menu_instructions.show()
         self.hide()
 
     def nightmare(self):
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds\click.wav'))
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
         self.resposta = askyesno("01001101 01000101 01000100 01001111",
                                  message='01010110 01101111 01100011 01100101 00100000 01110001 01110101 01100101 01110010 00100000 01110000 01100101 01110011 01100001 01100100 01100101 01101100 01101111 00111111 ')
         if self.resposta:
-            pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds\click.wav'))
+            pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
             pygame.mixer.Channel(0).stop()
             sleep(1)
-            pygame.mixer.Channel(2).play(pygame.mixer.Sound('Sounds\creep.wav'), loops=-1)
+            pygame.mixer.Channel(2).play(pygame.mixer.Sound('Sounds/creep.wav'), loops=-1)
             self.dev_system.menu_nightmare.show()
             self.hide()
         else:
-            pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds\click.wav'))
+            pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
 
     def _build_screen(self):
         """Função para construir a tela "Menu Principal" """
@@ -546,23 +549,23 @@ class MenuSettings(Menu):
 
     def logout(self):
         """Função para o usuário realizar logout, com uma caixinha de confimação sendo exibida"""
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds\click.wav'))
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
         self.resposta = askyesno("Logout", message="Você tem certeza que quer realizar logout?")
         if self.resposta:
             self.dev_system.menu_login.show()
             self.hide()
         else:
-            pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds\click.wav'))
+            pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
 
     def back_menu_main(self):
         """Função para o usuário voltar para a tela "Menu Principal" """
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds\click.wav'))
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
         self.dev_system.menu_main.show()
         self.hide()
 
     def theme_function(self):
         """Função para mudar o tema que por padrão é "Tema Claro", para "Tema Escuro" """
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds\click.wav'))
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
         self.c = self.c + 1
         if self.c % 2 == 0:
             self.theme_txt.set("Tema Claro")
@@ -575,7 +578,7 @@ class MenuSettings(Menu):
 
     def invoque_slider(self):
         """Função para "invocar" os dois controladores de volume"""
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds\click.wav'))
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
 
         Label(self.frame, font=("Kristen ITC", 12), bg="#ccccff", text="Música").place(x=x / 2 + 220, y=310)
         self.music_volume = Scale(self.frame, bg="#ccccff", from_=100, to=0, orient=VERTICAL, length=150,
@@ -593,21 +596,21 @@ class MenuSettings(Menu):
 
     def volume_scale(self):
         """Função para definir um valor padrão para a música"""
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds\click.wav'))
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
         pygame.mixer.Channel(0).set_volume(100)
         pygame.mixer.Channel(1).set_volume(100)
         pygame.mixer.Channel(2).set_volume(100)
 
     def update_music(self, volume):
         """Função para atualizar o volume da música"""
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds\click.wav'))
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
         self.music_volume = int(volume) / 100
         pygame.mixer.Channel(0).set_volume(self.music_volume)
         pygame.mixer.Channel(2).set_volume(self.music_volume)
 
     def update_sound(self, volume):
         """Função para atualizar o volume do som dos botões"""
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds\click.wav'))
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
         self.sound_volume = int(volume) / 100
         pygame.mixer.Channel(1).set_volume(self.sound_volume)
 
@@ -663,7 +666,7 @@ class MenuInstructions(Menu):
 
     def back_menu_main(self):
         """Função para o usuário voltar para a tela "Menu Principal" """
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds\click.wav'))
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
         self.dev_system.menu_main.show()
         self.hide()
 
@@ -737,7 +740,6 @@ class MenuPlay(Menu):
     def button_creator(self):
         """Função para fabricar botões que fazem requisições ao banco de dados"""
         self.question = self.question + 1
-        print(self.question)
         for self.i in range(1, self.questoes()[self.question] + 1):
             self.i = self.i
             self.alternativas = bd.pesquisa_alternativas(self.i, self.question)
@@ -839,7 +841,7 @@ class MenuPlay(Menu):
 
     def alternativa_errada(self):
         """Função para mostrar que o usuário errou a questão"""
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds\click.wav'))
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
         self.question = 0
         self.l1.place_forget()
         self.b1.place_forget()
@@ -867,7 +869,7 @@ class MenuPlay(Menu):
 
     def change_question(self, correta):
         """Função que verifica se o usuário acertou ou errou uma questão"""
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds\click.wav'))
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
         if correta:
             self.hide()
             self._build_screen()
@@ -905,7 +907,7 @@ class MenuPlay(Menu):
 
     def tentar_novamente(self):
         """Função para levar o usuário para o "MenuMain" """
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds\click.wav'))
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
         self.label.place_forget()
         self.button.place_forget()
         self.dev_system.menu_main.show()
@@ -932,19 +934,19 @@ class MenuNightmare(Menu):
 
     def fugir(self):
         """Função para levar o usuário para a tela "MenuMain" """
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds\click.wav'))
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
         self.resposta = askyesno(message='Você tem certeza que deseja fugir do GPT?\n'
                                          'OBS: Caso você fuja, será perseguido ETERNAMENTE pelo GPT')
         if self.resposta:
             self.dev_system.menu_main.show()
             sleep(5)
             pygame.mixer.Channel(2).stop()
-            pygame.mixer.Channel(0).play(pygame.mixer.Sound('Sounds\musica.wav'), loops=-1)
+            pygame.mixer.Channel(0).play(pygame.mixer.Sound('Sounds/musica.wav'), loops=-1)
             self.hide()
 
     def go_to_nightmare_choices(self):
         """Função que leva o usuário a tela "MenuNightmareChoices" """
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds\click.wav'))
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
         showwarning(
             "01010110 01000011 00100000 01001110 00100000 01010110 01000001 01001001 00100000 01000011 01001111 01001110 01010011 01000101 01000111 01010101 01001001 01010010",
             message='O GPT só aprova aqueles que acertarem  no mínimo 7 questões')
@@ -1006,7 +1008,7 @@ class MenuNightmareChoices(Menu):
 
     def back_menu_nightmare_choices(self):
         """Função para sair da tela "MenuNightmareChoices" """
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds\click.wav'))
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
         self.dev_system.menu_nightmare.show()
         self.hide()
 
@@ -1039,7 +1041,7 @@ class MenuNightmareChoices(Menu):
                      message=f"Você está com {self.acertos} acertos de 10 questões")
             self.dev_system.menu_main.show()
             pygame.mixer.Channel(2).stop()
-            pygame.mixer.Channel(0).play(pygame.mixer.Sound('Sounds\musica.wav'), loops=-1)
+            pygame.mixer.Channel(0).play(pygame.mixer.Sound('Sounds/musica.wav'), loops=-1)
             self.hide()
         else:
             c = 0
@@ -1052,7 +1054,7 @@ class MenuNightmareChoices(Menu):
 
     def questao10(self):
         """Função para fazer uma questão"""
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds\click.wav'))
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
         self.acertos_user()
         self.l8.place_forget()
         self.r8.place_forget()
@@ -1153,7 +1155,7 @@ class MenuNightmareChoices(Menu):
 
     def questao9(self):
         """Função para fazer uma questão"""
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds\click.wav'))
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
         self.acertos_user()
         self.l8.place_forget()
         self.r8.place_forget()
@@ -1254,7 +1256,7 @@ class MenuNightmareChoices(Menu):
 
     def questao8(self):
         """Função para fazer uma questão"""
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds\click.wav'))
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
         self.acertos_user()
         self.l8.place_forget()
         self.r8.place_forget()
@@ -1355,7 +1357,7 @@ class MenuNightmareChoices(Menu):
 
     def questao7(self):
         """Função para fazer uma questão"""
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds\click.wav'))
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
         self.acertos_user()
         self.l8.place_forget()
         self.r8.place_forget()
@@ -1456,7 +1458,7 @@ class MenuNightmareChoices(Menu):
 
     def questao6(self):
         """Função para fazer uma questão"""
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds\click.wav'))
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
         self.acertos_user()
         self.l8.place_forget()
         self.r8.place_forget()
@@ -1557,7 +1559,7 @@ class MenuNightmareChoices(Menu):
 
     def questao5(self):
         """Função para fazer uma questão"""
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds\click.wav'))
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
         self.acertos_user()
         self.l8.place_forget()
         self.r8.place_forget()
@@ -1659,7 +1661,7 @@ class MenuNightmareChoices(Menu):
 
     def questao4(self):
         """Função para fazer uma questão"""
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds\click.wav'))
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
         self.acertos_user()
         self.l8.place_forget()
         self.r8.place_forget()
@@ -1760,7 +1762,7 @@ class MenuNightmareChoices(Menu):
 
     def questao3(self):
         """Função para fazer uma questão"""
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds\click.wav'))
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
         self.acertos_user()
         self.l8.place_forget()
         self.r8.place_forget()
@@ -1861,7 +1863,7 @@ class MenuNightmareChoices(Menu):
 
     def questao2(self):
         """Função para fazer uma questão"""
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds\click.wav'))
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
         self.acertos_user()
         self.l8.place_forget()
         self.r8.place_forget()
@@ -1961,7 +1963,7 @@ class MenuNightmareChoices(Menu):
 
     def questao1(self):
         """Função para fazer uma questão e verificar se o usuário respondeu ao radiobutton"""
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds\click.wav'))
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
         self.assunto = self.assunto_var.get()
         self.dificuldade = self.dificuldade_var.get()
         if self.assunto != "" and self.dificuldade != "":
