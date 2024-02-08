@@ -289,26 +289,37 @@ class MenuLogin(Menu):
         self.menu_nightmare = menu_nightmare
         self.menu_nightmare_play = menu_nightmare_choices
 
+    def sumir_texto(self):
+        """Função para fazer o texto de confirmação de cadastro desaparecer"""
+        try:
+            self.l1.place_forget()
+        except:
+            pass
+
     def get_user_info_login(self):
         """Função para captar os dados que o usuário digitou no "login" """
-        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
-        self.login_password_entry = self.login_password_entry.get()
-        self.login_username_entry = self.login_username_entry.get()
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds\click.wav'))
         if self.login_username_entry != "" and self.login_password_entry != "":
-            sleep(5)
-            self.dev_system.menu_main.show()
-            self.hide()
+            if bd.login(username=self.login_username_entry.get(), senha=self.login_password_entry.get()):
+                self.dev_system.menu_main.show()
+                self.hide()
+            else:
+                self.sumir_texto()
+                self.l1 = Label(bg="yellow", text="Username ou senha errada", font=("Kristen ITC", 14))
+                self.l1.place(x=x / 2-600, y=600)
 
 
     def go_to_sign_up(self):
         """Função para o usuário ir para a tela "Registrar-se" """
         pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
+        self.sumir_texto()
         self.dev_system.menu_sign_up.show()
         self.hide()
 
     def go_to_password_forget(self):
         """Função para o usuário ir para a tela "Esqueci minha senha" """
         pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
+        self.sumir_texto()
         self.dev_system.menu_password_forget.show()
         self.hide()
 
@@ -324,6 +335,7 @@ class MenuLogin(Menu):
                                  message="Ao jogar nosso jogo sem cadastro seu progresso não aparecerá no ranking")
         if self.resposta:
             pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
+            self.sumir_texto()
             self.dev_system.menu_main.show()
             pygame.mixer.Channel(0).play(pygame.mixer.Sound('Sounds/musica.wav'), loops=-1)
             self.hide()
@@ -336,6 +348,7 @@ class MenuLogin(Menu):
         pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
         self.resposta = askyesno(message='Você tem certeza que deseja sair do DevQuiz?')
         if self.resposta:
+            self.sumir_texto()
             pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
             root.destroy()
         else:
@@ -343,7 +356,7 @@ class MenuLogin(Menu):
 
     def _build_screen(self):
         """Função para construir a tela "Login" """
-
+        self.sumir_texto()
         Label(self.frame,
               image=bg_test,
               width=1920,
@@ -806,7 +819,26 @@ class MenuPlay(Menu):
                                  cursor="hand2",
                                  command=lambda check=self.check5: self.change_question(check[0]))
                 self.b5.place(x=x / 2, y=y / 2 + 300, anchor=CENTER)
+                
+    def rebobinar(self):
+        self._build_screen()
+        self.l1.place_forget()
+        self.b1.place_forget()
+        self.b2.place_forget()
+        try:
+            self.b3.place_forget()
+        except:
+            pass
+        try:
+            self.b4.place_forget()
+        except:
+            pass
 
+        try:
+            self.b5.place_forget()
+        except:
+            pass
+            
     def alternativa_errada(self):
         """Função para mostrar que o usuário errou a questão"""
         pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
@@ -827,6 +859,7 @@ class MenuPlay(Menu):
             self.b5.place_forget()
         except:
             pass
+        self.rebobinar()
         self.label = Label(self.frame, font=("Kristen ITC", 40), bg="#ccccff", text="Você Errou!")
         self.button = Button(self.frame, font=("Kristen ITC", 40), text="Tentar Novamente", cursor="hand2",
                              command=self.tentar_novamente)
@@ -842,7 +875,6 @@ class MenuPlay(Menu):
             self._build_screen()
             self.dev_system.menu_play.show()
         else:
-            self.question = 0
             self.alternativa_errada()
 
     def title_creator(self):
@@ -876,7 +908,6 @@ class MenuPlay(Menu):
     def tentar_novamente(self):
         """Função para levar o usuário para o "MenuMain" """
         pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
-        self.question = 0
         self.label.place_forget()
         self.button.place_forget()
         self.dev_system.menu_main.show()
