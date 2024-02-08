@@ -753,7 +753,7 @@ class MenuPlay(Menu):
                                  pady=5,
                                  cursor="hand2",
                                  command=lambda check=self.check1: self.change_question(check[0]))
-            self.b1.place(x=x / 2 + 250, y=y / 2 - 100, anchor=CENTER)
+                self.b1.place(x=x / 2 + 250, y=y / 2 - 100, anchor=CENTER)
             elif self.i == 2:
                 self.check2 = bd.pesquisa_certa(self, self.question, self.alternativas[self.i - 1][0])
                 self.alternativas = str(self.alternativas[self.i - 1])
