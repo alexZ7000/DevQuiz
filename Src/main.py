@@ -14,6 +14,9 @@ bg_main_screen = PhotoImage(file=r"Images/BGMainScreen.png")
 senha = PhotoImage(file=r"Images/SenhaTemaEscuro.png")
 user = PhotoImage(file=r"Images/UsernameTemaEscuro.png")
 red_gpt = PhotoImage(file=r"Images/red_gpt.png")
+papa_cris = PhotoImage(file=r"Images/papacris.png")
+emocao = PhotoImage(file=r"Images/emocao.png")
+vitoria = PhotoImage(file=r"Images/vitoria.png")
 # FIM DAS IMAGENS
 pygame.mixer.init()
 
@@ -282,6 +285,7 @@ class MenuLogin(Menu):
                  menu_settings,
                  menu_instructions,
                  menu_play,
+                 menu_win_game,
                  menu_nightmare,
                  menu_nightmare_choices):
         """Construtor"""
@@ -292,6 +296,7 @@ class MenuLogin(Menu):
         self.menu_settings = menu_settings
         self.menu_instructions = menu_instructions
         self.menu_play = menu_play
+        self.menu_win_game = menu_win_game
         self.menu_nightmare = menu_nightmare
         self.menu_nightmare_play = menu_nightmare_choices
 
@@ -305,15 +310,20 @@ class MenuLogin(Menu):
     def get_user_info_login(self):
         """Função para captar os dados que o usuário digitou no "login" """
         pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
-        if self.login_username_entry != "" and self.login_password_entry != "":
+        if self.login_username_entry.get() != "" and self.login_password_entry.get() != "":
             if bd.login(username=self.login_username_entry.get(), senha=self.login_password_entry.get()):
                 pygame.mixer.Channel(0).play(pygame.mixer.Sound('Sounds/musica.wav'), loops=-1)
+                self.sumir_texto()
                 self.dev_system.menu_main.show()
                 self.hide()
             else:
                 self.sumir_texto()
                 self.l1 = Label(bg="yellow", text="Username ou senha errada", font=("Kristen ITC", 14))
                 self.l1.place(x=x / 2 - 600, y=600)
+        else:
+            self.sumir_texto()
+            self.l1 = Label(bg="yellow", text="Não deixe os campos vazios", font=("Kristen ITC", 14))
+            self.l1.place(x=x / 2 - 600, y=600)
 
     def go_to_sign_up(self):
         """Função para o usuário ir para a tela "Registrar-se" """
@@ -472,7 +482,9 @@ class MenuMain(Menu):
     def nightmare(self):
         pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
         self.resposta = askyesno("01001101 01000101 01000100 01001111",
-                                 message='01010110 01101111 01100011 01100101 00100000 01110001 01110101 01100101 01110010 00100000 01110000 01100101 01110011 01100001 01100100 01100101 01101100 01101111 00111111 ')
+                                 message='01010110 01101111 01100011 01100101 00100000 01110001 01110101 01100101 '
+                                         '01110010 00100000 01110000 01100101 01110011 01100001 01100100 01100101 '
+                                         '01101100 01101111 00111111 ')
         if self.resposta:
             pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
             pygame.mixer.Channel(0).stop()
@@ -600,6 +612,8 @@ class MenuSettings(Menu):
         pygame.mixer.Channel(0).set_volume(100)
         pygame.mixer.Channel(1).set_volume(100)
         pygame.mixer.Channel(2).set_volume(100)
+        pygame.mixer.Channel(3).set_volume(100)
+        pygame.mixer.Channel(4).set_volume(100)
 
     def update_music(self, volume):
         """Função para atualizar o volume da música"""
@@ -607,6 +621,8 @@ class MenuSettings(Menu):
         self.music_volume = int(volume) / 100
         pygame.mixer.Channel(0).set_volume(self.music_volume)
         pygame.mixer.Channel(2).set_volume(self.music_volume)
+        pygame.mixer.Channel(3).set_volume(self.music_volume)
+        pygame.mixer.Channel(4).set_volume(self.music_volume)
 
     def update_sound(self, volume):
         """Função para atualizar o volume do som dos botões"""
@@ -709,11 +725,12 @@ class MenuInstructions(Menu):
 class MenuPlay(Menu):
     """Tela "MenuPlay" """
 
-    def __init__(self, menu_main, menu_login):
+    def __init__(self, menu_main, menu_login, menu_win_game):
         """Construtor"""
         super().__init__()
         self.menu_main = menu_main
         self.menu_login = menu_login
+        self.menu_win_game = menu_win_game
 
     def reset_entry(self):
         """Função reset para evitar erros no código, tendo em vista que o hide sempre chama essa função"""
@@ -865,9 +882,35 @@ class MenuPlay(Menu):
         """Função que verifica se o usuário acertou ou errou uma questão"""
         pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
         if correta:
-            self.hide()
-            self._build_screen()
-            self.dev_system.menu_play.show()
+            if self.question < 50:
+                pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
+                self.hide()
+                self._build_screen()
+                self.dev_system.menu_play.show()
+            else:
+                self.dev_system.menu_win_game.show()
+                self.hide()
+                self.question = 0
+                self.l1.place_forget()
+                self.b1.place_forget()
+                self.b2.place_forget()
+                try:
+                    self.b3.place_forget()
+                except:
+                    pass
+                try:
+                    self.b4.place_forget()
+                except:
+                    pass
+
+                try:
+                    self.b5.place_forget()
+                except:
+                    pass
+                self.rebobinar()
+                pygame.mixer.Channel(0).stop()
+                pygame.mixer.Channel(3).play(pygame.mixer.Sound('Sounds/wearethechampions.wav'))
+                pygame.mixer.Channel(4).play(pygame.mixer.Sound('Sounds/win.wav'), loops=-1)
         else:
             self.alternativa_errada()
 
@@ -914,6 +957,73 @@ class MenuPlay(Menu):
         Label(self.frame, image=bg_test, width=1920, height=1080).place(x=-2, y=-2)
         self.button_creator()
         self.title_creator()
+
+
+class MenuWinGame(Menu):
+    def __init__(self, menu_login, menu_main, menu_play):
+        super().__init__()
+        self.menu_login = menu_login
+        self.menu_main = menu_main
+        self.menu_play = menu_play
+
+    def reset_entry(self):
+        pass
+
+    def back_menu_main(self):
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
+        pygame.mixer.Channel(3).stop()
+        pygame.mixer.Channel(4).stop()
+        pygame.mixer.Channel(0).play(pygame.mixer.Sound('Sounds/musica.wav'), loops=-1)
+        self.dev_system.menu_main.show()
+        self.hide()
+
+    numero_de_comemoradas = 0
+
+    def comemoradas(self):
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
+        self.numero_de_comemoradas = self.numero_de_comemoradas + 1
+        Label(self.frame,
+              text=f"NÚMERO DE COMEMORADAS: {self.numero_de_comemoradas}",
+              font=("Kristen ITC", 50),
+              bg="#ccccff",
+              fg="white"
+              ).place(x=x / 2, y=y / 2 + 385, anchor=CENTER)
+
+    def _build_screen(self):
+        Label(self.frame,
+              image=bg_test,
+              width=1920,
+              height=1080).place(x=0 - 2, y=0 - 2)
+
+        Label(self.frame,
+              image=emocao,
+              width=300
+              ).place(x=x / 2 + 618, y=y / 2, anchor=CENTER)
+
+        Label(self.frame,
+              image=vitoria,
+              ).place(x=x / 2 - 425, y=y / 2 + 175, anchor=CENTER)
+
+        Label(self.frame,
+              text="PARABÉNS VOCÊ VENCEU",
+              font=("Kristen ITC", 50),
+              bg="#ccccff",
+              fg="white"
+              ).place(x=x / 2, y=y / 2 - 375, anchor=CENTER)
+
+        Button(self.frame,
+               text="Voltar",
+               command=self.back_menu_main,
+               font=("Kristen ITC", 26),
+               cursor="hand2"
+               ).place(x=x / 2 - 150, y=y / 2 - 100, anchor=CENTER)
+
+        Button(self.frame,
+               text="Comemorar",
+               command=lambda: self.comemoradas(),
+               font=("Kristen ITC", 26),
+               cursor="hand2"
+               ).place(x=x / 2 + 150, y=y / 2 - 100, anchor=CENTER)
 
 
 class MenuNightmare(Menu):
@@ -2220,6 +2330,7 @@ class DevSystem:
                  menu_settings,
                  menu_instructions,
                  menu_play,
+                 menu_win_game,
                  menu_nightmare,
                  menu_nightmare_choices):
         """Construtor"""
@@ -2230,6 +2341,7 @@ class DevSystem:
         self.menu_settings = menu_settings
         self.menu_instructions = menu_instructions
         self.menu_play = menu_play
+        self.menu_win_game = menu_win_game
         self.menu_nightmare = menu_nightmare
         self.menu_nightmare_choices = menu_nightmare_choices
 
@@ -2253,6 +2365,8 @@ class DevSystem:
             return self.menu_instructions
         elif reference_name == "menu_play":
             return self.menu_play
+        elif reference_name == "menu_win_game":
+            return self.menu_win_game
         elif reference_name == "menu_nightmare":
             return self.menu_nightmare
         elif reference_name == "menu_nightmare_choices":
@@ -2267,7 +2381,8 @@ menu_main = MenuMain("menu_login", "menu_settings", "menu_instructions", "menu_p
 menu_password_forget = MenuPasswordForget("menu_login")
 menu_settings = MenuSettings("menu_login", "menu_main")
 menu_instructions = MenuInstructions("menu_login", "menu_main")
-menu_play = MenuPlay("menu_login", "menu_main")
+menu_play = MenuPlay("menu_login", "menu_main", "menu_win_game")
+menu_win_game = MenuWinGame("menu_login", "menu_main", "menu_play")
 menu_nightmare = MenuNightmare("menu_login", "menu_main", "menu_nightmare_choices")
 menu_nightmare_choices = MenuNightmareChoices("menu_login", "menu_main", "menu_nightmare", "menu_nightmare_play")
 menu_login = MenuLogin("menu_password_forget",
@@ -2276,6 +2391,7 @@ menu_login = MenuLogin("menu_password_forget",
                        "menu_settings",
                        "menu_instructions",
                        "menu_play",
+                       "menu_win_game",
                        "menu_nightmare",
                        "menu_nightmare_choices")
 menu_login.show()  # Chamo a função "show" para mostrar minha primeira tela "Login"
@@ -2288,6 +2404,7 @@ DevSystem = DevSystem(menu_login,
                       menu_settings,
                       menu_instructions,
                       menu_play,
+                      menu_win_game,
                       menu_nightmare,
                       menu_nightmare_choices)
 
@@ -2298,6 +2415,7 @@ menu_main.set_dev_system(DevSystem)
 menu_settings.set_dev_system(DevSystem)
 menu_instructions.set_dev_system(DevSystem)
 menu_play.set_dev_system(DevSystem)
+menu_win_game.set_dev_system(DevSystem)
 menu_nightmare.set_dev_system(DevSystem)
 menu_nightmare_choices.set_dev_system(DevSystem)
 
