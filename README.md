@@ -3,7 +3,7 @@
 ![GitHub repo size](https://img.shields.io/github/repo-size/alexZ7000/DevQuiz?style=for-the-badge)
 ![GitHub language count](https://img.shields.io/github/languages/count/alexZ7000/DevQuiz?style=for-the-badge)
 
-<img src="https://github.com/alexZ7000/DevQuiz/assets/78627928/e06b3a5e-eb13-4b33-9eb9-ca0694bebb5e" alt="DevQuiz">
+<img src="https://github.com/alexZ7000/DevQuiz/assets/78627928/2c737df4-1dad-4d62-bc82-36ef75f21fd5" alt="DevQuiz">
 <br>
 
 > DevQuiz é um jogo totalmente feito em python🐍 por estudantes do primeiro semestre de C. Computação👨🏼‍💻, inspirado no Gênio Quiz🧠, o jogador terá que acertar 50 perguntas sem errar nenhuma🎯, caso ele erre alguma, o jogador volta o jogo do começo 🤬
