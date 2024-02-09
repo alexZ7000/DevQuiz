@@ -488,7 +488,7 @@ class MenuMain(Menu):
         if self.resposta:
             pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
             pygame.mixer.Channel(0).stop()
-            sleep(1)
+            sleep(0.25)
             pygame.mixer.Channel(2).play(pygame.mixer.Sound('Sounds/creep.wav'), loops=-1)
             self.dev_system.menu_nightmare.show()
             self.hide()
@@ -1187,7 +1187,7 @@ class MenuNightmareChoices(Menu):
                         justify="center",
                         fg="#8B0000",
                         bg="black")
-        self.l8.place(x=x / 2, y=y / 2 - 300, anchor=CENTER)
+        self.l8.place(x=x / 2, y=y / 2 - 150, anchor=CENTER)
 
         # 4 radiobuttons para o jogador assinalar entre a,b,c,d
         self.resposta_var_ruim = StringVar()
@@ -1202,7 +1202,7 @@ class MenuNightmareChoices(Menu):
                               value="a",
                               variable=self.resposta_var_ruim
                               )
-        self.r8.place(x=x / 2 - 150, y=y / 2 + 100)
+        self.r8.place(x=x / 2 - 150, y=y / 2 + 200)
 
         self.r9 = Radiobutton(self.frame,
                               font=("Kristen ITC", 30),
@@ -1215,7 +1215,7 @@ class MenuNightmareChoices(Menu):
                               value="b",
                               variable=self.resposta_var_ruim
                               )
-        self.r9.place(x=x / 2 - 50, y=y / 2 + 100)
+        self.r9.place(x=x / 2 - 50, y=y / 2 + 200)
 
         self.r10 = Radiobutton(self.frame,
                                font=("Kristen ITC", 30),
@@ -1228,7 +1228,7 @@ class MenuNightmareChoices(Menu):
                                value="c",
                                variable=self.resposta_var_ruim
                                )
-        self.r10.place(x=x / 2 + 50, y=y / 2 + 100)
+        self.r10.place(x=x / 2 + 50, y=y / 2 + 200)
 
         self.r11 = Radiobutton(self.frame,
                                font=("Kristen ITC", 30),
@@ -1241,7 +1241,7 @@ class MenuNightmareChoices(Menu):
                                value="d",
                                variable=self.resposta_var_ruim
                                )
-        self.r11.place(x=x / 2 + 150, y=y / 2 + 100)
+        self.r11.place(x=x / 2 + 150, y=y / 2 + 200)
 
         # função para verificar se a resposta esta certa
 
@@ -1288,7 +1288,7 @@ class MenuNightmareChoices(Menu):
                         justify="center",
                         fg="#8B0000",
                         bg="black")
-        self.l8.place(x=x / 2, y=y / 2 - 300, anchor=CENTER)
+        self.l8.place(x=x / 2, y=y / 2 - 150, anchor=CENTER)
 
         # 4 radiobuttons para o jogador assinalar entre a,b,c,d
         self.resposta_var_ruim = StringVar()
@@ -1303,7 +1303,7 @@ class MenuNightmareChoices(Menu):
                               value="a",
                               variable=self.resposta_var_ruim
                               )
-        self.r8.place(x=x / 2 - 150, y=y / 2 + 100)
+        self.r8.place(x=x / 2 - 150, y=y / 2 + 200)
 
         self.r9 = Radiobutton(self.frame,
                               font=("Kristen ITC", 30),
@@ -1316,7 +1316,7 @@ class MenuNightmareChoices(Menu):
                               value="b",
                               variable=self.resposta_var_ruim
                               )
-        self.r9.place(x=x / 2 - 50, y=y / 2 + 100)
+        self.r9.place(x=x / 2 - 50, y=y / 2 + 200)
 
         self.r10 = Radiobutton(self.frame,
                                font=("Kristen ITC", 30),
@@ -1329,7 +1329,7 @@ class MenuNightmareChoices(Menu):
                                value="c",
                                variable=self.resposta_var_ruim
                                )
-        self.r10.place(x=x / 2 + 50, y=y / 2 + 100)
+        self.r10.place(x=x / 2 + 50, y=y / 2 + 200)
 
         self.r11 = Radiobutton(self.frame,
                                font=("Kristen ITC", 30),
@@ -1342,7 +1342,7 @@ class MenuNightmareChoices(Menu):
                                value="d",
                                variable=self.resposta_var_ruim
                                )
-        self.r11.place(x=x / 2 + 150, y=y / 2 + 100)
+        self.r11.place(x=x / 2 + 150, y=y / 2 + 200)
 
         # função para verificar se a resposta esta certa
 
@@ -1389,7 +1389,7 @@ class MenuNightmareChoices(Menu):
                         justify="center",
                         fg="#8B0000",
                         bg="black")
-        self.l8.place(x=x / 2, y=y / 2 - 300, anchor=CENTER)
+        self.l8.place(x=x / 2, y=y / 2 - 150, anchor=CENTER)
 
         # 4 radiobuttons para o jogador assinalar entre a,b,c,d
         self.resposta_var_ruim = StringVar()
@@ -1404,7 +1404,7 @@ class MenuNightmareChoices(Menu):
                               value="a",
                               variable=self.resposta_var_ruim
                               )
-        self.r8.place(x=x / 2 - 150, y=y / 2 + 100)
+        self.r8.place(x=x / 2 - 150, y=y / 2 + 200)
 
         self.r9 = Radiobutton(self.frame,
                               font=("Kristen ITC", 30),
@@ -1417,7 +1417,7 @@ class MenuNightmareChoices(Menu):
                               value="b",
                               variable=self.resposta_var_ruim
                               )
-        self.r9.place(x=x / 2 - 50, y=y / 2 + 100)
+        self.r9.place(x=x / 2 - 50, y=y / 2 + 200)
 
         self.r10 = Radiobutton(self.frame,
                                font=("Kristen ITC", 30),
@@ -1430,7 +1430,7 @@ class MenuNightmareChoices(Menu):
                                value="c",
                                variable=self.resposta_var_ruim
                                )
-        self.r10.place(x=x / 2 + 50, y=y / 2 + 100)
+        self.r10.place(x=x / 2 + 50, y=y / 2 + 200)
 
         self.r11 = Radiobutton(self.frame,
                                font=("Kristen ITC", 30),
@@ -1443,7 +1443,7 @@ class MenuNightmareChoices(Menu):
                                value="d",
                                variable=self.resposta_var_ruim
                                )
-        self.r11.place(x=x / 2 + 150, y=y / 2 + 100)
+        self.r11.place(x=x / 2 + 150, y=y / 2 + 200)
 
         # função para verificar se a resposta esta certa
 
@@ -1490,7 +1490,7 @@ class MenuNightmareChoices(Menu):
                         justify="center",
                         fg="#8B0000",
                         bg="black")
-        self.l8.place(x=x / 2, y=y / 2 - 300, anchor=CENTER)
+        self.l8.place(x=x / 2, y=y / 2 - 150, anchor=CENTER)
 
         # 4 radiobuttons para o jogador assinalar entre a,b,c,d
         self.resposta_var_ruim = StringVar()
@@ -1505,7 +1505,7 @@ class MenuNightmareChoices(Menu):
                               value="a",
                               variable=self.resposta_var_ruim
                               )
-        self.r8.place(x=x / 2 - 150, y=y / 2 + 100)
+        self.r8.place(x=x / 2 - 150, y=y / 2 + 200)
 
         self.r9 = Radiobutton(self.frame,
                               font=("Kristen ITC", 30),
@@ -1518,7 +1518,7 @@ class MenuNightmareChoices(Menu):
                               value="b",
                               variable=self.resposta_var_ruim
                               )
-        self.r9.place(x=x / 2 - 50, y=y / 2 + 100)
+        self.r9.place(x=x / 2 - 50, y=y / 2 + 200)
 
         self.r10 = Radiobutton(self.frame,
                                font=("Kristen ITC", 30),
@@ -1531,7 +1531,7 @@ class MenuNightmareChoices(Menu):
                                value="c",
                                variable=self.resposta_var_ruim
                                )
-        self.r10.place(x=x / 2 + 50, y=y / 2 + 100)
+        self.r10.place(x=x / 2 + 50, y=y / 2 + 200)
 
         self.r11 = Radiobutton(self.frame,
                                font=("Kristen ITC", 30),
@@ -1544,7 +1544,7 @@ class MenuNightmareChoices(Menu):
                                value="d",
                                variable=self.resposta_var_ruim
                                )
-        self.r11.place(x=x / 2 + 150, y=y / 2 + 100)
+        self.r11.place(x=x / 2 + 150, y=y / 2 + 200)
 
         # função para verificar se a resposta esta certa
 
@@ -1591,7 +1591,7 @@ class MenuNightmareChoices(Menu):
                         justify="center",
                         fg="#8B0000",
                         bg="black")
-        self.l8.place(x=x / 2, y=y / 2 - 300, anchor=CENTER)
+        self.l8.place(x=x / 2, y=y / 2 - 150, anchor=CENTER)
 
         # 4 radiobuttons para o jogador assinalar entre a,b,c,d
         self.resposta_var_ruim = StringVar()
@@ -1606,7 +1606,7 @@ class MenuNightmareChoices(Menu):
                               value="a",
                               variable=self.resposta_var_ruim
                               )
-        self.r8.place(x=x / 2 - 150, y=y / 2 + 100)
+        self.r8.place(x=x / 2 - 150, y=y / 2 + 200)
 
         self.r9 = Radiobutton(self.frame,
                               font=("Kristen ITC", 30),
@@ -1619,7 +1619,7 @@ class MenuNightmareChoices(Menu):
                               value="b",
                               variable=self.resposta_var_ruim
                               )
-        self.r9.place(x=x / 2 - 50, y=y / 2 + 100)
+        self.r9.place(x=x / 2 - 50, y=y / 2 + 200)
 
         self.r10 = Radiobutton(self.frame,
                                font=("Kristen ITC", 30),
@@ -1632,7 +1632,7 @@ class MenuNightmareChoices(Menu):
                                value="c",
                                variable=self.resposta_var_ruim
                                )
-        self.r10.place(x=x / 2 + 50, y=y / 2 + 100)
+        self.r10.place(x=x / 2 + 50, y=y / 2 + 200)
 
         self.r11 = Radiobutton(self.frame,
                                font=("Kristen ITC", 30),
@@ -1645,7 +1645,7 @@ class MenuNightmareChoices(Menu):
                                value="d",
                                variable=self.resposta_var_ruim
                                )
-        self.r11.place(x=x / 2 + 150, y=y / 2 + 100)
+        self.r11.place(x=x / 2 + 150, y=y / 2 + 200)
 
         # função para verificar se a resposta esta certa
 
@@ -1693,7 +1693,7 @@ class MenuNightmareChoices(Menu):
                         justify="center",
                         fg="#8B0000",
                         bg="black")
-        self.l8.place(x=x / 2, y=y / 2 - 300, anchor=CENTER)
+        self.l8.place(x=x / 2, y=y / 2 - 150, anchor=CENTER)
 
         # 4 radiobuttons para o jogador assinalar entre a,b,c,d
         self.resposta_var_ruim = StringVar()
@@ -1708,7 +1708,7 @@ class MenuNightmareChoices(Menu):
                               value="a",
                               variable=self.resposta_var_ruim
                               )
-        self.r8.place(x=x / 2 - 150, y=y / 2 + 100)
+        self.r8.place(x=x / 2 - 150, y=y / 2 + 200)
 
         self.r9 = Radiobutton(self.frame,
                               font=("Kristen ITC", 30),
@@ -1721,7 +1721,7 @@ class MenuNightmareChoices(Menu):
                               value="b",
                               variable=self.resposta_var_ruim
                               )
-        self.r9.place(x=x / 2 - 50, y=y / 2 + 100)
+        self.r9.place(x=x / 2 - 50, y=y / 2 + 200)
 
         self.r10 = Radiobutton(self.frame,
                                font=("Kristen ITC", 30),
@@ -1734,7 +1734,7 @@ class MenuNightmareChoices(Menu):
                                value="c",
                                variable=self.resposta_var_ruim
                                )
-        self.r10.place(x=x / 2 + 50, y=y / 2 + 100)
+        self.r10.place(x=x / 2 + 50, y=y / 2 + 200)
 
         self.r11 = Radiobutton(self.frame,
                                font=("Kristen ITC", 30),
@@ -1747,7 +1747,7 @@ class MenuNightmareChoices(Menu):
                                value="d",
                                variable=self.resposta_var_ruim
                                )
-        self.r11.place(x=x / 2 + 150, y=y / 2 + 100)
+        self.r11.place(x=x / 2 + 150, y=y / 2 + 200)
 
         # função para verificar se a resposta esta certa
 
@@ -1794,7 +1794,7 @@ class MenuNightmareChoices(Menu):
                         justify="center",
                         fg="#8B0000",
                         bg="black")
-        self.l8.place(x=x / 2, y=y / 2 - 300, anchor=CENTER)
+        self.l8.place(x=x / 2, y=y / 2 - 150, anchor=CENTER)
 
         # 4 radiobuttons para o jogador assinalar entre a,b,c,d
         self.resposta_var_ruim = StringVar()
@@ -1809,7 +1809,7 @@ class MenuNightmareChoices(Menu):
                               value="a",
                               variable=self.resposta_var_ruim
                               )
-        self.r8.place(x=x / 2 - 150, y=y / 2 + 100)
+        self.r8.place(x=x / 2 - 150, y=y / 2 + 200)
 
         self.r9 = Radiobutton(self.frame,
                               font=("Kristen ITC", 30),
@@ -1822,7 +1822,7 @@ class MenuNightmareChoices(Menu):
                               value="b",
                               variable=self.resposta_var_ruim
                               )
-        self.r9.place(x=x / 2 - 50, y=y / 2 + 100)
+        self.r9.place(x=x / 2 - 50, y=y / 2 + 200)
 
         self.r10 = Radiobutton(self.frame,
                                font=("Kristen ITC", 30),
@@ -1835,7 +1835,7 @@ class MenuNightmareChoices(Menu):
                                value="c",
                                variable=self.resposta_var_ruim
                                )
-        self.r10.place(x=x / 2 + 50, y=y / 2 + 100)
+        self.r10.place(x=x / 2 + 50, y=y / 2 + 200)
 
         self.r11 = Radiobutton(self.frame,
                                font=("Kristen ITC", 30),
@@ -1848,7 +1848,7 @@ class MenuNightmareChoices(Menu):
                                value="d",
                                variable=self.resposta_var_ruim
                                )
-        self.r11.place(x=x / 2 + 150, y=y / 2 + 100)
+        self.r11.place(x=x / 2 + 150, y=y / 2 + 200)
 
         # função para verificar se a resposta esta certa
 
@@ -1895,7 +1895,7 @@ class MenuNightmareChoices(Menu):
                         justify="center",
                         fg="#8B0000",
                         bg="black")
-        self.l8.place(x=x / 2, y=y / 2 - 300, anchor=CENTER)
+        self.l8.place(x=x / 2, y=y / 2 - 150, anchor=CENTER)
 
         # 4 radiobuttons para o jogador assinalar entre a,b,c,d
         self.resposta_var_ruim = StringVar()
@@ -1910,7 +1910,7 @@ class MenuNightmareChoices(Menu):
                               value="a",
                               variable=self.resposta_var_ruim
                               )
-        self.r8.place(x=x / 2 - 150, y=y / 2 + 100)
+        self.r8.place(x=x / 2 - 150, y=y / 2 + 200)
 
         self.r9 = Radiobutton(self.frame,
                               font=("Kristen ITC", 30),
@@ -1923,7 +1923,7 @@ class MenuNightmareChoices(Menu):
                               value="b",
                               variable=self.resposta_var_ruim
                               )
-        self.r9.place(x=x / 2 - 50, y=y / 2 + 100)
+        self.r9.place(x=x / 2 - 50, y=y / 2 + 200)
 
         self.r10 = Radiobutton(self.frame,
                                font=("Kristen ITC", 30),
@@ -1936,7 +1936,7 @@ class MenuNightmareChoices(Menu):
                                value="c",
                                variable=self.resposta_var_ruim
                                )
-        self.r10.place(x=x / 2 + 50, y=y / 2 + 100)
+        self.r10.place(x=x / 2 + 50, y=y / 2 + 200)
 
         self.r11 = Radiobutton(self.frame,
                                font=("Kristen ITC", 30),
@@ -1949,7 +1949,7 @@ class MenuNightmareChoices(Menu):
                                value="d",
                                variable=self.resposta_var_ruim
                                )
-        self.r11.place(x=x / 2 + 150, y=y / 2 + 100)
+        self.r11.place(x=x / 2 + 150, y=y / 2 + 200)
 
         # função para verificar se a resposta esta certa
 
@@ -1987,7 +1987,6 @@ class MenuNightmareChoices(Menu):
         self.texto_gpt = criar_pergunta(OPENAI_API_KEY, self.assunto, self.dificuldade)
         self.resposta_gpt_longa = str(responder_pergunta(OPENAI_API_KEY, self.texto_gpt))
         self.resposta_gpt = str(self.resposta_gpt_longa[0])
-
         self.l8 = Label(self.frame,
                         text=f"""{str(self.questao)}- {self.texto_gpt}""",
                         font=("Kristen ITC", 26),
@@ -1995,7 +1994,7 @@ class MenuNightmareChoices(Menu):
                         justify="center",
                         fg="#8B0000",
                         bg="black")
-        self.l8.place(x=x / 2, y=y / 2 - 300, anchor=CENTER)
+        self.l8.place(x=x / 2, y=y / 2 - 150, anchor=CENTER)
 
         # 4 radiobuttons para o jogador assinalar entre a,b,c,d
         self.resposta_var_ruim = StringVar()
@@ -2010,7 +2009,7 @@ class MenuNightmareChoices(Menu):
                               value="a",
                               variable=self.resposta_var_ruim
                               )
-        self.r8.place(x=x / 2 - 150, y=y / 2 + 100)
+        self.r8.place(x=x / 2 - 150, y=y / 2 + 200)
 
         self.r9 = Radiobutton(self.frame,
                               font=("Kristen ITC", 30),
@@ -2023,7 +2022,7 @@ class MenuNightmareChoices(Menu):
                               value="b",
                               variable=self.resposta_var_ruim
                               )
-        self.r9.place(x=x / 2 - 50, y=y / 2 + 100)
+        self.r9.place(x=x / 2 - 50, y=y / 2 + 200)
 
         self.r10 = Radiobutton(self.frame,
                                font=("Kristen ITC", 30),
@@ -2036,7 +2035,7 @@ class MenuNightmareChoices(Menu):
                                value="c",
                                variable=self.resposta_var_ruim
                                )
-        self.r10.place(x=x / 2 + 50, y=y / 2 + 100)
+        self.r10.place(x=x / 2 + 50, y=y / 2 + 200)
 
         self.r11 = Radiobutton(self.frame,
                                font=("Kristen ITC", 30),
@@ -2049,7 +2048,7 @@ class MenuNightmareChoices(Menu):
                                value="d",
                                variable=self.resposta_var_ruim
                                )
-        self.r11.place(x=x / 2 + 150, y=y / 2 + 100)
+        self.r11.place(x=x / 2 + 150, y=y / 2 + 200)
 
         # função para verificar se a resposta esta certa
 
@@ -2104,7 +2103,7 @@ class MenuNightmareChoices(Menu):
                             justify="center",
                             fg="#8B0000",
                             bg="black")
-            self.l8.place(x=x / 2, y=y / 2 - 300, anchor=CENTER)
+            self.l8.place(x=x / 2, y=y / 2 - 150, anchor=CENTER)
 
             # 4 radiobuttons para o jogador assinalar entre a,b,c,d
             self.resposta_var_ruim = StringVar()
@@ -2119,7 +2118,7 @@ class MenuNightmareChoices(Menu):
                                   value="a",
                                   variable=self.resposta_var_ruim
                                   )
-            self.r8.place(x=x / 2 - 150, y=y / 2 + 100)
+            self.r8.place(x=x / 2 - 150, y=y / 2 + 200)
 
             self.r9 = Radiobutton(self.frame,
                                   font=("Kristen ITC", 30),
@@ -2132,7 +2131,7 @@ class MenuNightmareChoices(Menu):
                                   value="b",
                                   variable=self.resposta_var_ruim
                                   )
-            self.r9.place(x=x / 2 - 50, y=y / 2 + 100)
+            self.r9.place(x=x / 2 - 50, y=y / 2 + 200)
 
             self.r10 = Radiobutton(self.frame,
                                    font=("Kristen ITC", 30),
@@ -2145,7 +2144,7 @@ class MenuNightmareChoices(Menu):
                                    value="c",
                                    variable=self.resposta_var_ruim
                                    )
-            self.r10.place(x=x / 2 + 50, y=y / 2 + 100)
+            self.r10.place(x=x / 2 + 50, y=y / 2 + 200)
 
             self.r11 = Radiobutton(self.frame,
                                    font=("Kristen ITC", 30),
@@ -2158,7 +2157,7 @@ class MenuNightmareChoices(Menu):
                                    value="d",
                                    variable=self.resposta_var_ruim
                                    )
-            self.r11.place(x=x / 2 + 150, y=y / 2 + 100)
+            self.r11.place(x=x / 2 + 150, y=y / 2 + 200)
 
             # função para verificar se a resposta esta certa
 

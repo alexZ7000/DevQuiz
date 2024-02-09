@@ -2,7 +2,8 @@ import psycopg
 import datetime
 
 con = psycopg.connect(user='peepw', password='Jmtjh3pyqnI8',
-                              host='ep-little-bird-447006.us-east-2.aws.neon.tech', dbname='devquiz')
+                      host='ep-little-bird-447006.us-east-2.aws.neon.tech', dbname='devquiz')
+
 
 # conexao com o postgresql
 def conectar():
@@ -21,12 +22,11 @@ def criar_cadastro(name, username, email, senha, curso):
     con.commit()
 
 
-
 # criação de usuario
 def criar_usuario(username, senha):
     cursor = con.cursor()
     cursor.execute("SELECT username, senha FROM cadastrar WHERE username = %s AND senha = %s", (username, senha))
-    
+
 
 # pegar o tempo do computador do usuario e subtrair pelo tempo que foi finalziado o jogo (ate a ultima questao),
 # mandar resposta desse calculo para o banco de dados
@@ -46,7 +46,7 @@ def pesquisa_pergunta(question):
     question = cursor.execute(f"SELECT perguntas FROM questoes WHERE idquestao = {question}")
     con.commit()
     question = cursor.fetchone()
-    
+
     return question
 
 
@@ -55,7 +55,7 @@ def pesquisa_alternativas(a, b):
     a = cursor.execute(f"SELECT alternativa FROM respostas WHERE idquestao = {b}")
     con.commit()
     a = cursor.fetchall()
-    
+
     return a
 
 
@@ -65,7 +65,7 @@ def pesquisa_certa(self, a, b):
         "SELECT correta FROM respostas WHERE idquestao = {} AND alternativa = '{}'".format(a, b))
     con.commit()
     a = cursor.fetchone()
-    
+
     return a
 
 
@@ -78,7 +78,7 @@ def rank():
     cursor.execute("SELECT name, tempo FROM ranking ORDER BY tempo DESC")
     con.commit()
     ranking_result = cursor.fetchall()
-    
+
     return ranking_result
 
 
@@ -87,7 +87,6 @@ def verificar(username):
     cursor = con.cursor
     resposta = cursor.execute(f"SELECT * FROM CADASTRO WHERE USERNAME == {username}")
     con.commit()
-    
 
 
 # alteração de senha
@@ -98,7 +97,6 @@ def mudar_senha(username):
         senha = input("Digite a nova senha: ")
         cursor.execute("UPDATE cadastro SET senha = %s WHERE username = %s", (senha, username))
         con.commit()
-    
 
 
 # login
@@ -110,8 +108,6 @@ def login(username, senha):
         return True
     else:
         return False
-
-    
 
 
 # atribuição de valor de dados de usuario
