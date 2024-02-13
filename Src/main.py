@@ -64,11 +64,11 @@ class MenuPasswordForget(Menu):
             self.s.starttls()
             self.s.login(self.msg['From'], self.password)
             self.s.sendmail(self.msg['From'], self.msg['To'], self.msg.as_string().encode('utf-8'))
-            self.l1 = Label(bg="yellow", text="E-mail Enviado!", font=("Kristen ITC", 14))
+            self.l1 = Label(bg="yellow", text="E-mail Enviado!", font=("Arial", 14))
             self.l1.place(x=x / 2 - 200, y=y / 2 - 30)
         except:
             self.sumir_texto()
-            self.l1 = Label(bg="yellow", text="E-mail colocado errado, ou não cadastrado", font=("Kristen ITC", 14))
+            self.l1 = Label(bg="yellow", text="E-mail colocado errado, ou não cadastrado", font=("Arial", 14))
             self.l1.place(x=x / 2 - 200, y=y / 2 - 30)
 
     def reset_entry(self):
@@ -95,12 +95,12 @@ class MenuPasswordForget(Menu):
               width=1920,
               height=1080).place(x=0 - 2, y=0 - 2)
 
-        self.password_forget_entry = Entry(self.frame, font=("Kristen ITC", 12), bd=4, width=30)
+        self.password_forget_entry = Entry(self.frame, font=("Arial", 12), bd=4, width=30)
         self.password_forget_entry.place(x=x / 2 - 100, y=y / 2 - 75)
 
         self.confirm_button = Button(self.frame,
                                      text="Confirmar",
-                                     font=("Kristen ITC", 14),
+                                     font=("Arial", 14),
                                      width=16,
                                      borderwidth=2,
                                      cursor="hand2",
@@ -110,7 +110,7 @@ class MenuPasswordForget(Menu):
         Button(self.frame,
                cursor="hand2",
                text="Voltar",
-               font=("Kristen ITC", 14),
+               font=("Arial", 14),
                command=self.back_password_forget).place(x=x / 2 + 165, y=y / 2 + 5)
 
 
@@ -146,13 +146,13 @@ class MenuSignUp(Menu):
                               email=self.sign_up_email.get(),
                               senha=self.sign_up_password.get(),
                               curso=self.click.get())
-            self.l1 = Label(bg="yellow", text="Cadastro realizado com sucesso", font=("Kristen ITC", 14))
+            self.l1 = Label(bg="yellow", text="Cadastro realizado com sucesso", font=("Arial", 14))
             self.l1.place(x=x / 2 - 200, y=600)
         except:
             self.sumir_texto()
             self.l1 = Label(bg="yellow",
                             text="Cadastro NÃO realizado, por favor preencha todas as lacunas de forma correta",
-                            font=("Kristen ITC", 14))
+                            font=("Arial", 14))
             self.l1.place(x=x / 2 - 200, y=600)
 
     def reset_entry(self):
@@ -172,37 +172,37 @@ class MenuSignUp(Menu):
               height=1080).place(x=0 - 2, y=0 - 2)
 
         Label(self.frame,
-              font=("Kristen ITC", 60),
+              font=("Arial", 60),
               text="REGISTRE-SE",
               width=13,
               bg="#E3F2F8").place(x=x / 2 - 270, y=65)
 
         Label(self.frame,
-              font=("Kristen ITC", 14),
+              font=("Arial", 14),
               bg="light blue",
               width=15,
               text="    Nome:    ").place(x=x / 2 - 210, y=250)
 
         Label(self.frame,
-              font=("Kristen ITC", 14),
+              font=("Arial", 14),
               bg="light blue",
               width=15,
               text="  Username:  ").place(x=x / 2 - 210, y=300)
 
         Label(self.frame,
-              font=("Kristen ITC", 14),
+              font=("Arial", 14),
               bg="light blue",
               width=15,
               text="    E-mail:    ").place(x=x / 2 - 210, y=350)
 
         Label(self.frame,
-              font=("Kristen ITC", 14),
+              font=("Arial", 14),
               bg="light blue",
               width=15,
               text="    Senha:    ").place(x=x / 2 - 210, y=400)
 
         Label(self.frame,
-              font=("Kristen ITC", 14),
+              font=("Arial", 14),
               bg="light blue",
               width=15,
               text="Confirme sua Senha:").place(x=x / 2 - 210, y=450)
@@ -220,26 +220,26 @@ class MenuSignUp(Menu):
         self.select_course.place(x=x / 2 - 200, y=500)
 
         self.sign_up_name = Entry(self.frame,
-                                  font=("Kristen ITC", 12),
+                                  font=("Arial", 12),
                                   bd=4,
                                   width=30)
 
         self.sign_up_name.place(x=x / 2, y=250)
 
         self.sign_up_username = Entry(self.frame,
-                                      font=("Kristen ITC", 12),
+                                      font=("Arial", 12),
                                       bd=4,
                                       width=30)
         self.sign_up_username.place(x=x / 2, y=300)
 
         self.sign_up_email = Entry(self.frame,
-                                   font=("Kristen ITC", 12),
+                                   font=("Arial", 12),
                                    bd=4,
                                    width=30)
         self.sign_up_email.place(x=x / 2, y=350)
 
         self.sign_up_password = Entry(self.frame,
-                                      font=("Kristen ITC", 12),
+                                      font=("Arial", 12),
                                       bd=4,
                                       width=30,
                                       show="*")
@@ -247,7 +247,7 @@ class MenuSignUp(Menu):
         self.sign_up_password.place(x=x / 2, y=400)
 
         self.sign_up_confirm_password = Entry(self.frame,
-                                              font=("Kristen ITC", 12),
+                                              font=("Arial", 12),
                                               bd=4,
                                               width=30,
                                               show="*")
@@ -258,7 +258,7 @@ class MenuSignUp(Menu):
                                              text="Confirmar",
                                              height="2",
                                              cursor="hand2",
-                                             font=("Kristen ITC", 14),
+                                             font=("Arial", 14),
                                              width="27",
                                              command=self.get_user_info_sign_up)
 
@@ -268,7 +268,7 @@ class MenuSignUp(Menu):
                                           text="Voltar",
                                           height="2",
                                           cursor="hand2",
-                                          font=("Kristen ITC", 14),
+                                          font=("Arial", 14),
                                           width="27",
                                           command=self.back_menu_sign_up)
 
@@ -306,6 +306,51 @@ class MenuLogin(Menu):
             self.l1.place_forget()
         except:
             pass
+        
+    def invoque_slider(self):
+        """Função para "invocar" os dois controladores de volume"""
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
+
+        Label(self.frame, font=("Arial", 12), bg="#ccccff", text="Música").place(x=x / 2 + 400, y=275)
+        self.music_volume = Scale(self.frame, bg="#ccccff", from_=100, to=0, orient=VERTICAL, length=150,
+                                  cursor="hand2",
+                                  command=self.update_music)
+        self.music_volume.set(100)
+        self.music_volume.place(x=x / 2 + 400, y=300)
+
+        Label(self.frame, font=("Arial", 12), bg="#ccccff", text="Som").place(x=x / 2 + 470, y=275)
+        self.sound_volume = Scale(self.frame, cursor="hand2", bg="#ccccff", from_=100, to=0, orient=VERTICAL,
+                                  length=150,
+                                  command=self.update_sound)
+        self.sound_volume.set(100)
+        self.sound_volume.place(x=x / 2 + 470, y=300)
+
+    def volume_scale(self):
+        """Função para definir um valor padrão para a música"""
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
+        pygame.mixer.Channel(0).set_volume(100)
+        pygame.mixer.Channel(1).set_volume(100)
+        pygame.mixer.Channel(2).set_volume(100)
+        pygame.mixer.Channel(3).set_volume(100)
+        pygame.mixer.Channel(4).set_volume(100)
+
+    def update_music(self, volume):
+        """Função para atualizar o volume da música"""
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
+        self.music_volume = int(volume) / 100
+        pygame.mixer.Channel(0).set_volume(self.music_volume)
+        pygame.mixer.Channel(2).set_volume(self.music_volume)
+        pygame.mixer.Channel(3).set_volume(self.music_volume)
+        pygame.mixer.Channel(4).set_volume(self.music_volume)
+
+    def update_sound(self, volume):
+        """Função para atualizar o volume do som dos botões"""
+        pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
+        self.sound_volume = int(volume) / 100
+        pygame.mixer.Channel(1).set_volume(self.sound_volume)
+        self.hide()
+        self.dev_system.menu_login.show()
+
 
     def get_user_info_login(self):
         """Função para captar os dados que o usuário digitou no "login" """
@@ -318,11 +363,11 @@ class MenuLogin(Menu):
                 self.hide()
             else:
                 self.sumir_texto()
-                self.l1 = Label(bg="yellow", text="Username ou senha errada", font=("Kristen ITC", 14))
+                self.l1 = Label(bg="yellow", text="Username ou senha errada", font=("Arial", 14))
                 self.l1.place(x=x / 2 - 600, y=600)
         else:
             self.sumir_texto()
-            self.l1 = Label(bg="yellow", text="Não deixe os campos vazios", font=("Kristen ITC", 14))
+            self.l1 = Label(bg="yellow", text="Não deixe os campos vazios", font=("Arial", 14))
             self.l1.place(x=x / 2 - 600, y=600)
 
     def go_to_sign_up(self):
@@ -380,7 +425,7 @@ class MenuLogin(Menu):
               height=1080).place(x=0 - 2, y=0 - 2)
 
         self.login_username_entry = Entry(self.frame,
-                                          font=("Kristen ITC", 12),
+                                          font=("Arial", 12),
                                           bd=4,
                                           width=30)  # fleur = Arrastar janela, watch = Ampulheta
 
@@ -389,7 +434,7 @@ class MenuLogin(Menu):
         Button(self.frame,
                text="Logar-se",
                height="2",
-               font=("Kristen ITC", 14),
+               font=("Arial", 14),
                width="30",
                cursor="hand2",
                command=self.get_user_info_login).place(x=x / 2, y=600, anchor=CENTER)
@@ -399,11 +444,11 @@ class MenuLogin(Menu):
                command=self.go_to_sign_up,
                height="2",
                cursor="hand2",
-               font=("Kristen ITC", 14),
+               font=("Arial", 14),
                width="30").place(x=x / 2, y=680, anchor=CENTER)
 
         self.login_password_entry = Entry(self.frame, show="*",
-                                          font=("Kristen ITC", 12),
+                                          font=("Arial", 12),
                                           bd=4,
                                           width=30)
 
@@ -428,10 +473,19 @@ class MenuLogin(Menu):
                font=('Verdana', 9, 'italic', 'underline')).place(x=x / 2, y=730, anchor=CENTER)
 
         Button(self.frame,
-               font=("Kristen ITC", 14),
+               font=("Arial", 14),
                text="Sair do DevQuiz",
                cursor="hand2",
                command=self.confirm).place(x=1300, y=800)
+        
+
+        Button(self.frame,
+                text="Música",
+                height="2",
+                font=("Arial", 14),
+                width="10",
+                cursor="hand2",
+                command=self.invoque_slider).place(x=x / 2 + 600, y=290, anchor=CENTER)
 
 
 class MenuMain(Menu):
@@ -592,14 +646,14 @@ class MenuSettings(Menu):
         """Função para "invocar" os dois controladores de volume"""
         pygame.mixer.Channel(1).play(pygame.mixer.Sound('Sounds/click.wav'))
 
-        Label(self.frame, font=("Kristen ITC", 12), bg="#ccccff", text="Música").place(x=x / 2 + 220, y=310)
+        Label(self.frame, font=("Arial", 12), bg="#ccccff", text="Música").place(x=x / 2 + 220, y=310)
         self.music_volume = Scale(self.frame, bg="#ccccff", from_=100, to=0, orient=VERTICAL, length=150,
                                   cursor="hand2",
                                   command=self.update_music)
         self.music_volume.set(100)
         self.music_volume.place(x=x / 2 + 220, y=335)
 
-        Label(self.frame, font=("Kristen ITC", 12), bg="#ccccff", text="Som").place(x=x / 2 + 320, y=310)
+        Label(self.frame, font=("Arial", 12), bg="#ccccff", text="Som").place(x=x / 2 + 320, y=310)
         self.sound_volume = Scale(self.frame, cursor="hand2", bg="#ccccff", from_=100, to=0, orient=VERTICAL,
                                   length=150,
                                   command=self.update_sound)
@@ -633,7 +687,7 @@ class MenuSettings(Menu):
     def _build_screen(self):
         """Função para construir a tela "Configurações" """
         Label(self.frame,
-              font=("Kristen ITC", 40),
+              font=("Arial", 40),
 
               text="Configurações").place(x=x / 2, y=100, anchor='center')
 
@@ -641,7 +695,7 @@ class MenuSettings(Menu):
         self.theme_btn = Button(self.frame,
                                 textvariable=self.theme_txt,
                                 height="2",
-                                font=("Kristen ITC", 14),
+                                font=("Arial", 14),
                                 width="30",
                                 cursor="hand2",
                                 command=self.theme_function)
@@ -651,21 +705,21 @@ class MenuSettings(Menu):
         Button(self.frame,
                text="Música",
                height="2",
-               font=("Kristen ITC", 14),
+               font=("Arial", 14),
                width="30",
                cursor="hand2",
                command=self.invoque_slider).place(x=x / 2, y=419, anchor='center')
         Button(self.frame,
                text="Logout",
                height="2",
-               font=("Kristen ITC", 14),
+               font=("Arial", 14),
                width="30",
                cursor="hand2",
                command=self.logout).place(x=x / 2, y=579, anchor='center')
         Button(self.frame,
                text="Voltar para o Menu Inicial",
                height="2",
-               font=("Kristen ITC", 14),
+               font=("Arial", 14),
                width="30",
                cursor="hand2",
                command=self.back_menu_main).place(x=x / 2, y=739, anchor='center')
@@ -694,7 +748,7 @@ class MenuInstructions(Menu):
         """Função para construir a tela "Instruções" """
         Label(self.frame,
               text="INSTRUÇÕES",
-              font=("Kristen ITC", 40),
+              font=("Arial", 40),
               bg="#ccccff").place(x=x / 2, y=100, anchor="center")
         Label(self.frame,
               text="""
@@ -710,11 +764,11 @@ class MenuInstructions(Menu):
     """,
               wraplength=1500,
               justify="center",
-              font=("Kristen ITC", 14),
+              font=("Arial", 14),
               bg="#ccccff").place(x=x / 2, y=285, anchor="center")
 
         Button(self.frame,
-               font=("Kristen ITC", 14),
+               font=("Arial", 14),
                text="Entendo a seriedade do jogo",
                padx=25,
                pady=12.5,
@@ -764,7 +818,7 @@ class MenuPlay(Menu):
                 self.check1 = bd.pesquisa_certa(self, self.question, self.alternativas[self.i - 1][0])
                 self.alternativas = str(self.alternativas[self.i - 1])
                 self.b1 = Button(self.frame,
-                                 font=("Kristen ITC", 14),
+                                 font=("Arial", 14),
                                  height="2",
                                  wraplength=300,
                                  width="30",
@@ -778,7 +832,7 @@ class MenuPlay(Menu):
                 self.check2 = bd.pesquisa_certa(self, self.question, self.alternativas[self.i - 1][0])
                 self.alternativas = str(self.alternativas[self.i - 1])
                 self.b2 = Button(self.frame,
-                                 font=("Kristen ITC", 14),
+                                 font=("Arial", 14),
                                  height="2",
                                  width="30",
                                  wraplength=300,
@@ -792,7 +846,7 @@ class MenuPlay(Menu):
                 self.check3 = bd.pesquisa_certa(self, self.question, self.alternativas[self.i - 1][0])
                 self.alternativas = str(self.alternativas[self.i - 1])
                 self.b3 = Button(self.frame,
-                                 font=("Kristen ITC", 14),
+                                 font=("Arial", 14),
                                  height="2",
                                  width="30",
                                  wraplength=300,
@@ -806,7 +860,7 @@ class MenuPlay(Menu):
                 self.check4 = bd.pesquisa_certa(self, self.question, self.alternativas[self.i - 1][0])
                 self.alternativas = str(self.alternativas[self.i - 1])
                 self.b4 = Button(self.frame,
-                                 font=("Kristen ITC", 14),
+                                 font=("Arial", 14),
                                  height="2",
                                  width="30",
                                  wraplength=300,
@@ -820,7 +874,7 @@ class MenuPlay(Menu):
                 self.check5 = bd.pesquisa_certa(self, self.question, self.alternativas[self.i - 1][0])
                 self.alternativas = str(self.alternativas[self.i - 1])
                 self.b5 = Button(self.frame,
-                                 font=("Kristen ITC", 14),
+                                 font=("Arial", 14),
                                  height="2",
                                  width="30",
                                  wraplength=300,
@@ -871,8 +925,8 @@ class MenuPlay(Menu):
         except:
             pass
         self.rebobinar()
-        self.label = Label(self.frame, font=("Kristen ITC", 40), bg="#ccccff", text="Você Errou!")
-        self.button = Button(self.frame, font=("Kristen ITC", 40), text="Tentar Novamente", cursor="hand2",
+        self.label = Label(self.frame, font=("Arial", 40), bg="#ccccff", text="Você Errou!")
+        self.button = Button(self.frame, font=("Arial", 40), text="Tentar Novamente", cursor="hand2",
                              command=self.tentar_novamente)
         self.label.place(x=x / 2 - 600, y=y / 2, anchor="center")
         self.button.place(x=x / 2 + 200, y=y / 2, anchor="center")
@@ -918,7 +972,7 @@ class MenuPlay(Menu):
         """Função para gerar o enunciado da questão"""
         self.pergunta_label = str(bd.pesquisa_pergunta(self.question))
         self.l1 = Label(self.frame,
-                        font=("Kristen ITC", 26),
+                        font=("Arial", 26),
                         text=str(f"{self.question}- {self.pergunta_label[2:-3]}"),
                         wraplength=1500,
                         justify="center",
@@ -984,7 +1038,7 @@ class MenuWinGame(Menu):
         self.numero_de_comemoradas = self.numero_de_comemoradas + 1
         Label(self.frame,
               text=f"NÚMERO DE COMEMORADAS: {self.numero_de_comemoradas}",
-              font=("Kristen ITC", 50),
+              font=("Arial", 50),
               bg="#ccccff",
               fg="white"
               ).place(x=x / 2, y=y / 2 + 385, anchor=CENTER)
@@ -1006,7 +1060,7 @@ class MenuWinGame(Menu):
 
         Label(self.frame,
               text="PARABÉNS VOCÊ VENCEU",
-              font=("Kristen ITC", 50),
+              font=("Arial", 50),
               bg="#ccccff",
               fg="white"
               ).place(x=x / 2, y=y / 2 - 375, anchor=CENTER)
@@ -1014,14 +1068,14 @@ class MenuWinGame(Menu):
         Button(self.frame,
                text="Voltar",
                command=self.back_menu_main,
-               font=("Kristen ITC", 26),
+               font=("Arial", 26),
                cursor="hand2"
                ).place(x=x / 2 - 150, y=y / 2 - 100, anchor=CENTER)
 
         Button(self.frame,
                text="Comemorar",
                command=lambda: self.comemoradas(),
-               font=("Kristen ITC", 26),
+               font=("Arial", 26),
                cursor="hand2"
                ).place(x=x / 2 + 150, y=y / 2 - 100, anchor=CENTER)
 
@@ -1068,13 +1122,13 @@ class MenuNightmare(Menu):
                                                                                   anchor="center")
 
         Label(self.frame,
-              font=("Kristen ITC", 60),
+              font=("Arial", 60),
               text="NIGHTMARE",
               fg="#8B0000",
               bg="black").place(x=x / 2, y=y / 2 - 380, anchor="center")
 
         Button(self.frame,
-               font=("Kristen ITC", 40),
+               font=("Arial", 40),
                text="EU DESAFIO O GPT",
                fg="#8B0000",
                activebackground="#202020",
@@ -1086,7 +1140,7 @@ class MenuNightmare(Menu):
                bg="black").place(x=x / 2, y=y / 2, anchor="center")
 
         Button(self.frame,
-               font=("Kristen ITC", 40),
+               font=("Arial", 40),
                text="EU TENHO MEDO DO GPT",
                fg="#8B0000",
                bg="black",
@@ -1182,7 +1236,7 @@ class MenuNightmareChoices(Menu):
 
         self.l8 = Label(self.frame,
                         text=f"""{str(self.questao)}- {self.texto_gpt}""",
-                        font=("Kristen ITC", 26),
+                        font=("Arial", 26),
                         wraplength=1500,
                         justify="center",
                         fg="#8B0000",
@@ -1192,7 +1246,7 @@ class MenuNightmareChoices(Menu):
         # 4 radiobuttons para o jogador assinalar entre a,b,c,d
         self.resposta_var_ruim = StringVar()
         self.r8 = Radiobutton(self.frame,
-                              font=("Kristen ITC", 30),
+                              font=("Arial", 30),
                               fg="#8B0000",
                               bg="black",
                               activebackground="#202020",
@@ -1205,7 +1259,7 @@ class MenuNightmareChoices(Menu):
         self.r8.place(x=x / 2 - 150, y=y / 2 + 200)
 
         self.r9 = Radiobutton(self.frame,
-                              font=("Kristen ITC", 30),
+                              font=("Arial", 30),
                               fg="#8B0000",
                               bg="black",
                               activebackground="#202020",
@@ -1218,7 +1272,7 @@ class MenuNightmareChoices(Menu):
         self.r9.place(x=x / 2 - 50, y=y / 2 + 200)
 
         self.r10 = Radiobutton(self.frame,
-                               font=("Kristen ITC", 30),
+                               font=("Arial", 30),
                                fg="#8B0000",
                                bg="black",
                                activebackground="#202020",
@@ -1231,7 +1285,7 @@ class MenuNightmareChoices(Menu):
         self.r10.place(x=x / 2 + 50, y=y / 2 + 200)
 
         self.r11 = Radiobutton(self.frame,
-                               font=("Kristen ITC", 30),
+                               font=("Arial", 30),
                                fg="#8B0000",
                                bg="black",
                                activebackground="#202020",
@@ -1248,7 +1302,7 @@ class MenuNightmareChoices(Menu):
         self.b3 = Button(self.frame,
                          text="Verificar Resposta",
                          command=self.final,
-                         font=("Kristen ITC", 14),
+                         font=("Arial", 14),
                          fg="#8B0000",
                          activebackground="#202020",
                          activeforeground="#8B0000",
@@ -1283,7 +1337,7 @@ class MenuNightmareChoices(Menu):
 
         self.l8 = Label(self.frame,
                         text=f"""{str(self.questao)}- {self.texto_gpt}""",
-                        font=("Kristen ITC", 26),
+                        font=("Arial", 26),
                         wraplength=1500,
                         justify="center",
                         fg="#8B0000",
@@ -1293,7 +1347,7 @@ class MenuNightmareChoices(Menu):
         # 4 radiobuttons para o jogador assinalar entre a,b,c,d
         self.resposta_var_ruim = StringVar()
         self.r8 = Radiobutton(self.frame,
-                              font=("Kristen ITC", 30),
+                              font=("Arial", 30),
                               fg="#8B0000",
                               bg="black",
                               activebackground="#202020",
@@ -1306,7 +1360,7 @@ class MenuNightmareChoices(Menu):
         self.r8.place(x=x / 2 - 150, y=y / 2 + 200)
 
         self.r9 = Radiobutton(self.frame,
-                              font=("Kristen ITC", 30),
+                              font=("Arial", 30),
                               fg="#8B0000",
                               bg="black",
                               activebackground="#202020",
@@ -1319,7 +1373,7 @@ class MenuNightmareChoices(Menu):
         self.r9.place(x=x / 2 - 50, y=y / 2 + 200)
 
         self.r10 = Radiobutton(self.frame,
-                               font=("Kristen ITC", 30),
+                               font=("Arial", 30),
                                fg="#8B0000",
                                bg="black",
                                activebackground="#202020",
@@ -1332,7 +1386,7 @@ class MenuNightmareChoices(Menu):
         self.r10.place(x=x / 2 + 50, y=y / 2 + 200)
 
         self.r11 = Radiobutton(self.frame,
-                               font=("Kristen ITC", 30),
+                               font=("Arial", 30),
                                fg="#8B0000",
                                bg="black",
                                activebackground="#202020",
@@ -1349,7 +1403,7 @@ class MenuNightmareChoices(Menu):
         self.b3 = Button(self.frame,
                          text="Verificar Resposta",
                          command=self.questao10,
-                         font=("Kristen ITC", 14),
+                         font=("Arial", 14),
                          fg="#8B0000",
                          activebackground="#202020",
                          activeforeground="#8B0000",
@@ -1384,7 +1438,7 @@ class MenuNightmareChoices(Menu):
 
         self.l8 = Label(self.frame,
                         text=f"""{str(self.questao)}- {self.texto_gpt}""",
-                        font=("Kristen ITC", 26),
+                        font=("Arial", 26),
                         wraplength=1500,
                         justify="center",
                         fg="#8B0000",
@@ -1394,7 +1448,7 @@ class MenuNightmareChoices(Menu):
         # 4 radiobuttons para o jogador assinalar entre a,b,c,d
         self.resposta_var_ruim = StringVar()
         self.r8 = Radiobutton(self.frame,
-                              font=("Kristen ITC", 30),
+                              font=("Arial", 30),
                               fg="#8B0000",
                               bg="black",
                               activebackground="#202020",
@@ -1407,7 +1461,7 @@ class MenuNightmareChoices(Menu):
         self.r8.place(x=x / 2 - 150, y=y / 2 + 200)
 
         self.r9 = Radiobutton(self.frame,
-                              font=("Kristen ITC", 30),
+                              font=("Arial", 30),
                               fg="#8B0000",
                               bg="black",
                               activebackground="#202020",
@@ -1420,7 +1474,7 @@ class MenuNightmareChoices(Menu):
         self.r9.place(x=x / 2 - 50, y=y / 2 + 200)
 
         self.r10 = Radiobutton(self.frame,
-                               font=("Kristen ITC", 30),
+                               font=("Arial", 30),
                                fg="#8B0000",
                                bg="black",
                                activebackground="#202020",
@@ -1433,7 +1487,7 @@ class MenuNightmareChoices(Menu):
         self.r10.place(x=x / 2 + 50, y=y / 2 + 200)
 
         self.r11 = Radiobutton(self.frame,
-                               font=("Kristen ITC", 30),
+                               font=("Arial", 30),
                                fg="#8B0000",
                                bg="black",
                                activebackground="#202020",
@@ -1450,7 +1504,7 @@ class MenuNightmareChoices(Menu):
         self.b3 = Button(self.frame,
                          text="Verificar Resposta",
                          command=self.questao9,
-                         font=("Kristen ITC", 14),
+                         font=("Arial", 14),
                          fg="#8B0000",
                          activebackground="#202020",
                          activeforeground="#8B0000",
@@ -1485,7 +1539,7 @@ class MenuNightmareChoices(Menu):
 
         self.l8 = Label(self.frame,
                         text=f"""{str(self.questao)}- {self.texto_gpt}""",
-                        font=("Kristen ITC", 26),
+                        font=("Arial", 26),
                         wraplength=1500,
                         justify="center",
                         fg="#8B0000",
@@ -1495,7 +1549,7 @@ class MenuNightmareChoices(Menu):
         # 4 radiobuttons para o jogador assinalar entre a,b,c,d
         self.resposta_var_ruim = StringVar()
         self.r8 = Radiobutton(self.frame,
-                              font=("Kristen ITC", 30),
+                              font=("Arial", 30),
                               fg="#8B0000",
                               bg="black",
                               activebackground="#202020",
@@ -1508,7 +1562,7 @@ class MenuNightmareChoices(Menu):
         self.r8.place(x=x / 2 - 150, y=y / 2 + 200)
 
         self.r9 = Radiobutton(self.frame,
-                              font=("Kristen ITC", 30),
+                              font=("Arial", 30),
                               fg="#8B0000",
                               bg="black",
                               activebackground="#202020",
@@ -1521,7 +1575,7 @@ class MenuNightmareChoices(Menu):
         self.r9.place(x=x / 2 - 50, y=y / 2 + 200)
 
         self.r10 = Radiobutton(self.frame,
-                               font=("Kristen ITC", 30),
+                               font=("Arial", 30),
                                fg="#8B0000",
                                bg="black",
                                activebackground="#202020",
@@ -1534,7 +1588,7 @@ class MenuNightmareChoices(Menu):
         self.r10.place(x=x / 2 + 50, y=y / 2 + 200)
 
         self.r11 = Radiobutton(self.frame,
-                               font=("Kristen ITC", 30),
+                               font=("Arial", 30),
                                fg="#8B0000",
                                bg="black",
                                activebackground="#202020",
@@ -1551,7 +1605,7 @@ class MenuNightmareChoices(Menu):
         self.b3 = Button(self.frame,
                          text="Verificar Resposta",
                          command=self.questao8,
-                         font=("Kristen ITC", 14),
+                         font=("Arial", 14),
                          fg="#8B0000",
                          activebackground="#202020",
                          activeforeground="#8B0000",
@@ -1586,7 +1640,7 @@ class MenuNightmareChoices(Menu):
 
         self.l8 = Label(self.frame,
                         text=f"""{str(self.questao)}- {self.texto_gpt}""",
-                        font=("Kristen ITC", 26),
+                        font=("Arial", 26),
                         wraplength=1500,
                         justify="center",
                         fg="#8B0000",
@@ -1596,7 +1650,7 @@ class MenuNightmareChoices(Menu):
         # 4 radiobuttons para o jogador assinalar entre a,b,c,d
         self.resposta_var_ruim = StringVar()
         self.r8 = Radiobutton(self.frame,
-                              font=("Kristen ITC", 30),
+                              font=("Arial", 30),
                               fg="#8B0000",
                               bg="black",
                               activebackground="#202020",
@@ -1609,7 +1663,7 @@ class MenuNightmareChoices(Menu):
         self.r8.place(x=x / 2 - 150, y=y / 2 + 200)
 
         self.r9 = Radiobutton(self.frame,
-                              font=("Kristen ITC", 30),
+                              font=("Arial", 30),
                               fg="#8B0000",
                               bg="black",
                               activebackground="#202020",
@@ -1622,7 +1676,7 @@ class MenuNightmareChoices(Menu):
         self.r9.place(x=x / 2 - 50, y=y / 2 + 200)
 
         self.r10 = Radiobutton(self.frame,
-                               font=("Kristen ITC", 30),
+                               font=("Arial", 30),
                                fg="#8B0000",
                                bg="black",
                                activebackground="#202020",
@@ -1635,7 +1689,7 @@ class MenuNightmareChoices(Menu):
         self.r10.place(x=x / 2 + 50, y=y / 2 + 200)
 
         self.r11 = Radiobutton(self.frame,
-                               font=("Kristen ITC", 30),
+                               font=("Arial", 30),
                                fg="#8B0000",
                                bg="black",
                                activebackground="#202020",
@@ -1652,7 +1706,7 @@ class MenuNightmareChoices(Menu):
         self.b3 = Button(self.frame,
                          text="Verificar Resposta",
                          command=self.questao7,
-                         font=("Kristen ITC", 14),
+                         font=("Arial", 14),
                          fg="#8B0000",
                          activebackground="#202020",
                          activeforeground="#8B0000",
@@ -1688,7 +1742,7 @@ class MenuNightmareChoices(Menu):
 
         self.l8 = Label(self.frame,
                         text=f"""{str(self.questao)}- {self.texto_gpt}""",
-                        font=("Kristen ITC", 26),
+                        font=("Arial", 26),
                         wraplength=1500,
                         justify="center",
                         fg="#8B0000",
@@ -1698,7 +1752,7 @@ class MenuNightmareChoices(Menu):
         # 4 radiobuttons para o jogador assinalar entre a,b,c,d
         self.resposta_var_ruim = StringVar()
         self.r8 = Radiobutton(self.frame,
-                              font=("Kristen ITC", 30),
+                              font=("Arial", 30),
                               fg="#8B0000",
                               bg="black",
                               activebackground="#202020",
@@ -1711,7 +1765,7 @@ class MenuNightmareChoices(Menu):
         self.r8.place(x=x / 2 - 150, y=y / 2 + 200)
 
         self.r9 = Radiobutton(self.frame,
-                              font=("Kristen ITC", 30),
+                              font=("Arial", 30),
                               fg="#8B0000",
                               bg="black",
                               activebackground="#202020",
@@ -1724,7 +1778,7 @@ class MenuNightmareChoices(Menu):
         self.r9.place(x=x / 2 - 50, y=y / 2 + 200)
 
         self.r10 = Radiobutton(self.frame,
-                               font=("Kristen ITC", 30),
+                               font=("Arial", 30),
                                fg="#8B0000",
                                bg="black",
                                activebackground="#202020",
@@ -1737,7 +1791,7 @@ class MenuNightmareChoices(Menu):
         self.r10.place(x=x / 2 + 50, y=y / 2 + 200)
 
         self.r11 = Radiobutton(self.frame,
-                               font=("Kristen ITC", 30),
+                               font=("Arial", 30),
                                fg="#8B0000",
                                bg="black",
                                activebackground="#202020",
@@ -1754,7 +1808,7 @@ class MenuNightmareChoices(Menu):
         self.b3 = Button(self.frame,
                          text="Verificar Resposta",
                          command=self.questao6,
-                         font=("Kristen ITC", 14),
+                         font=("Arial", 14),
                          fg="#8B0000",
                          activebackground="#202020",
                          activeforeground="#8B0000",
@@ -1789,7 +1843,7 @@ class MenuNightmareChoices(Menu):
 
         self.l8 = Label(self.frame,
                         text=f"""{str(self.questao)}- {self.texto_gpt}""",
-                        font=("Kristen ITC", 26),
+                        font=("Arial", 26),
                         wraplength=1500,
                         justify="center",
                         fg="#8B0000",
@@ -1799,7 +1853,7 @@ class MenuNightmareChoices(Menu):
         # 4 radiobuttons para o jogador assinalar entre a,b,c,d
         self.resposta_var_ruim = StringVar()
         self.r8 = Radiobutton(self.frame,
-                              font=("Kristen ITC", 30),
+                              font=("Arial", 30),
                               fg="#8B0000",
                               bg="black",
                               activebackground="#202020",
@@ -1812,7 +1866,7 @@ class MenuNightmareChoices(Menu):
         self.r8.place(x=x / 2 - 150, y=y / 2 + 200)
 
         self.r9 = Radiobutton(self.frame,
-                              font=("Kristen ITC", 30),
+                              font=("Arial", 30),
                               fg="#8B0000",
                               bg="black",
                               activebackground="#202020",
@@ -1825,7 +1879,7 @@ class MenuNightmareChoices(Menu):
         self.r9.place(x=x / 2 - 50, y=y / 2 + 200)
 
         self.r10 = Radiobutton(self.frame,
-                               font=("Kristen ITC", 30),
+                               font=("Arial", 30),
                                fg="#8B0000",
                                bg="black",
                                activebackground="#202020",
@@ -1838,7 +1892,7 @@ class MenuNightmareChoices(Menu):
         self.r10.place(x=x / 2 + 50, y=y / 2 + 200)
 
         self.r11 = Radiobutton(self.frame,
-                               font=("Kristen ITC", 30),
+                               font=("Arial", 30),
                                fg="#8B0000",
                                bg="black",
                                activebackground="#202020",
@@ -1855,7 +1909,7 @@ class MenuNightmareChoices(Menu):
         self.b3 = Button(self.frame,
                          text="Verificar Resposta",
                          command=self.questao5,
-                         font=("Kristen ITC", 14),
+                         font=("Arial", 14),
                          fg="#8B0000",
                          activebackground="#202020",
                          activeforeground="#8B0000",
@@ -1890,7 +1944,7 @@ class MenuNightmareChoices(Menu):
 
         self.l8 = Label(self.frame,
                         text=f"""{str(self.questao)}- {self.texto_gpt}""",
-                        font=("Kristen ITC", 26),
+                        font=("Arial", 26),
                         wraplength=1500,
                         justify="center",
                         fg="#8B0000",
@@ -1900,7 +1954,7 @@ class MenuNightmareChoices(Menu):
         # 4 radiobuttons para o jogador assinalar entre a,b,c,d
         self.resposta_var_ruim = StringVar()
         self.r8 = Radiobutton(self.frame,
-                              font=("Kristen ITC", 30),
+                              font=("Arial", 30),
                               fg="#8B0000",
                               bg="black",
                               activebackground="#202020",
@@ -1913,7 +1967,7 @@ class MenuNightmareChoices(Menu):
         self.r8.place(x=x / 2 - 150, y=y / 2 + 200)
 
         self.r9 = Radiobutton(self.frame,
-                              font=("Kristen ITC", 30),
+                              font=("Arial", 30),
                               fg="#8B0000",
                               bg="black",
                               activebackground="#202020",
@@ -1926,7 +1980,7 @@ class MenuNightmareChoices(Menu):
         self.r9.place(x=x / 2 - 50, y=y / 2 + 200)
 
         self.r10 = Radiobutton(self.frame,
-                               font=("Kristen ITC", 30),
+                               font=("Arial", 30),
                                fg="#8B0000",
                                bg="black",
                                activebackground="#202020",
@@ -1939,7 +1993,7 @@ class MenuNightmareChoices(Menu):
         self.r10.place(x=x / 2 + 50, y=y / 2 + 200)
 
         self.r11 = Radiobutton(self.frame,
-                               font=("Kristen ITC", 30),
+                               font=("Arial", 30),
                                fg="#8B0000",
                                bg="black",
                                activebackground="#202020",
@@ -1956,7 +2010,7 @@ class MenuNightmareChoices(Menu):
         self.b3 = Button(self.frame,
                          text="Verificar Resposta",
                          command=self.questao4,
-                         font=("Kristen ITC", 14),
+                         font=("Arial", 14),
                          fg="#8B0000",
                          activebackground="#202020",
                          activeforeground="#8B0000",
@@ -1989,7 +2043,7 @@ class MenuNightmareChoices(Menu):
         self.resposta_gpt = str(self.resposta_gpt_longa[0])
         self.l8 = Label(self.frame,
                         text=f"""{str(self.questao)}- {self.texto_gpt}""",
-                        font=("Kristen ITC", 26),
+                        font=("Arial", 26),
                         wraplength=1500,
                         justify="center",
                         fg="#8B0000",
@@ -1999,7 +2053,7 @@ class MenuNightmareChoices(Menu):
         # 4 radiobuttons para o jogador assinalar entre a,b,c,d
         self.resposta_var_ruim = StringVar()
         self.r8 = Radiobutton(self.frame,
-                              font=("Kristen ITC", 30),
+                              font=("Arial", 30),
                               fg="#8B0000",
                               bg="black",
                               activebackground="#202020",
@@ -2012,7 +2066,7 @@ class MenuNightmareChoices(Menu):
         self.r8.place(x=x / 2 - 150, y=y / 2 + 200)
 
         self.r9 = Radiobutton(self.frame,
-                              font=("Kristen ITC", 30),
+                              font=("Arial", 30),
                               fg="#8B0000",
                               bg="black",
                               activebackground="#202020",
@@ -2025,7 +2079,7 @@ class MenuNightmareChoices(Menu):
         self.r9.place(x=x / 2 - 50, y=y / 2 + 200)
 
         self.r10 = Radiobutton(self.frame,
-                               font=("Kristen ITC", 30),
+                               font=("Arial", 30),
                                fg="#8B0000",
                                bg="black",
                                activebackground="#202020",
@@ -2038,7 +2092,7 @@ class MenuNightmareChoices(Menu):
         self.r10.place(x=x / 2 + 50, y=y / 2 + 200)
 
         self.r11 = Radiobutton(self.frame,
-                               font=("Kristen ITC", 30),
+                               font=("Arial", 30),
                                fg="#8B0000",
                                bg="black",
                                activebackground="#202020",
@@ -2055,7 +2109,7 @@ class MenuNightmareChoices(Menu):
         self.b3 = Button(self.frame,
                          text="Verificar Resposta",
                          command=self.questao3,
-                         font=("Kristen ITC", 14),
+                         font=("Arial", 14),
                          fg="#8B0000",
                          activebackground="#202020",
                          activeforeground="#8B0000",
@@ -2098,7 +2152,7 @@ class MenuNightmareChoices(Menu):
 
             self.l8 = Label(self.frame,
                             text=f"""{str(self.questao)}- {self.texto_gpt}""",
-                            font=("Kristen ITC", 26),
+                            font=("Arial", 26),
                             wraplength=1500,
                             justify="center",
                             fg="#8B0000",
@@ -2108,7 +2162,7 @@ class MenuNightmareChoices(Menu):
             # 4 radiobuttons para o jogador assinalar entre a,b,c,d
             self.resposta_var_ruim = StringVar()
             self.r8 = Radiobutton(self.frame,
-                                  font=("Kristen ITC", 30),
+                                  font=("Arial", 30),
                                   fg="#8B0000",
                                   bg="black",
                                   activebackground="#202020",
@@ -2121,7 +2175,7 @@ class MenuNightmareChoices(Menu):
             self.r8.place(x=x / 2 - 150, y=y / 2 + 200)
 
             self.r9 = Radiobutton(self.frame,
-                                  font=("Kristen ITC", 30),
+                                  font=("Arial", 30),
                                   fg="#8B0000",
                                   bg="black",
                                   activebackground="#202020",
@@ -2134,7 +2188,7 @@ class MenuNightmareChoices(Menu):
             self.r9.place(x=x / 2 - 50, y=y / 2 + 200)
 
             self.r10 = Radiobutton(self.frame,
-                                   font=("Kristen ITC", 30),
+                                   font=("Arial", 30),
                                    fg="#8B0000",
                                    bg="black",
                                    activebackground="#202020",
@@ -2147,7 +2201,7 @@ class MenuNightmareChoices(Menu):
             self.r10.place(x=x / 2 + 50, y=y / 2 + 200)
 
             self.r11 = Radiobutton(self.frame,
-                                   font=("Kristen ITC", 30),
+                                   font=("Arial", 30),
                                    fg="#8B0000",
                                    bg="black",
                                    activebackground="#202020",
@@ -2164,7 +2218,7 @@ class MenuNightmareChoices(Menu):
             self.b3 = Button(self.frame,
                              text="Verificar Resposta",
                              command=self.questao2,
-                             font=("Kristen ITC", 14),
+                             font=("Arial", 14),
                              fg="#8B0000",
                              activebackground="#202020",
                              activeforeground="#8B0000",
@@ -2183,14 +2237,14 @@ class MenuNightmareChoices(Menu):
         self.l1.place(x=x / 2 - 580, y=y / 2, anchor="center")
 
         self.l2 = Label(self.frame,
-                        font=("Kristen ITC", 50),
+                        font=("Arial", 50),
                         text="01000101 01010011 01000011 01001111 01001100 01001000 01000001",
                         fg="#8B0000",
                         bg="black")
         self.l2.place(x=x / 2, y=y / 2 - 375, anchor="center")
 
         self.l3 = Label(self.frame,
-                        font=("Kristen ITC", 50),
+                        font=("Arial", 50),
                         fg="#8B0000",
                         bg="black",
                         text="Assunto")
@@ -2198,7 +2252,7 @@ class MenuNightmareChoices(Menu):
 
         self.assunto_var = StringVar()
         self.r1 = Radiobutton(self.frame,
-                              font=("Kristen ITC", 14),
+                              font=("Arial", 14),
                               fg="#8B0000",
                               bg="black",
                               activebackground="#202020",
@@ -2210,7 +2264,7 @@ class MenuNightmareChoices(Menu):
         self.r1.place(x=x / 2 - 150, y=y / 2 - 50)
 
         self.r2 = Radiobutton(self.frame,
-                              font=("Kristen ITC", 14),
+                              font=("Arial", 14),
                               fg="#8B0000",
                               bg="black",
                               activebackground="#202020",
@@ -2222,7 +2276,7 @@ class MenuNightmareChoices(Menu):
         self.r2.place(x=x / 2 - 150, y=y / 2)
 
         self.r3 = Radiobutton(self.frame,
-                              font=("Kristen ITC", 14),
+                              font=("Arial", 14),
                               fg="#8B0000",
                               bg="black",
                               activebackground="#202020",
@@ -2234,7 +2288,7 @@ class MenuNightmareChoices(Menu):
         self.r3.place(x=x / 2 - 150, y=y / 2 + 50)
 
         self.r4 = Radiobutton(self.frame,
-                              font=("Kristen ITC", 14),
+                              font=("Arial", 14),
                               fg="#8B0000",
                               bg="black",
                               activebackground="#202020",
@@ -2246,7 +2300,7 @@ class MenuNightmareChoices(Menu):
         self.r4.place(x=x / 2 - 150, y=y / 2 + 100)
 
         self.l4 = Label(self.frame,
-                        font=("Kristen ITC", 50),
+                        font=("Arial", 50),
                         fg="#8B0000",
                         bg="black",
                         text="Dificuldade")
@@ -2254,7 +2308,7 @@ class MenuNightmareChoices(Menu):
 
         self.dificuldade_var = StringVar()
         self.r5 = Radiobutton(self.frame,
-                              font=("Kristen ITC", 14),
+                              font=("Arial", 14),
                               fg="#8B0000",
                               bg="black",
                               activebackground="#202020",
@@ -2266,7 +2320,7 @@ class MenuNightmareChoices(Menu):
         self.r5.place(x=x / 2 + 250, y=y / 2 - 50)
 
         self.r6 = Radiobutton(self.frame,
-                              font=("Kristen ITC", 14),
+                              font=("Arial", 14),
                               fg="#8B0000",
                               bg="black",
                               activebackground="#202020",
@@ -2278,7 +2332,7 @@ class MenuNightmareChoices(Menu):
         self.r6.place(x=x / 2 + 250, y=y / 2)
 
         self.r7 = Radiobutton(self.frame,
-                              font=("Kristen ITC", 14),
+                              font=("Arial", 14),
                               fg="#8B0000",
                               bg="black",
                               cursor="hand2",
@@ -2290,7 +2344,7 @@ class MenuNightmareChoices(Menu):
         self.r7.place(x=x / 2 + 250, y=y / 2 + 50)
 
         self.b1 = Button(self.frame,
-                         font=("Kristen ITC", 14),
+                         font=("Arial", 14),
                          text="ESTOU PRONTO PARA VENCER O GPT",
                          fg="#8B0000",
                          activebackground="#202020",
@@ -2304,7 +2358,7 @@ class MenuNightmareChoices(Menu):
         self.b1.place(x=x / 2, y=y / 2 + 250, anchor="center")
 
         self.b2 = Button(self.frame,
-                         font=("Kristen ITC", 14),
+                         font=("Arial", 14),
                          text="EU QUERO MINHA MAMÃE",
                          fg="#8B0000",
                          activebackground="#202020",
